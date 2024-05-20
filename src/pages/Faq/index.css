@@ -1,0 +1,44 @@
+
+.faq_page {
+  background-color: #fff;
+  margin-top: 100px;
+}
+
+.faq_page .content h1 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #555;
+    width: 100%;
+}
+
+.faq_page .content {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 80%;
+  margin: auto;
+  padding: 20px 10%;
+}
+
+.faq_page .accordion {
+    width: 100%;
+}
+
+.faq_page .video-player {
+    width: 400px;
+    height: 250px;
+    justify-self: center;
+    margin-bottom: 20px;
+}
+
+.faq_page .desc_row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
