@@ -1,4 +1,4 @@
-const apiUrl = "";
+const apiUrl = process.env.REACT_APP_BASE_URL;
 const apis = {
   init: apiUrl + "/api/users/init",
   unload: apiUrl + "/api/users/unload",
