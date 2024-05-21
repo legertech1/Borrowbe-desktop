@@ -1,0 +1,51 @@
+name: EC2-DEV-Dev
+
+# Trigger deployment only on push to the development branch
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  deploy:
+    name: Deploy and Setup on EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Set permissions on the remote server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEV_HOST }}
+          username: ${{ secrets.DEV_USERNAME }}
+          key: ${{ secrets.DEV_EC2_SSH_KEY }}
+          script: |
+            sudo chown -R ${{ secrets.DEV_USERNAME }}:${{ secrets.DEV_USERNAME }} ${{ secrets.DEV_TARGET_DIR }}
+            sudo chmod -R 755 ${{ secrets.DEV_TARGET_DIR }}
+            sudo mkdir -p ${{ secrets.DEV_BUILD_TARGET_DIR }}
+            sudo chown -R ${{ secrets.DEV_USERNAME }}:${{ secrets.DEV_USERNAME }} ${{ secrets.DEV_BUILD_TARGET_DIR }}
+            sudo chmod -R 755 ${{ secrets.DEV_BUILD_TARGET_DIR }}
+
+      - name: Deploy files to the server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEV_EC2_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.DEV_HOST }}
+          REMOTE_USER: ${{ secrets.DEV_USERNAME }}
+          TARGET: ${{ secrets.DEV_TARGET_DIR }}
+        with:
+          args: -avz  # Add verbose output and other useful flags
+
+      - name: Build and deploy the application
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEV_HOST }}
+          username: ${{ secrets.DEV_USERNAME }}
+          key: ${{ secrets.DEV_EC2_SSH_KEY }}
+          script: |
+            cd ${{ secrets.DEV_TARGET_DIR }}
+            npm install
+            npm run build
+            rsync -avz ${{ secrets.DEV_TARGET_DIR }}/build/ ${{ secrets.DEV_BUILD_TARGET_DIR }}/
