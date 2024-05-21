@@ -22,7 +22,7 @@ import { patchUpdate } from "../store/categorySlice";
 import { pushUpdate } from "../store/updateSlice";
 import { getBalance } from "../store/balanceSlice";
 
-export const socket = io("");
+export const socket = io(process.env.REACT_APP_BASE_URL);
 export const sendMessage = (socket, message) => {
   socket.emit("send_message", message);
 };
