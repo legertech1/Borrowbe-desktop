@@ -20,7 +20,6 @@ function Root() {
   }
   axios.defaults.baseURL = BASE_URL;
   axios.defaults.withCredentials = true;
-
   axios.interceptors.request.use(
     function (config) {
       // Modify request config to include the query parameter
