@@ -4,7 +4,7 @@ import apis from "../services/api";
 import { socket, disconnect } from "../socket";
 
 export const me = createAsyncThunk("authorize user", async () => {
-  let data = (await axios.get(apis.me)).data;
+  let data = (await axios.get(apis.me,)).data;
   return { ...data };
 });
 
