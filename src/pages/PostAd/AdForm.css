@@ -317,7 +317,8 @@
 .post_ad .field_container .options {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
+  justify-content: end;
 }
 .post_ad .field_container .radio_option {
   padding: 6px 12px;
