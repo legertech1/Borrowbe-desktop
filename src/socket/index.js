@@ -26,6 +26,7 @@ export const socket = io(process.env.REACT_APP_BASE_URL, {
   withCredentials: true,
   transports: ['websocket', 'polling'],
 });
+
 export const sendMessage = (socket, message) => {
   socket.emit("send_message", message);
 };
