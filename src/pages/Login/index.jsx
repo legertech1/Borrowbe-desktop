@@ -49,7 +49,7 @@ function Login() {
 
       // dispatch(me());
       navigate("/");
-      window.location.reload();
+      // window.location.reload();
     } catch (err) {
       notification.error(err.response.data.error);
       return setError(err.response.data.error);
