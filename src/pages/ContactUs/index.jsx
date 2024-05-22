@@ -8,7 +8,7 @@ const ContactUs = () => {
   return (
     <div className="contact-us-page">
       <Navbar white={true}></Navbar>
-      <div className="bg_blob2"></div>
+    
       <ContactUsForm />
       <Footer />
     </div>
