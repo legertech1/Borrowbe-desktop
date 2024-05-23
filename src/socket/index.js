@@ -24,7 +24,6 @@ import { getBalance } from "../store/balanceSlice";
 
 export const socket = io(process.env.REACT_APP_BASE_URL, {
   withCredentials: true,
-  transports: ['websocket', 'polling'],
   addTrailingSlash: false
 });
 export const sendMessage = (socket, message) => {
