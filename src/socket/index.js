@@ -24,10 +24,9 @@ import { getBalance } from "../store/balanceSlice";
 import Cookies from "js-cookie";
 
 export const socket = io(process.env.REACT_APP_BASE_URL, {
-  withCredentials: true,
-   query: {
-    auth: Cookies.get("auth")
-  },
+    auth: (cb) => {
+    cb(Cookies.get("auth"));
+  }
   transports: ['websocket', 'polling'],
 });
 export const sendMessage = (socket, message) => {
