@@ -45,9 +45,9 @@ export const helpDocs = {
     content: PrecautionAndSafety,
   },
   govtOfficialFormsAndWeb: {
-    id: "govt-official-forms-and-web",
-    label: "Govt. Official Forms and Web",
-    description: "Agreements by province for using our platform safely",
+    id: "govt-official-forms",
+    label: "Govt. Official Forms and Links",
+    description: "Agreements by state/province for using our platform safely",
     content: TenancyAgreement,
   },
   avoidScams: {

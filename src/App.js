@@ -41,27 +41,15 @@ function App() {
     (state) => state.location
   );
 
+  function getCurrentLocation() {}
+
   const [country, setCountry] = useLocalStorage("country", null);
 
   const [recentLocations, setRecentLocations] = useLocalStorage(
     "recentLocations",
-    [
-      {
-        name: "Canada",
-        place_id: "ChIJ2WrMN9MDDUsRpY9Doiq3aJk",
-        coordinates: {
-          lat: 56.130366,
-          long: -106.346771,
-        },
-        components: {
-          country: {
-            short_name: "CA",
-            long_name: "Canada",
-          },
-        },
-      },
-    ]
+    []
   );
+
   async function getCountry() {
     fetch("https://ipinfo.io/json")
       .then((response) => response.json())
@@ -89,10 +77,6 @@ function App() {
     user && loadChats(socket);
     user && getNotifications(socket);
   }, [user]);
-
-  useEffect(() => {
-    if (!selectedLocation) dispatch(setSelectedLocation(recentLocations[0]));
-  }, []);
 
   return (
     <div className="__app">

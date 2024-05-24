@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Footer.css";
 import LOGO from "../assets/images/MainLogo.svg";
 import { helpDocs } from "../utils/helpDocs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PolicyOutlined from "@mui/icons-material/PolicyOutlined";
 import GavelOutlinedIcon from "@mui/icons-material/GavelOutlined";
 import ReportProblemOutlinedIcon from "@mui/icons-material/ReportProblemOutlined";
@@ -13,11 +13,12 @@ import ContactSupportOutlinedIcon from "@mui/icons-material/ContactSupportOutlin
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { imageFallback } from "../utils/listingCardFunctions";
 import OurPricing from "./OurPricing";
-import Modal from "./Modal"
+import Modal from "./Modal";
 import { AttachMoney } from "@mui/icons-material";
 
 const Footer = () => {
   const [pricing, setPricing] = useState(false);
+  const navigate = useNavigate();
   return (
     <div className="main-footer">
       {pricing && (
@@ -101,10 +102,11 @@ const Footer = () => {
             <ContactSupportOutlinedIcon />
             <span>Contact Us</span>
           </Link>
-          <Link className="link_text" to={"/faq"}>
-            <HelpOutlineIcon />
-            <span>FAQs</span>
-          </Link>
+
+          <a className="link_text" onClick={() => navigate("/help")}>
+            <PolicyOutlined />
+            Help & Support
+          </a>
         </div>
       </footer>
       <div

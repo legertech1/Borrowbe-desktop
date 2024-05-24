@@ -38,17 +38,63 @@ export function getLocation() {
 export const fetchCurrentLocation = createAsyncThunk(
   "fetchCurrentLocation",
   async () => {
+    console.log("onnc");
     try {
+      console.log("wefweuoncjkew he wh");
       const coordinates = await getLocation();
+      console.log("--------");
       if (!coordinates) {
-        alert(coordinates.message);
+        // alert(coordinates.message);
+        throw new Error("");
       }
       let loc = await axios.get(apis.findMyLocation, {
         params: coordinates,
       });
+      console.log("//////");
+      return { currentLocation: loc.data, selectedLocation: loc.data };
+    } catch (error) {
+      console.log("fetching cou ntry because location denied");
+      const res = await fetch("https://ipinfo.io/json");
+      const data = await res.json();
 
-      return loc.data;
-    } catch (error) {}
+      if (data.country == "US") {
+        return {
+          selectedLocation: {
+            name: "United States",
+            place_id: "ChIJCzYy5IS16lQRQrfeQ5K5Oxw",
+            coordinates: {
+              lat: 37.09024,
+              long: -95.712891,
+            },
+            components: {
+              country: {
+                short_name: "US",
+                long_name: "United States",
+              },
+            },
+          },
+          currentLocation: null,
+        };
+      } else {
+        return {
+          selectedLocation: {
+            name: "Canada",
+            place_id: "ChIJ2WrMN9MDDUsRpY9Doiq3aJk",
+            coordinates: {
+              lat: 56.130366,
+              long: -106.346771,
+            },
+            components: {
+              country: {
+                short_name: "CA",
+                long_name: "Canada",
+              },
+            },
+          },
+          currentLocation: null,
+        };
+      }
+    }
   }
 );
 
@@ -67,12 +113,10 @@ const locationSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchCurrentLocation.fulfilled, (state, action) => {
       if (!state.selectedLocation) {
-        updateRecentLocations(action.payload);
-        return {
-          selectedLocation: action.payload,
-          currentLocation: action.payload,
-        };
-      } else return { ...state, currentLocation: action.payload };
+        updateRecentLocations(action.payload.selectedLocation);
+        return action.payload;
+      } else
+        return { ...state, currentLocation: action.payload.currentLocation };
     });
   },
 });

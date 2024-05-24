@@ -47,6 +47,14 @@
   border-radius: 4px;
   gap: 0px;
 }
+.help_doc_container table {
+  margin-left: 0;
+}
+.help_doc_container td,
+.help_doc_container td * {
+  width: 300px !important;
+  text-align: center !important;
+}
 
 .help_container .help_content {
   width: 80%;
