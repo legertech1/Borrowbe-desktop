@@ -28,8 +28,9 @@
 }
 
 ._dropdown .option svg {
-  height: 28px !important;
-  width: 28px !important;
+  min-height: 28px;
+  width: 28px;
+  object-fit: contain;
 }
 
 ._dropdown .selected {

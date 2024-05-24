@@ -943,10 +943,11 @@
 }
 .ad_form ._dropdown .option img,
 .ad_form ._dropdown .option svg {
-  height: 32px;
-  width: 32px;
+  max-height: 34px;
+  width: 34px;
   margin: -4px;
   fill: black !important;
+  object-fit: fill;
 }
 .ad_form ._dropdown .selected > div img,
 .ad_form ._dropdown .selected > div svg {

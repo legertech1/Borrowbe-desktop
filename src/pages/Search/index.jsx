@@ -28,13 +28,12 @@ import {
 import RowListings from "../../components/RowListings";
 import { saveSearch, deleteSearch, me } from "../../store/authSlice";
 import Modal from "../../components/Modal";
-import axios from "axios";
-import apis from "../../services/api";
+
 import WebLocation from "../../components/WebLocation";
-import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 import Footer from "../../components/Footer";
 import PageControl from "../../components/PageControl";
 import NotFoundAnimation from "../../components/Shared/NotFoundAnimation";
+import CategoriesIcon from "../../assets/images/CategoriesIcon";
 
 function SearchPage() {
   const [viewMode, setViewMode] = useState("rows");
@@ -138,7 +137,7 @@ function SearchPage() {
           <Dropdown
             array={["All Categories", ...categories.map((item) => item.name)]}
             icons={[
-              <CategoryOutlinedIcon />,
+              <CategoriesIcon />,
               ...categories.map((item) => <img src={item.icon}></img>),
             ]}
             value={searches[current].category}

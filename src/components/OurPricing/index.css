@@ -31,9 +31,11 @@
 }
 .our_pricing ._dropdown .option img,
 .our_pricing ._dropdown .option svg {
-  height: 30px;
-  width: 30px;
+  /* height: 30px; */
+  width: 34px;
+  max-height: 34px;
   margin: -4px;
+  object-fit: fill;
 }
 .our_pricing ._dropdown .selected {
   width: 100%;
