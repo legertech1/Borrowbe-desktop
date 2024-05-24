@@ -17,6 +17,9 @@
   /* width: 100%; */
 }
 
+._dropdown.active {
+  z-index: 99;
+}
 ._dropdown .option {
   display: flex;
   gap: 12px;

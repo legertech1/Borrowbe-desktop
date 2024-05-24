@@ -495,8 +495,8 @@ function ViewListing({ preview, edit }) {
                           <p className="key">{key}</p>
                           <p className="val">
                             {listing?.extraFields[key]}
-                            {listing?.extraFields[key] == false && "false"}
-                            {listing?.extraFields[key] == true && "true"}
+                            {listing?.extraFields[key] === false && "false"}
+                            {listing?.extraFields[key] === true && "true"}
                           </p>
                         </div>
                       ))}
