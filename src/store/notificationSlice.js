@@ -7,7 +7,7 @@ const notificationSlice = createSlice({
   initialState: null,
   reducers: {
     notificationRecieved: function (state, action) {
-      if (JSON.parse(localStorage.sound || "").notification)
+      if (JSON.parse(localStorage.sound || "{}").notification)
         notif
           .play()
           .then()

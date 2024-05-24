@@ -20,7 +20,7 @@ const chatSlice = createSlice({
         if (conv._id == action.payload._id) {
           if (
             conv.info._id == action.payload.message.from &&
-            JSON.parse(localStorage.sound ||"").message
+            JSON.parse(localStorage.sound ||"{}").message
           ) {
             notif
               .play()
