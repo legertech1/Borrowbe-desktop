@@ -158,10 +158,30 @@
   font-family: var(--font2);
   padding: 16px 20px;
 }
-
 .post_ad ._dropdown .options {
-  overflow: visible;
+  min-height: auto;
+  overflow-y: visible;
+}
+
+.post_ad ._ ._dropdown .options {
   min-height: unset;
+  overflow-y: scroll;
+  max-height: 300px;
+  height: fit-content;
+}
+.post_ad ._dropdown .options::-webkit-scrollbar {
+  width: 6px;
+  display: block !important;
+}
+
+.post_ad ._dropdown .options::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+.post_ad ._dropdown .options::-webkit-scrollbar-thumb {
+  background-color: var(--blue);
+  border-radius: 10px;
+  /* border: 3px solid var(--blue); */
 }
 
 .post_ad .field_container {
