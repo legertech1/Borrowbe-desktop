@@ -39,7 +39,7 @@ function CreatePassword({ close }) {
       window.location.reload();
       close();
     } catch (err) {
-      notification.error(err?.message || err?.response?.data);;
+      notification.error( err?.response?.data || err.message);;
     }
   };
   return (
@@ -70,7 +70,7 @@ function CreatePassword({ close }) {
               notification.success(res.data);
               setCodeSent(true);
             } catch (err) {
-              notification.error(err?.message || err?.response?.data);;
+              notification.error( err?.response?.data || err.message);;
             }
           }}
         >
