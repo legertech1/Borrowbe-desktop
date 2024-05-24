@@ -26,7 +26,7 @@ import Cookies from "js-cookie";
 export const socket = io(process.env.REACT_APP_BASE_URL, {
     auth: (cb) => {
     cb(Cookies.get("auth"));
-  }
+  },
   transports: ['websocket', 'polling'],
 });
 
