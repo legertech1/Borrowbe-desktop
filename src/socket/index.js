@@ -21,8 +21,12 @@ import {
 import { patchUpdate } from "../store/categorySlice";
 import { pushUpdate } from "../store/updateSlice";
 import { getBalance } from "../store/balanceSlice";
+// import Cookies from "js-cookie";
 
 export const socket = io(process.env.REACT_APP_BASE_URL, {
+  //   auth: (cb) => {
+  //   cb(Cookies.get("auth"));
+  // },
   withCredentials: true,
   transports: ['websocket', 'polling'],
 });
