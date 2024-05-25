@@ -39,6 +39,7 @@
   margin: auto;
   margin-top: 120px;
   margin-bottom: 20px;
+  min-height: 600px;
   background: white;
   width: 80%;
   padding: 100px 150px;
@@ -54,8 +55,6 @@
 .help_doc_container td * {
   width: 300px !important;
   text-align: center !important;
-
-  
 }
 
 .help_container .help_content {
