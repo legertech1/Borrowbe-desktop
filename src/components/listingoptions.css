@@ -29,7 +29,7 @@ div.options.actions {
   width: 100%;
   align-items: center;
   border-radius: 4px;
-  box-shadow: 1px 1px 8px #ccc, -1px -1px 8px #ccc;
+  box-shadow: 1px 1px 8px #1112, -1px -1px 8px #1112;
   /* margin: 0px 50px 0px; */
   box-sizing: border-box;
   overflow: hidden;
@@ -215,7 +215,7 @@ div.options.actions {
   gap: 40px;
 }
 .ad_config .controls {
-  /* box-shadow: 1px 1px 8px #ccc, -1px -1px 8px #ccc; */
+  /* box-shadow: 1px 1px 8px #1112, -1px -1px 8px #1112; */
   border-radius: 4px;
   /* padding: 20px 40px; */
   display: flex;
@@ -376,7 +376,7 @@ div.options.actions {
   min-width: 300px;
   border-radius: 4px;
   padding: 12px;
-  box-shadow: 1px 1px 8px #ccc, -1px -1px 8px #ccc;
+  box-shadow: 1px 1px 8px #1112, -1px -1px 8px #1112;
   border: 1px solid var(--blue);
 }
 .ad_config .config .config_header {

@@ -553,59 +553,10 @@
   height: 66px;
 }
 @media (max-width: 1600px) {
-  .listing .badges .featured,
-  .row_listing .badges .featured,
-  .listing .badges .status,
-  .row_listing .badges .status {
-    padding: 0 12px !important;
-    height: 22px;
-    font-size: 14px;
-  }
-  .listing .status,
-  .row_listing .status {
-    top: 180px;
-    font-size: 16px;
-    padding: 0 12px;
-    height: 26px;
-  }
-  .row_listing .main {
-    gap: 8px;
-    width: 60%;
-  }
-  .row_listing .main h1 {
-    font-size: 18px;
-  }
-  .row_listing .main p {
-    font-size: 15px;
-    align-items: center;
-  }
-  .row_listing .price .price_num {
-    font-size: 26px !important;
-  }
-  .row_listing .price {
-    padding: 12px;
-  }
-  .row_listing .price p {
-    font-size: 15px;
-  }
-  .row_listing span.location svg {
-    fill: var(--blue);
-    height: 20px;
-    vertical-align: text-top;
-    width: 20px;
-  }
-  .row_listing button.actions {
-    top: 8px;
-    right: 4px;
-  }
-  .row_listing {
-    height: 180px !important;
-  }
-  .row_listing .main {
-    padding: 12px;
-  }
-
   .row_listing .images_container {
     width: 40%;
+  }
+  .row_listing .main {
+    width: 60%;
   }
 }

@@ -482,35 +482,7 @@
   display: none;
 }
 
-@media (max-width: 1600px) {
-  .listing .images_container {
-    height: 150px;
-  }
 
-  .listings .listing {
-    height: 280px;
-    min-height: 280px;
-  }
-  .listing main h1 {
-    font-size: 17px;
-  }
-  .listing main {
-    gap: 6px;
-  }
-  .listing .info .distance {
-    font-size: 14px;
-  }
-  .listing .price .price_num {
-    font-size: 20px;
-  }
-  .listing .price p {
-    font-size: 14px;
-  }
-  .listings {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
-    gap: 5px;
-  }
-}
 
 .listing .tax {
   display: inline;

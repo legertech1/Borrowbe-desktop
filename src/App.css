@@ -46,12 +46,6 @@ a {
   -webkit-tap-highlight-color: transparent !important;
 }
 
-@media (max-width: 1300px) {
-  * {
-    font-size: 0.9rem;
-  }
-}
-
 .center {
   text-align: center;
 }
@@ -113,4 +107,10 @@ body::-webkit-scrollbar {
 }
 .__app {
   min-width: 1200px;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: white;
+
 }

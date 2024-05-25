@@ -44,7 +44,7 @@
   width: 80%;
   padding: 100px 150px;
   box-sizing: border-box;
-  box-shadow: 1px 1px 8px #ccc, -1px -1px 8px #ccc;
+  box-shadow: 1px 1px 8px #1112, -1px -1px 8px #1112;
   border-radius: 4px;
   gap: 0px;
 }
@@ -149,7 +149,7 @@
 }
 .help_doc_container h2,
 .help_doc_container h2 span {
-  font-size: 24px;
+  font-size: 28px !important;
 }
 
 .help_container .pass_cont .cards_row .card {

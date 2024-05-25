@@ -482,7 +482,12 @@ function ViewListing({ preview, edit }) {
                     </div>
                   </div>
                 )}
-                {(Object.keys(listing?.extraFields || {}).length || null) && (
+                {(Object.keys(listing?.extraFields || {})?.filter(
+                  (k) =>
+                    listing.extraFields[k] !== undefined &&
+                    listing.extraFields[k] !== ""
+                ).length ||
+                  null) && (
                   <div className="details tile">
                     <h1>
                       {" "}
@@ -491,7 +496,11 @@ function ViewListing({ preview, edit }) {
 
                     <div className="extra_fields">
                       {Object.keys(listing?.extraFields || {})
-                        ?.filter((k) => listing.extraFields[k] !== undefined)
+                        ?.filter(
+                          (k) =>
+                            listing.extraFields[k] !== undefined &&
+                            listing.extraFields[k] !== ""
+                        )
                         ?.map((key) => (
                           <div className="field">
                             <p className="key">{key}</p>

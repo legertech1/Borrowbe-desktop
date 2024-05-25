@@ -7,7 +7,7 @@
   width: 100%;
   align-items: center;
   transition: top 0.3s var(--bc);
-
+  left: 0;
   z-index: 1000;
   box-sizing: border-box;
   will-change: transform;
@@ -131,6 +131,7 @@
   /* padding: 20px 0px; */
   top: -100px;
   box-shadow: 3px 3px 24px #1112;
+  left: 0;
 }
 
 .nav.white .logo {
@@ -247,7 +248,7 @@ li.country_select svg {
   justify-content: start;
   font-size: 20px;
   font-weight: 500;
-  box-shadow: 1px 1px 8px #ccc, -1px -1px 8px #ccc;
+  box-shadow: 1px 1px 8px #1112, -1px -1px 8px #1112;
   border-radius: 4px;
   box-sizing: border-box;
   padding: 10px;
@@ -281,6 +282,7 @@ li.country_select svg {
   padding: 0 10%;
   z-index: 100;
   box-sizing: border-box;
+  left: 0;
 }
 
 .nav.fixed > div {

@@ -392,7 +392,7 @@
   position: sticky;
   margin-top: 10px;
   top: 0;
-  z-index: 99;
+  z-index: 200;
   background-color: var(--bg);
 }
 .search_page .search_results h2 {

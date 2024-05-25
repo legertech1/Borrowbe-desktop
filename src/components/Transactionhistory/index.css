@@ -45,7 +45,7 @@
   overflow: hidden;
   width: 100%;
   align-items: center;
-  box-shadow: 1px 1px 8px #ccc, -1px -1px 8px #ccc;
+  box-shadow: 1px 1px 8px #1112, -1px -1px 8px #1112;
 }
 
 ._transactions .transactions_header {
