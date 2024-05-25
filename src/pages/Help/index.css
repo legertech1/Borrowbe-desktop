@@ -147,6 +147,10 @@
   font-weight: 500 !important;
   font-family: var(--font1) !important;
 }
+.help_doc_container h2,
+.help_doc_container h2 span {
+  font-size: 24px;
+}
 
 .help_container .pass_cont .cards_row .card {
   display: flex;

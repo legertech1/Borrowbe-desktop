@@ -490,16 +490,18 @@ function ViewListing({ preview, edit }) {
                     </h1>
 
                     <div className="extra_fields">
-                      {Object.keys(listing?.extraFields || {})?.map((key) => (
-                        <div className="field">
-                          <p className="key">{key}</p>
-                          <p className="val">
-                            {listing?.extraFields[key]}
-                            {listing?.extraFields[key] === false && "false"}
-                            {listing?.extraFields[key] === true && "true"}
-                          </p>
-                        </div>
-                      ))}
+                      {Object.keys(listing?.extraFields || {})
+                        ?.filter((k) => listing.extraFields[k] !== undefined)
+                        ?.map((key) => (
+                          <div className="field">
+                            <p className="key">{key}</p>
+                            <p className="val">
+                              {listing?.extraFields[key]}
+                              {listing?.extraFields[key] === false && "false"}
+                              {listing?.extraFields[key] === true && "true"}
+                            </p>
+                          </div>
+                        ))}
                     </div>
                   </div>
                 )}
@@ -630,9 +632,6 @@ function ViewListing({ preview, edit }) {
                             onClick={(e) => setShare(true)}
                           >
                             <ShareIcon />
-                          </button>
-                          <button className="report">
-                            <ErrorOutlineOutlinedIcon />
                           </button>
                         </>
                       )}

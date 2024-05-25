@@ -56,8 +56,8 @@
 }
 .our_pricing ._dropdown .selected > div img,
 .our_pricing ._dropdown .selected > div svg {
-  height: 32px;
-  width: 32px;
+  width: 36px;
+  object-fit: fill;
 }
 .our_pricing ._dropdown {
   background: var(--fg);
