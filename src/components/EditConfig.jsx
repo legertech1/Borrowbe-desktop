@@ -24,7 +24,7 @@ function EditConfig({ listing, close, onEdit }) {
       notification.success("Configuration updated successfully");
       close();
     } catch (err) {
-      notification.error(err?.message || err?.response?.data);
+      notification.error( err?.response?.data || err.message);
     }
   }
   return (

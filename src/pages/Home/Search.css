@@ -13,9 +13,10 @@
 
 .search ._dropdown .option img,
 .search ._dropdown .option svg {
-  height: 36px;
-  width: 36px;
   margin: -4px;
+  width: 44px;
+  max-height: 44px;
+  object-fit: fill;
 }
 .search ._dropdown .selected {
   width: 100%;
@@ -172,4 +173,3 @@
   font-family: var(--font2);
   font-weight: 600;
 }
-

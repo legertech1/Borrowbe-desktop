@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Search.css";
 
 import SearchIcon from "@mui/icons-material/Search";
-import CategoryOutlinedIcon from "@mui/icons-material/CategoryOutlined";
+import CategoriesIcon from "../../assets/images/CategoriesIcon";
 
 import { useDispatch, useSelector } from "react-redux";
 import { newSearch } from "../../store/searchSlice";
@@ -31,7 +31,7 @@ function Search({ category, setCategory }) {
           array={["All Categories", ...categories.map((item) => item.name)]}
           value={category}
           icons={[
-            <CategoryOutlinedIcon />,
+            <CategoriesIcon />,
             ...categories.map((item) => <img src={item.icon}></img>),
           ]}
           setValue={setCategory}
@@ -55,7 +55,7 @@ function Search({ category, setCategory }) {
         <h2>Suggested:</h2>
         <div className="recent" onClick={(e) => search("Home Decor")}>
           <SearchIcon />
-          Home Decor
+          Truck
         </div>
         <div className="recent" onClick={(e) => search("Boat")}>
           <SearchIcon />

@@ -30,7 +30,7 @@ function AdPosthandler({ token, onSuccess, close }) {
     try {
       const res = await axios.post(apis.postAd, { ad, token });
     } catch (err) {
-      notification.error(err?.message || err?.response?.data);
+      notification.error( err?.response?.data || err.message);
       setError(err);
     }
   }

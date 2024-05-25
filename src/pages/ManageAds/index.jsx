@@ -198,7 +198,7 @@ function ManageAds() {
           )
         : loadAds(tab);
     } catch (err) {
-      notification.error(err?.message || err?.response?.data);;
+      notification.error( err?.response?.data || err.message);;
     }
   }
   const [showGraph, setShowGraph] = useState(null);
