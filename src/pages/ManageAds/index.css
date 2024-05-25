@@ -193,7 +193,7 @@
   /* justify-content: center; */
 }
 .manage_ads .ads .main::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   display: block !important;
 }
 

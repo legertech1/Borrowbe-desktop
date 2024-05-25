@@ -114,7 +114,7 @@
   font-weight: 600;
 }
 ._transactions *::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   display: block !important;
 }
 

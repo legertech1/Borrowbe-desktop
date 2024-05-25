@@ -37,8 +37,8 @@
 }
 .search ._dropdown .selected > div img,
 .search ._dropdown .selected > div svg {
-  height: 36px;
-  width: 36px;
+  width: 44px;
+  object-fit: fill;
 }
 .search ._dropdown {
   background: var(--fg);

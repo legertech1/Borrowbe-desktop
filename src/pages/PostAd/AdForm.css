@@ -170,7 +170,7 @@
   min-height: 200px;
 }
 .post_ad ._dropdown .options::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   display: block !important;
 }
 

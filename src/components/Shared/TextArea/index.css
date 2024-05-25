@@ -28,7 +28,7 @@
 
 /* Works on Chrome, Edge, and Safari */
 .html_textarea textarea::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   display: block !important;
 }
 

@@ -10,7 +10,7 @@ div.options.actions {
   width: 1200px;
 }
 .ad_config::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   display: block !important;
 }
 

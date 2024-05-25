@@ -92,7 +92,7 @@
 
 /* Works on Chrome, Edge, and Safari */
 .business_info::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   display: block !important;
 }
 

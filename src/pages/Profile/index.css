@@ -396,31 +396,3 @@ transform: perspective(1px) scale(0.98);
   }
 }
 
-/* .user_ads::-webkit-scrollbar {
-  width: 8px;
-  display: block !important;
-  transition: all 0.3 var(--bc);
-}
-
-.user_ads::-webkit-scrollbar-track {
-  background: var(--bg);
-  border-radius: 10px;
-  min-width: 10px;
-  transition: all 0.3 var(--bc);
-}
-
-.user_ads::-webkit-scrollbar-thumb {
-  background-color: var(--bg);
-
-  border-radius: 10px;
-  transition: all 0.3 var(--bc);
-  min-width: 6px;
-}
-
-.user_ads:hover::-webkit-scrollbar-track {
-  background: #ccc;
-}
-
-.user_ads:hover::-webkit-scrollbar-thumb {
-  background-color: var(--blue);
-} */

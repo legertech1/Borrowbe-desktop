@@ -40,7 +40,7 @@
   min-width: 1300px;
 }
 .relist_ad::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   display: block !important;
 }
 

@@ -22,7 +22,7 @@
 }
 .payment_form *::-webkit-scrollbar,
 .payment_form::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   display: block !important;
 }
 

@@ -3,13 +3,7 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-
-  /* transition: all 0.1s var(--bc); */
 }
-
-/* #portal .images_container {
-  animation: 0.1s modal_open var(--bc);
-} */
 
 .view_listing ::-webkit-scrollbar {
   display: none;
@@ -917,6 +911,7 @@
     height: 450px;
   }
 }
-.view_listing .preview .actions button svg{
+.view_listing .preview .actions button svg {
   height: 32px;
-  width: 32px;}
+  width: 32px;
+}

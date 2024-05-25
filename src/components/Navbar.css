@@ -500,7 +500,7 @@ li.country_select svg {
 /* Works on Chrome, Edge, and Safari */
 .nav .notifications::-webkit-scrollbar,
 .nav .user_menu::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   display: block !important;
 }
 .nav .notifications::-webkit-scrollbar-track,

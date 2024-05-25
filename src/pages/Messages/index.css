@@ -859,7 +859,7 @@
 }
 .messages_page .messages::-webkit-scrollbar,
 .messages_page .chats_main::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   display: block !important;
 }
 
