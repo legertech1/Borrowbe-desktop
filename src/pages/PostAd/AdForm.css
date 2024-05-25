@@ -158,16 +158,16 @@
   font-family: var(--font2);
   padding: 16px 20px;
 }
+
 .post_ad ._dropdown .options {
   min-height: auto;
-  overflow-y: visible;
+  overflow: visible;
 }
 
 .post_ad ._ ._dropdown .options {
-  min-height: unset;
-  overflow-y: scroll;
-  max-height: 300px;
-  height: fit-content;
+  overflow-y: auto;
+  max-height: fit-content;
+  min-height: 200px;
 }
 .post_ad ._dropdown .options::-webkit-scrollbar {
   width: 6px;
@@ -334,7 +334,7 @@
   max-width: 100%;
 }
 
-.post_ad .field_container .options {
+.post_ad .field_container > .options {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -951,9 +951,9 @@
 }
 .ad_form ._dropdown .selected > div img,
 .ad_form ._dropdown .selected > div svg {
-  height: 32px;
-  width: 32px;
+  width: 36px;
   fill: black !important;
+  object-fit: fill;
 }
 @media (max-width: 1600px) {
   .post_ad .main {
