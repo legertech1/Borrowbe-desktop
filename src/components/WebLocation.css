@@ -184,6 +184,14 @@
   border-radius: 10px;
 }
 
+.web_location .loader-cont {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .web_location .regions * {
   overflow: visible !important;
 }

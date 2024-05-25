@@ -250,7 +250,9 @@ export default function WebLocation({ close }) {
             </div>
           </div>
           {loading ? (
-            <Loader />
+            <div className="loader_cont">
+              <Loader />
+            </div>
           ) : (
             <>
               {!province && provinces && (
