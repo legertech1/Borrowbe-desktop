@@ -3,6 +3,7 @@ const USER_ROLES = {
   ADMIN: "ADMIN",
   LEVEL1: "LEVEL1",
   LEVEL2: "LEVEL2",
+  
 };
 
 export const ALL_PERMISSIONS_OBJ = {
