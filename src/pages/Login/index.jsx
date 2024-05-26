@@ -51,8 +51,8 @@ function Login() {
       navigate("/");
       window.location.reload();
     } catch (err) {
-      notification.error(err.response.data.error);
-      return setError(err.response.data.error);
+      notification.error(err?.response?.data || err?.message);
+      return setError(err?.response?.data);
     }
   }, [email, password]);
 

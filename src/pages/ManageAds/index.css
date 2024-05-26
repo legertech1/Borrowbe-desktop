@@ -2,7 +2,7 @@
   display: flex;
   justify-content: start;
   align-items: flex-start;
-  width: 80vw;
+  width: 80%;
   margin: auto;
   gap: 16px;
   margin-top: 130px;
@@ -156,7 +156,7 @@
   gap: 12px;
 }
 .manage_ads .right {
-  width: 24vw;
+  width: 24%;
   height: fit-content;
   position: sticky;
   top: -215px;
@@ -164,7 +164,7 @@
 
 .manage_ads .left {
   flex: 1 1;
-  width: 56vw;
+  width: 56%;
   display: flex;
   align-items: stretch;
   justify-content: space-evenly;
@@ -1194,7 +1194,7 @@
 
 @media (max-width: 1600px) {
   .manage_ads {
-    width: 90vw;
+    width: 90%;
   }
   .manage_ads .tabs .tab {
     padding: 16px;
