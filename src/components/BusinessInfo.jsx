@@ -85,7 +85,7 @@ function BusinessInfo({ close }) {
             {businessInfo?.LOGO && (
               <>
                 {" "}
-                <img onError={imageFallback} src={businessInfo?.LOGO}></img>
+                <img src={businessInfo?.LOGO}></img>
                 <button
                   className="delete"
                   onClick={(e) => {
