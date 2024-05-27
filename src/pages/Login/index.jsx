@@ -51,8 +51,9 @@ function Login() {
       navigate("/");
       window.location.reload();
     } catch (err) {
-      notification.error(err?.response?.data || err?.message);
-      return setError(err?.response?.data);
+      notification.error(err?.response?.data?.error || err?.response?.data || err?.message);
+      return setError(err?.response?.data?.error  || err?.response?.data?.error
+      );
     }
   }, [email, password]);
 

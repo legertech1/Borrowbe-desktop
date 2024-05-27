@@ -8,6 +8,7 @@ import apis from "../services/api";
 import { editUserData, me } from "../store/authSlice";
 import { imageFallback } from "../utils/listingCardFunctions";
 import { CloseOutlined, DeleteOutline } from "@mui/icons-material";
+import ImageCompressor from "image-compressor.js";
 
 function BusinessInfo({ close }) {
   const user = useSelector((state) => state.auth);
@@ -102,14 +103,17 @@ function BusinessInfo({ close }) {
             )}
             <input
               style={{ display: "none" }}
-              onChange={(e) => {
-                if (!e.target.files[0]) return;
-                parseImage(e.target.files[0], (v) =>
-                  setBusinessInfo({
-                    ...businessInfo,
-                    LOGO: v,
-                  })
-                );
+              onChange={async (e) => {
+                if (!e?.target?.files[0]) return;
+                const imageCompressor = new ImageCompressor();
+                const _img = await imageCompressor.compress(e.target.files[0], {
+                  quality: 0.4,
+                });
+                const img = await parseImage(_img);
+                setBusinessInfo({
+                  ...businessInfo,
+                  LOGO: img,
+                });
               }}
               ref={imageInp}
               type="file"

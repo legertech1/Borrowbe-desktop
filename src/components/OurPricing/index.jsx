@@ -6,7 +6,7 @@ import { Package } from "../../pages/PostAd/AdPricing";
 function OurPricing() {
   const categories = useSelector((state) => state.categories);
   const [category, setCategory] = useState("Real Estate");
-  const user = useSelector((state) => state.auth);
+  // const user = useSelector((state) => state.auth);
   return (
     <div className="our_pricing  pricing_section">
       <h1>Our Pricing </h1>
@@ -33,7 +33,7 @@ function OurPricing() {
             (a, c) => (c.name == category ? c : a),
             null
           )}
-          ads={user?.data?.postedAds}
+          ads={{data:{postedAds:{}}}}
         />
         <Package
           plan={
@@ -45,7 +45,7 @@ function OurPricing() {
             (a, c) => (c.name == category ? c : a),
             null
           )}
-          ads={user?.data?.postedAds}
+          ads={{data:{postedAds:{}}}}
         />
         <Package
           plan={
@@ -57,7 +57,7 @@ function OurPricing() {
             (a, c) => (c.name == category ? c : a),
             null
           )}
-          ads={user?.data?.postedAds}
+          ads={{data:{postedAds:{}}}}
         />
       </div>
     </div>
