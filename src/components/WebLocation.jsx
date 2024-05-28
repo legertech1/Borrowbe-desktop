@@ -206,6 +206,7 @@ export default function WebLocation({ close }) {
           <div
             className="text_box"
             onClick={() => {
+              if (!currentLocation) return;
               setShow(false);
               dispatch(
                 setSelectedLocation({ ...currentLocation, radius: radius })

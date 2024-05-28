@@ -33,7 +33,10 @@ function Home() {
         location: selectedLocation,
         category,
         additional: { "meta.homepageGallery": false },
-        sort: "-meta.featured -meta.listingRank",
+        sort: {
+          "meta.featured": -1,
+          "meta.listingRank": -1,
+        },
         limit: 20,
         page: 1,
         count: true,
@@ -52,7 +55,10 @@ function Home() {
         location: selectedLocation,
         category,
         additional: { "meta.homepageGallery": true },
-        sort: "-meta.featured -meta.listingRank",
+        sort: {
+          "meta.featured": -1,
+          "meta.listingRank": -1,
+        },
         limit: 20,
         page: 1,
         count: true,
@@ -73,7 +79,11 @@ function Home() {
         location: selectedLocation,
         category,
         additional: { "meta.homepageGallery": true },
-        sort: "-meta.featured -meta.listingRank",
+
+        sort: {
+          "meta.featured": -1,
+          "meta.listingRank": -1,
+        },
         limit: 20,
         page: pageHG + 1,
       })
@@ -89,7 +99,10 @@ function Home() {
         location: selectedLocation,
         category,
         additional: { "meta.homepageGallery": false },
-        sort: "-meta.featured -meta.listingRank",
+        sort: {
+          "meta.featured": -1,
+          "meta.listingRank": -1,
+        },
         limit: 20,
         page: pageRM + 1,
       })

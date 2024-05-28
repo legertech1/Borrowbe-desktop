@@ -14,7 +14,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { imageFallback } from "../utils/listingCardFunctions";
 import OurPricing from "./OurPricing";
 import Modal from "./Modal";
-import { AttachMoney } from "@mui/icons-material";
+import { AttachMoney, QuestionAnswerOutlined } from "@mui/icons-material";
 
 const Footer = () => {
   const [pricing, setPricing] = useState(false);
@@ -91,12 +91,9 @@ const Footer = () => {
 
         <div className="footer-section">
           {/* <h2>Support</h2> */}
-          <Link
-            className="link_text"
-            to={"/help-doc/" + helpDocs.avoidScams.id}
-          >
-            <ReportProblemOutlinedIcon />
-            <span>Avoid Scams</span>
+          <Link className="link_text" to={"/faq"}>
+            <QuestionAnswerOutlined />
+            <span>FAQ</span>
           </Link>
           <Link className="link_text" to={"/contact-us"}>
             <ContactSupportOutlinedIcon />

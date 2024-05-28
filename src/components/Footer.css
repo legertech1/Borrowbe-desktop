@@ -55,8 +55,8 @@
   justify-content: center;
 }
 .footer-section a:hover {
-  transform: scale(1.02);
-  /* text-decoration: underline; */
+  /* transform: scale(1.02); */
+  text-decoration: underline;
 }
 
 .logo-section img {

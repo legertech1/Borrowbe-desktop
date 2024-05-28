@@ -184,12 +184,14 @@
   border-radius: 10px;
 }
 
-.web_location .loader-cont {
+.web_location .loader_cont {
   flex: 1;
-  height: 100%;
+  /* height: 400px; */
+  padding: 80px;
   width: 100%;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
   justify-content: center;
 }
 .web_location .regions * {
