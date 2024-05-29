@@ -39,4 +39,9 @@ export const helpDocs = {
     label: "Avoid Scams",
     description: "How to avoid scams on our platform",
   },
+  FAQs: {
+    link: "/faq",
+    label: "Frequently Asked QUestions",
+    description: "Answers to common questions and tutorials",
+  },
 };

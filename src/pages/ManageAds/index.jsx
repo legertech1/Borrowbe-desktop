@@ -198,7 +198,7 @@ function ManageAds() {
           )
         : loadAds(tab);
     } catch (err) {
-      notification.error( err?.response?.data || err.message);;
+      notification.error(err?.response?.data || err.message);
     }
   }
   const [showGraph, setShowGraph] = useState(null);
@@ -211,7 +211,7 @@ function ManageAds() {
       await axios.post(apis.search, {
         additional: {
           ...filter,
-          user: user._id,
+          user: [user._id],
         },
         count: true,
         ignoreStatus: true,
@@ -227,7 +227,7 @@ function ManageAds() {
     ).data;
 
     setCountData(
-      (await axios.post(apis.getAdsCount, { user: user?._id, category })).data
+      (await axios.post(apis.getAdsCount, { user: [user?._id], category })).data
     );
 
     setAds(data.results);
@@ -666,8 +666,14 @@ function ManageAds() {
                           )}
                         </div>
                         <div className="details">
-                          <p>Category: <span className="val">{ad.meta.category}</span></p>
-                          <p>Sub-category: <span className="val">{ad.meta.subCategory}</span></p>
+                          <p>
+                            Category:{" "}
+                            <span className="val">{ad.meta.category}</span>
+                          </p>
+                          <p>
+                            Sub-category:{" "}
+                            <span className="val">{ad.meta.subCategory}</span>
+                          </p>
                           <p>
                             ListingID:{" "}
                             <span className="val">{ad.listingID}</span>

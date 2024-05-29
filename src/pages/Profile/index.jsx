@@ -79,7 +79,7 @@ function Profile() {
     const { results, total } = (
       await axios.post(apis.search, {
         additional: {
-          user: user._id,
+          user: [user?._id],
         },
         sort: { createdAt: -1 },
         page: pageUA,
@@ -101,8 +101,8 @@ function Profile() {
     setLoadingWL(true);
     const { results, total } = (
       await axios.post(apis.search, {
-        additional: { _id: { $in: user?.data.wishlist } },
-        sort: {},
+        additional: { _id: user?.data.wishlist },
+        sort: null,
         page: pageWL,
         limit: 24,
         count: true,

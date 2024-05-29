@@ -24,7 +24,10 @@ export default function HelpCards() {
         {docs
           .filter((tab) => tab.label.toLowerCase().includes(query))
           .map((tab) => (
-            <Link key={tab.id} to={`/help-doc/${tab.id}`}>
+            <Link
+              key={tab.id}
+              to={tab.id ? `/help-doc/${tab.id}` : tab.link || "/"}
+            >
               <div className="card">
                 <div className="card_label">{tab.label}</div>
                 <div className="card_description">{tab.description}</div>
