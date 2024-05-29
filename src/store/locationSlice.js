@@ -38,11 +38,8 @@ export function getLocation() {
 export const fetchCurrentLocation = createAsyncThunk(
   "fetchCurrentLocation",
   async () => {
-    console.log("onnc");
     try {
-      console.log("wefweuoncjkew he wh");
       const coordinates = await getLocation();
-      console.log("--------");
       if (!coordinates) {
         // alert(coordinates.message);
         throw new Error("");
@@ -50,10 +47,9 @@ export const fetchCurrentLocation = createAsyncThunk(
       let loc = await axios.get(apis.findMyLocation, {
         params: coordinates,
       });
-      console.log("//////");
+
       return { currentLocation: loc.data, selectedLocation: loc.data };
     } catch (error) {
-      console.log("fetching cou ntry because location denied");
       const res = await fetch("https://ipinfo.io/json");
       const data = await res.json();
 

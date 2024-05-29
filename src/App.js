@@ -61,7 +61,9 @@ function App() {
   const [showCc, setShowCc] = useState(!Cookies.get("cc"));
 
   useEffect(() => {
+    if (recentLocations[0]) dispatch(setSelectedLocation(recentLocations[0]));
     if (country != "CA" && country != "US") getCountry();
+
     dispatch(fetchCategories());
 
     dispatch(fetchCurrentLocation());
