@@ -77,7 +77,6 @@ export default function ContactUsForm() {
     const isValid = validateForm();
 
     if (isValid) {
-      console.log("Form is valid. Submitting...");
       axios.post(apis.contactUs,formData).then((result)=>{
         notification.success("Your query has been submitted successfully")
         setFormData({
