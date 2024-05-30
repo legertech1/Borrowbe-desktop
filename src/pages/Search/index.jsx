@@ -287,7 +287,7 @@ function SearchPage() {
                     ...filters,
                     price: {
                       ...filters.price,
-                      $gte: e.target.value,
+                      $gte: Number(e.target.value),
                     },
                   })
                 }
@@ -304,7 +304,7 @@ function SearchPage() {
                     ...filters,
                     price: {
                       ...filters.price,
-                      $gte: e.target.value,
+                      $gte: Number(e.target.value),
                     },
                   })
                 }
@@ -323,7 +323,7 @@ function SearchPage() {
                     ...filters,
                     price: {
                       ...filters.price,
-                      $lte: e.target.value,
+                      $lte: Number(e.target.value),
                     },
                   })
                 }
@@ -340,7 +340,7 @@ function SearchPage() {
                     ...filters,
                     price: {
                       ...filters.price,
-                      $lte: e.target.value,
+                      $lte: Number(e.target.value),
                     },
                   })
                 }
