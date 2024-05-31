@@ -5,8 +5,13 @@ import TextArea from "../../components/Shared/TextArea";
 import Button from "../../components/Shared/Button";
 import "./index.css";
 import ContactUs from "../../assets/images/contact_us.svg";
+import axios from "axios";
+import apis from "../../services/api";
+import useNotification from "../../hooks/useNotification";
 
 export default function ContactUsForm() {
+  let notification = useNotification();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -72,7 +77,20 @@ export default function ContactUsForm() {
     const isValid = validateForm();
 
     if (isValid) {
-      console.log("Form is valid. Submitting...");
+      axios.post(apis.contactUs,formData).then((result)=>{
+        notification.success("Your query has been submitted successfully")
+        setFormData({
+          name: "",
+          email: "",
+          contactReason: "",
+          adIdAccountId: "",
+          subject: "",
+          description: "",
+        })
+      }).catch((error)=>{
+        notification.error("Something went wrong please try again later")
+
+      })
       console.log("formData: ", formData);
     } else {
       nameRef.current &&
