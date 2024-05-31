@@ -227,7 +227,7 @@ function ManageAds() {
     ).data;
 
     setCountData(
-      (await axios.post(apis.getAdsCount, { user: [user?._id], category })).data
+      (await axios.post(apis.getAdsCount, { user: user?._id, category })).data
     );
 
     setAds(data.results);
