@@ -96,7 +96,7 @@ const apis = {
   updateExtras: apiUrl + "/api/categories/update-extras/",
   registerEmployee: apiUrl + "/api/manage/register-employee",
   permissions: apiUrl + "/api/manage/permissions",
-  contactUs: apiUrl + "/api/guest/contact-us",
+  contactUs: apiUrl + "/api/users/contact-us",
 
 };
 

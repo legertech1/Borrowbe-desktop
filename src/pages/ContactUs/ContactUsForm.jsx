@@ -118,7 +118,7 @@ export default function ContactUsForm() {
                   type="text"
                   name="name"
                   value={formData.name}
-                  onChange={(e) => handleChange("name", e.target.value)}
+                  onChange={(e) => handleChange("name", e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
                 />
                 {formErrors.name && (
                   <div className="error-message">{formErrors.name}</div>

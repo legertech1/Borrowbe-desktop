@@ -7,8 +7,8 @@ import "./index.css";
 const ContactUs = () => {
   return (
     <div className="contact-us-page">
-      <Navbar white={true}></Navbar>
-    
+      <Navbar white={true} topOnly={true}></Navbar>
+
       <ContactUsForm />
       <Footer />
     </div>
