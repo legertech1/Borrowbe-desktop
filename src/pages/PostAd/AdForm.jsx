@@ -276,6 +276,7 @@ export default function AdForm({ edit }) {
       return navigate(url || "/preview-ad");
     }
     setCurrentStep(step);
+    window.scrollTo(0, 0);
   };
 
   const findMyLocation = async (coordinates) => {

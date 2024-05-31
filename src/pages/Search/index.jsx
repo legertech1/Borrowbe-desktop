@@ -44,9 +44,12 @@ function SearchPage() {
   const user = useSelector((state) => state.auth);
   const categories = useSelector((state) => state.categories);
   const [showLocationModal, setShowLocationModal] = useState(false);
-  const [sort, setSort] = useState({ text: "Most relevent", value: null });
+  const [sort, setSort] = useState({
+    text: "Most relevent",
+    value: { "meta.listingRank": -1 },
+  });
   const sortOptions = [
-    { text: "Most relevent", value: null },
+    { text: "Most relevent", value: { "meta.listingRank": -1 } },
     { text: "Newest first", value: { createdAt: -1 } },
     { text: "Oldest first", value: { createdAt: 1 } },
     { text: "Highest price", value: { price: -1 } },

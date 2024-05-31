@@ -9,8 +9,7 @@
   align-items: center;
   gap: 20px;
   position: relative;
-
-  z-index: 100;
+  z-index: 300;
 }
 
 .search_page .nav {
@@ -32,8 +31,9 @@
 }
 .search_inp ._dropdown .selected > div img,
 .search_inp ._dropdown .selected > div svg {
-  height: 32px;
-  width: 32px;
+  /* height: 32px; */
+  width: 36px;
+  object-fit: fill;
   fill: black !important;
 }
 
