@@ -8,11 +8,18 @@ import { socket, sendMessage } from "./socket";
 import NotificationService from "./services/notification";
 import ConfirmDialogService from "./services/confirmDialog";
 import { LoadScript } from "@react-google-maps/api";
-import { BASE_URL, MAP_API_KEY, mapLibraries } from "./utils/constants";
+import {
+  BASE_URL,
+  MAP_API_KEY,
+  mapLibraries,
+  NODE_ENV,
+} from "./utils/constants";
 import axios from "axios";
 import apis from "./services/api";
 import IconPlayer from "./components/IconPlayer";
 import blackAnimatedLOGO from "./assets/animatedIcons/animated_black_LOGO.json";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+const helmetContext = {};
 
 function Root() {
   async function init() {
@@ -49,25 +56,34 @@ function Root() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <NotificationService>
-        <ConfirmDialogService>
-          <Provider store={store}>
-            <LoadScript
-              loadingElement={
-                <div className="logo_loader">
-                  <IconPlayer icon={blackAnimatedLOGO} />
-                </div>
-              }
-              googleMapsApiKey={MAP_API_KEY}
-              libraries={mapLibraries}
-            >
-              <App />
-            </LoadScript>
-          </Provider>
-        </ConfirmDialogService>
-      </NotificationService>
-    </BrowserRouter>
+    <HelmetProvider context={helmetContext}>
+      <Helmet>
+        {NODE_ENV == "production" ? (
+          <meta name="robots" content="index, follow" />
+        ) : (
+          <meta name="robots" content="noindex, nofollow" />
+        )}
+      </Helmet>
+      <BrowserRouter>
+        <NotificationService>
+          <ConfirmDialogService>
+            <Provider store={store}>
+              <LoadScript
+                loadingElement={
+                  <div className="logo_loader">
+                    <IconPlayer icon={blackAnimatedLOGO} />
+                  </div>
+                }
+                googleMapsApiKey={MAP_API_KEY}
+                libraries={mapLibraries}
+              >
+                <App />
+              </LoadScript>
+            </Provider>
+          </ConfirmDialogService>
+        </NotificationService>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
