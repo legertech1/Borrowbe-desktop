@@ -18,7 +18,7 @@ import axios from "axios";
 import apis from "./services/api";
 import IconPlayer from "./components/IconPlayer";
 import blackAnimatedLOGO from "./assets/animatedIcons/animated_black_LOGO.json";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 const helmetContext = {};
 
 function Root() {
@@ -56,15 +56,14 @@ function Root() {
   }, []);
 
   return (
-    <HelmetProvider context={helmetContext}>
-      <Helmet>
+      <BrowserRouter>
+       <Helmet>
         {NODE_ENV == "production" ? (
           <meta name="robots" content="index, follow" />
         ) : (
           <meta name="robots" content="noindex, nofollow" />
         )}
       </Helmet>
-      <BrowserRouter>
         <NotificationService>
           <ConfirmDialogService>
             <Provider store={store}>
@@ -83,7 +82,6 @@ function Root() {
           </ConfirmDialogService>
         </NotificationService>
       </BrowserRouter>
-    </HelmetProvider>
   );
 }
 
