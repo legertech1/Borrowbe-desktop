@@ -12,14 +12,11 @@ import {
   BASE_URL,
   MAP_API_KEY,
   mapLibraries,
-  NODE_ENV,
 } from "./utils/constants";
 import axios from "axios";
 import apis from "./services/api";
 import IconPlayer from "./components/IconPlayer";
 import blackAnimatedLOGO from "./assets/animatedIcons/animated_black_LOGO.json";
-import { Helmet } from "react-helmet";
-const helmetContext = {};
 
 function Root() {
   async function init() {
@@ -57,13 +54,6 @@ function Root() {
 
   return (
       <BrowserRouter>
-       <Helmet>
-        {NODE_ENV == "production" ? (
-          <meta name="robots" content="index, follow" />
-        ) : (
-          <meta name="robots" content="noindex, nofollow" />
-        )}
-      </Helmet>
         <NotificationService>
           <ConfirmDialogService>
             <Provider store={store}>
