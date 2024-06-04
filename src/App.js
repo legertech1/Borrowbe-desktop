@@ -78,21 +78,11 @@ function App() {
   useEffect(() => {
     user && loadChats(socket);
     user && getNotifications(socket);
-    function lockOrientation() {
-      if (window.screen.orientation && window.screen.orientation.lock) {
-        window.screen.orientation.lock("landscape").catch(function (error) {
-          console.error("Orientation lock failed: ", error);
-        });
-      } else {
-        console.warn("Orientation lock not supported");
-      }
+    try {
+      window.screen.orientation.lock("landscape");
+    } catch (err) {
+      console.log(err);
     }
-
-    // Lock orientation on load
-    window.addEventListener("load", lockOrientation);
-
-    // Re-lock orientation on resize
-    window.addEventListener("resize", lockOrientation);
   }, [user]);
 
   return (
