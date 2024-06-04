@@ -78,11 +78,7 @@ function App() {
   useEffect(() => {
     user && loadChats(socket);
     user && getNotifications(socket);
-    try {
-      window.screen.orientation.lock("landscape");
-    } catch (err) {
-      console.log(err);
-    }
+   
   }, [user]);
 
   return (
