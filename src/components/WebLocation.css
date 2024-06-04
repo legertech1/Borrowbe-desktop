@@ -8,8 +8,9 @@
 .web_location {
   width: 1300px;
   height: 650px;
-  max-width: 90vw;
+  max-width: 1600px;
   display: flex;
+  min-width: 1000px;
 }
 
 .web_location h4 {
