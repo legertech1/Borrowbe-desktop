@@ -1,0 +1,111 @@
+.mobile_searches {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.mobile_searches .term_cont {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobile_searches .term_cont p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.mobile_searches .filter-heading {
+  display: flex;
+  font-size: 21px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.mobile_searches .filter-icon {
+  font-size: 30px;
+  color: #2196f3;
+}
+
+.mobile_searches .filter-prize {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.mobile_searches .filter-prize input {
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: var(--blue);
+  color: #fff;
+  width: 80px;
+  padding: 8px;
+  box-sizing: border-box;
+  text-align: center;
+  border: none;
+  outline: none;
+}
+
+.mobile_searches .label {
+  font-size: 17px;
+  font-weight: 500;
+  color: #444;
+}
+
+.mobile_searches .filter-slider {
+}
+
+.mobile_searches .field {
+}
+.mobile_searches .terms {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.mobile_searches .rent-terms {
+  padding: 4px;
+  margin: 5px;
+  padding: 8px;
+  border-radius: 4px;
+  color: #2196f3;
+  border: 1px solid #2196f3;
+  box-shadow: 0px 0px 8px #ccc;
+  transition: all 0.3s var(--bc);
+}
+.mobile_searches .rent-terms.active {
+  background-color: #2196f3;
+  color: white;
+}
+
+.mobile_searches .reset-apply-btn {
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.mobile_searches button {
+  padding: 8px;
+  border-radius: 4px;
+  color: #2196f3;
+  border: 1px solid #2196f3;
+  box-shadow: 0px 0px 8px #ccc;
+  font-size: 17px;
+  width: 100px;
+}
+
+/* .reset-apply-btn .reset{
+    padding: 4px;
+    margin: 5px;
+    padding: 8px;
+    border-radius: 4px;
+    color: #2196f3;
+    border: 1px solid #2196f3;
+    box-shadow: 0px 0px 8px #ccc;
+} */

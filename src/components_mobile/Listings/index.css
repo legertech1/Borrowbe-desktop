@@ -1,0 +1,21 @@
+.mobile_grid_listings {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  gap: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .mobile_grid_listings {
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 10px;
+  }
+}
+
+.info_text {
+  text-align: center;
+  font-size: 13px;
+  line-height: 2;
+}
+.end-reached {
+  margin-bottom: 20px;
+}
