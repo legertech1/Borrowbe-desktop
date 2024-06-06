@@ -27,3 +27,5 @@ runScript.js
 .env
 service_account.json
 /service_account.json
+public/.well-known/
+
