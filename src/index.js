@@ -8,15 +8,17 @@ import { socket, sendMessage } from "./socket";
 import NotificationService from "./services/notification";
 import ConfirmDialogService from "./services/confirmDialog";
 import { LoadScript } from "@react-google-maps/api";
-import { BASE_URL, MAP_API_KEY, mapLibraries } from "./utils/constants";
+import {
+  BASE_URL,
+  MAP_API_KEY,
+  mapLibraries,
+} from "./utils/constants";
 import axios from "axios";
 import apis from "./services/api";
 import IconPlayer from "./components/IconPlayer";
 import blackAnimatedLOGO from "./assets/animatedIcons/animated_black_LOGO.json";
-import MobileApp from "./MobileApp";
 
 function Root() {
-  const [isMobile, setIsMobile] = useState(document.body.clientWidth <= 1024);
   async function init() {
     await axios.get(apis.init);
   }
@@ -38,20 +40,7 @@ function Root() {
   );
 
   useEffect(() => {
-    const handleResize = () => {
-      let v = document.body.clientWidth <= 1024;
-
-      setIsMobile(v);
-    };
-
-    sendMessage(socket, "message");
-
-    window.addEventListener("resize", handleResize);
-
     init();
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
   useEffect(() => {
@@ -64,25 +53,25 @@ function Root() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <NotificationService>
-        <ConfirmDialogService>
-          <Provider store={store}>
-            <LoadScript
-              loadingElement={
-                <div className="logo_loader">
-                  <IconPlayer icon={blackAnimatedLOGO} />
-                </div>
-              }
-              googleMapsApiKey={MAP_API_KEY}
-              libraries={mapLibraries}
-            >
-              {isMobile ? <App /> : <MobileApp />}
-            </LoadScript>
-          </Provider>
-        </ConfirmDialogService>
-      </NotificationService>
-    </BrowserRouter>
+      <BrowserRouter>
+        <NotificationService>
+          <ConfirmDialogService>
+            <Provider store={store}>
+              <LoadScript
+                loadingElement={
+                  <div className="logo_loader">
+                    <IconPlayer icon={blackAnimatedLOGO} />
+                  </div>
+                }
+                googleMapsApiKey={MAP_API_KEY}
+                libraries={mapLibraries}
+              >
+                <App />
+              </LoadScript>
+            </Provider>
+          </ConfirmDialogService>
+        </NotificationService>
+      </BrowserRouter>
   );
 }
 

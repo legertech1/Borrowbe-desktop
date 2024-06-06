@@ -16,6 +16,8 @@ import { useDispatch } from "react-redux";
 import { me } from "../../store/authSlice";
 import apis from "../../services/api";
 import useNotification from "../../hooks/useNotification";
+import Footer from "../../components/Footer";
+import LOGO from "../../assets/images/MainLogoBlack.svg";
 
 function Login() {
   let notification = useNotification();
@@ -51,9 +53,10 @@ function Login() {
       navigate("/");
       window.location.reload();
     } catch (err) {
-      notification.error(err?.response?.data?.error || err?.response?.data || err?.message);
-      return setError(err?.response?.data?.error  || err?.response?.data?.error
+      notification.error(
+        err?.response?.data?.error || err?.response?.data || err?.message
       );
+      return setError(err?.response?.data?.error || err?.response?.data?.error);
     }
   }, [email, password]);
 
@@ -84,9 +87,7 @@ function Login() {
       <Navbar white={true}></Navbar>
       <div className="main">
         <div className="fields">
-          <h2>Sign in to BorrowBe</h2>
-
-          {error && <div className="server_error">{error}</div>}
+          <img src={LOGO} className="logo" alt="" />
 
           <div
             className="inp"
@@ -205,6 +206,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
