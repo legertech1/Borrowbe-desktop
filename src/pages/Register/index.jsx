@@ -17,7 +17,9 @@ import axios from "axios";
 import apis from "../../services/api";
 import Checkbox from "../../components/Shared/Checkbox";
 import useNotification from "../../hooks/useNotification";
+import LOGO from "../../assets/images/MainLogoBlack.svg";
 import { BASE_URL } from "../../utils/constants";
+import Footer from "../../components/Footer";
 
 function Login() {
   const [show, setShow] = useState(false);
@@ -106,7 +108,7 @@ function Login() {
       <Navbar white={true}></Navbar>
       <div className="main">
         <div className="fields">
-          <h2>Sign Up to BorrowBe</h2>
+          <img src={LOGO} className="logo" alt="" />
           {error && <div className="server_error">{error}</div>}
 
           <div
@@ -247,12 +249,10 @@ function Login() {
           </div>
         </div>
         <p>
-          {" "}
           <hr />
-          or <hr />
+          or sign up with <hr />
         </p>
         <div className="sign_in_options">
-          <h3>Sign Up with</h3>
           <div>
             <button
               onClick={
@@ -265,18 +265,21 @@ function Login() {
               <GoogleIcon></GoogleIcon>
               Google
             </button>
-            <button   onClick={
+            <button
+              onClick={
                 (e) =>
                   (window.location.href =
                     process.env.REACT_APP_BASE_URL + apis.facebookOAuth)
                 // console.log(process.env)
-              }>
+              }
+            >
               <FacebookIcon></FacebookIcon>
               Facebook
             </button>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,18 +1,42 @@
 .login {
   background: var(--fg);
   min-height: 100vh;
-  padding: 100px;
+  /* padding: 120px; */
   width: 100%;
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  background: linear-gradient(16deg, var(--blue) 50%, #fff 50.1%);
+  padding: 120px;
+}
+
+.login .nav {
+  box-shadow: none;
+}
+
+.login .fields .logo {
+  height: 52px;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.login .links p {
+  margin: 8px 0px;
+}
+.login .main {
+  padding: 40px 120px 60px;
+  box-shadow: 0px 0px 8px #1114;
+  border-radius: 4px;
+  background-color: white;
 }
 
 .login h2 {
   font-size: 30px;
   font-weight: 500;
+  margin: 0px;
+  margin-bottom: 12px;
 }
 
 .login .fields {
@@ -29,11 +53,11 @@
   border-radius: 4px;
   display: flex;
   justify-content: center;
-  padding: 10px;
+  padding: 8px;
   /* outline: 2px var(--blue); */
   box-sizing: border-box;
   align-items: center;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 4px #1113;
   gap: 5px;
   position: relative;
 }
@@ -64,10 +88,17 @@
   justify-content: center;
   font-weight: 500;
   font-size: 20px;
+  margin-top: 8px;
+  margin-bottom: 20px;
 }
 .login hr {
   flex: 1;
   border: 1px solid #ddd;
+}
+.login .main h3 {
+  font-family: var(--font1);
+  font-weight: 600;
+  margin: 16px;
 }
 
 .login .sign_in_options {
@@ -94,9 +125,15 @@
   font-size: 20px;
   border-radius: 4px;
   border: none;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1112;
   background: var(--bg);
   transition: all 0.3s var(--bc);
+  border: 1px solid #ccc;
+}
+.login .main-footer {
+  position: absolute;
+  top: 100%;
+  width: 100%;
 }
 /* .login .sign_in_options button:first-child{
 background: white;

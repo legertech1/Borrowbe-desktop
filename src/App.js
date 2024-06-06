@@ -78,6 +78,7 @@ function App() {
   useEffect(() => {
     user && loadChats(socket);
     user && getNotifications(socket);
+   
   }, [user]);
 
   return (
