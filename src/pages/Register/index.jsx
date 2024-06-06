@@ -19,6 +19,7 @@ import Checkbox from "../../components/Shared/Checkbox";
 import useNotification from "../../hooks/useNotification";
 import LOGO from "../../assets/images/MainLogoBlack.svg";
 import { BASE_URL } from "../../utils/constants";
+import Footer from "../../components/Footer";
 
 function Login() {
   const [show, setShow] = useState(false);
@@ -278,6 +279,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
