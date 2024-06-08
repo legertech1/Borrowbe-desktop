@@ -33,8 +33,12 @@ import CookieConsent from "./components/CookieConsent";
 import ManageAds from "./pages/ManageAds";
 import { getBalance } from "./store/balanceSlice";
 import InfoComp from "./components/InfoComp";
+import ReactGA from 'react-ga4';
 
 function App() {
+  if(process.env.REACT_APP_NODE_ENV!=='development'){
+    ReactGA.initialize('G-Y59S2FY6ZJ');
+  }
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
   const { selectedLocation, currentLocation } = useSelector(
