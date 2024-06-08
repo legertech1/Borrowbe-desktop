@@ -9,16 +9,8 @@ import { useSelector } from "react-redux";
 import GridViewIcon from "@mui/icons-material/GridView";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import NotFoundAnimation from "../../components/Shared/NotFoundAnimation";
-import ReactGA from 'react-ga4';
 
 function Home() {
-  if(process.env.REACT_APP_NODE_ENV!=='development'){
-    ReactGA.send({
-      hitType:"pageview",
-      page:'/',
-      title:"Home"
-    });
-  }
   const selectedLocation = useSelector(
     (state) => state.location.selectedLocation
   );
