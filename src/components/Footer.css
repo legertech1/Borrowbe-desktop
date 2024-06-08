@@ -41,6 +41,7 @@
   font-size: 15px;
   font-family: var(--font2);
   line-height: 1.5em;
+  margin: -4px 0 -12px;
 }
 
 .footer-section a {

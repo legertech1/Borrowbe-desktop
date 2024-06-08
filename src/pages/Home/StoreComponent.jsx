@@ -1,8 +1,8 @@
 import React from "react";
 import "./CTA.css";
 import Banner from "../../pages/Home/Banner";
-import appStore from "../../assets/images/appstore.png";
-import playStore from "../../assets/images/playstore.png";
+import appStore from "../../assets/images/appStore.png";
+import playStore from "../../assets/images/playStore.png";
 
 function StoreComponent({ type = "banner" }) {
   if (type === "banner") {

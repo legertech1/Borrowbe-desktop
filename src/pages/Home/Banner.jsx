@@ -1,8 +1,8 @@
 import React from "react";
 import "./Banner.css";
 import phoneImg from "../../assets/images/phone.png";
-import appStore from "../../assets/images/appstore.png";
-import playStore from "../../assets/images/playstore.png";
+import appStore from "../../assets/images/appStore.png";
+import playStore from "../../assets/images/playStore.png";
 // https://apps.apple.com/pk/app/borrowbe/id6479541765
 // https://play.google.com/store/apps/details?id=com.borrowbeapp&pli=1
 
