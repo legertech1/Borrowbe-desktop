@@ -110,6 +110,7 @@
   gap: 3px;
   opacity: 0%;
   transition: all 0.3s var(--bc);
+  filter: drop-shadow(0px 0px 4px #1118);
 }
 
 .view_listing .images_container:hover .slides {
@@ -117,21 +118,19 @@
 }
 
 .view_listing .slides .dot {
-  height: 7px;
-  width: 7px;
+  height: 8px;
+  width: 8px;
   background: transparent;
   border-radius: 50%;
-  opacity: 90%;
-
   border: 2px solid white;
-  box-shadow: inset 0px 0px 8px #1118, 0px 0px 8px #1118;
+  fill: #1118;
 }
 
 .view_listing .slides .dot.active {
   opacity: 100%;
   transform: scale(1.2);
   background-color: white;
-  box-shadow: 0px 0px 8px #1118;
+  /* box-shadow: 0px 0px 8px #1118; */
 }
 
 .view_listing .wishlist {
@@ -505,7 +504,6 @@
   /* cursor: pointer; */
 }
 
-
 .view_listing .view_images.images_container {
   position: fixed;
   width: 100%;
@@ -514,7 +512,6 @@
   left: 0;
   z-index: 10000;
   background-color: transparent;
-
 }
 
 .view_listing .view_images.images_container .carousel_button svg {

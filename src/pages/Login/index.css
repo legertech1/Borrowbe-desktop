@@ -57,7 +57,8 @@
   /* outline: 2px var(--blue); */
   box-sizing: border-box;
   align-items: center;
-  box-shadow: 0px 0px 4px #1113;
+  box-shadow: 0px 0px 4px #1114;
+  background-color: white;
   gap: 5px;
   position: relative;
 }
@@ -112,6 +113,13 @@
   gap: 20px;
 }
 
+.login .fields h1 {
+  font-size: 42px;
+  font-weight: 600;
+  margin: 20px;
+  font-family: var(--font2);
+  text-shadow: 0px 0px 2px #1112;
+}
 .login .sign_in_options button {
   cursor: pointer;
   width: 240px;
@@ -125,10 +133,10 @@
   font-size: 20px;
   border-radius: 4px;
   border: none;
-  box-shadow: 0px 0px 8px #1112;
+  box-shadow: 0px 0px 4px #1114;
   background: var(--bg);
   transition: all 0.3s var(--bc);
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
 }
 .login .main-footer {
   position: absolute;

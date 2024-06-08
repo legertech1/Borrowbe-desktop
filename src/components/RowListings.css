@@ -1,7 +1,7 @@
 .row_listings {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(800px, auto));
-  gap: 12px;
+  gap: 10px;
   padding: 10px 0;
 }
 
@@ -21,33 +21,18 @@
   position: relative;
   /* overflow: hidden; */
   transition: all 0.3s var(--bc);
+  will-change: transform;
+  -webkit-transform: perspective(1px) scale(0.99);
+  transform: perspective(1px) scale(0.99);
 }
 * {
   -webkit-font-smoothing: subpixel-antialiased !important;
 }
-.row_listing::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: -2px;
-  left: -2px;
-  border: 2px solid transparent;
-  z-index: 99;
-  border-radius: 4px;
-  pointer-events: none;
-  /* box-sizing: border-box; */
-  transition: all 0.3s var(--bc);
-}
-.row_listing:hover::before {
-  border-color: var(--blue);
-}
-.row_listing.highlighted:hover::before {
-  border-color: var(--yellow);
-}
+
 .row_listing:hover {
   box-shadow: 1px 1px 20px #1112, -1px -1px 20px #1112;
 }
+
 .row_listing .images_container {
   height: 100%;
   width: 36%;
@@ -55,11 +40,21 @@
   top: 0;
   left: 0;
   overflow: hidden;
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
   overflow: hidden;
 }
+.row_listing:hover {
+  -webkit-transform: perspective(1px) scale(1);
+  transform: perspective(1px) scale(1);
+  /* transform: scale3d(1.01, 1.01, 1.01); */
+  box-shadow: -1px -1px 16px #1112, 1px 1px 16px #1112;
+}
+
 .row_listing ._ {
   background: white;
-  border-radius: 0px !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
 }
 .row_listing .images {
   height: 100%;
@@ -76,7 +71,7 @@
   background: #111a;
   border: none;
   border-radius: 50%;
-  box-shadow: 0px 0px 8px #111a;
+  box-shadow: 0px 0px 2px #111a;
   font-size: 24px;
   height: 48px;
   opacity: 0%;
@@ -131,6 +126,7 @@
   gap: 2px;
   opacity: 0%;
   transition: all 0.3s var(--bc);
+  filter: drop-shadow(0px 0px 2px #1118);
 }
 
 .row_listing .images_container:hover .slides {
@@ -142,17 +138,17 @@
   min-width: 5px;
   background: transparent;
   border-radius: 50%;
-  opacity: 90%;
 
   border: 1px solid white;
-  box-shadow: inset 0px 0px 6px #1118, 0px 0px 6px #1118;
+  /* box-shadow: inset 0px 0px 2px #111a, 0px 0px 2px #111a; */
+  fill: #1118;
 }
 
 .row_listing .slides .dot.active {
   opacity: 100%;
   transform: scale(1.2);
   background-color: white;
-  box-shadow: 0px 0px 6px #1118;
+  /* box-shadow: 0px 0px 4px #1118; */
 }
 
 .row_listing .wishlist {
@@ -182,12 +178,12 @@
 }
 
 .row_listing .wishlist svg {
-  fill: #1113;
+  fill: transparent;
   stroke: var(--fg);
   stroke-width: 1.5px;
   height: 36px;
   width: 36px;
-  filter: drop-shadow(0px 0px 5px #111a);
+  filter: drop-shadow(0px 0px 3px #1118);
   transition: all 0.3s var(--bc);
 }
 .row_listing .wishlist.active svg {
@@ -206,8 +202,8 @@
   position: absolute;
   transition: all 0.3s ease-out;
   max-width: 100%;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
 }
 
 .row_listing .main p {

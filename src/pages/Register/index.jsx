@@ -108,7 +108,7 @@ function Login() {
       <Navbar white={true}></Navbar>
       <div className="main">
         <div className="fields">
-          <img src={LOGO} className="logo" alt="" />
+          <h1>Let's get started!</h1>
           {error && <div className="server_error">{error}</div>}
 
           <div

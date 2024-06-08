@@ -87,7 +87,7 @@ function Login() {
       <Navbar white={true}></Navbar>
       <div className="main">
         <div className="fields">
-          <img src={LOGO} className="logo" alt="" />
+          <h1>Hello again!</h1>
 
           <div
             className="inp"
@@ -180,10 +180,10 @@ function Login() {
         <p>
           {" "}
           <hr />
-          or <hr />
+          or sign in with
+          <hr />
         </p>
         <div className="sign_in_options">
-          <h3>Sign in with</h3>
           <div>
             <button
               onClick={(e) =>
