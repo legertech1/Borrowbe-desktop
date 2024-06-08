@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import GridViewIcon from "@mui/icons-material/GridView";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import NotFoundAnimation from "../../components/Shared/NotFoundAnimation";
+import StoreComponent from "./StoreComponent";
 
 function Home() {
   const selectedLocation = useSelector(
@@ -124,6 +125,7 @@ function Home() {
       <Header category={category} setCategory={setCategory}></Header>
       {/* display when no user logged in */}
       {!user && <CTA></CTA>}
+      <StoreComponent />
       {/* display when no user logged in */}
       <div className="featured">
         {(loadingHG || Boolean(homepageGallery?.length)) && (
