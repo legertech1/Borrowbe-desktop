@@ -1,12 +1,12 @@
 .cta {
-    align-items: center;
-    background: #9dccf1;
-    display: flex;
-    gap: 50px;
-    justify-content: center;
-    padding: 50px;
-    width: 100%;
-    box-sizing: border-box;
+  align-items: center;
+  background: #9dccf1;
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  padding: 50px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .cta_main {
@@ -25,7 +25,6 @@
   padding: 24px 36px;
 }
 
-
 .store_buttons {
   display: flex;
   gap: 10px;
@@ -37,6 +36,6 @@
 }
 
 .store_buttons .playstore {
-  height: 88px;
+  height: 60px;
   object-fit: contain;
 }

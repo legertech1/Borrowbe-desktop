@@ -29,13 +29,6 @@ const Footer = () => {
       )}
       <footer className="footer">
         <div className="footer-section logo-section">
-          <img
-            onError={imageFallback}
-            className="footer_logo img_2"
-            src={LOGO}
-            alt="Logo"
-          />
-
           <p className="borrowbe-description">
             BorrowBe Inc. operates as a comprehensive classified listing
             platform, empowering users to connect for various transactions,
