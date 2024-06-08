@@ -15,6 +15,7 @@ import { imageFallback } from "../utils/listingCardFunctions";
 import OurPricing from "./OurPricing";
 import Modal from "./Modal";
 import { AttachMoney, QuestionAnswerOutlined } from "@mui/icons-material";
+import StoreComponent from "../pages/Home/StoreComponent";
 
 const Footer = () => {
   const [pricing, setPricing] = useState(false);
@@ -30,7 +31,7 @@ const Footer = () => {
         <div className="footer-section logo-section">
           <img
             onError={imageFallback}
-            className="footer_logo"
+            className="footer_logo img_2"
             src={LOGO}
             alt="Logo"
           />
@@ -41,6 +42,7 @@ const Footer = () => {
             including renting, leasing, financing, and services, through their
             thoughtfully crafted advertisements.
           </p>
+          <StoreComponent type="footer" />
         </div>
         <div className="footer-section">
           {/* <h2>BorrowBe</h2> */}

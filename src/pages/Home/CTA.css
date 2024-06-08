@@ -24,3 +24,19 @@
   font-size: 24px;
   padding: 24px 36px;
 }
+
+
+.store_buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.store_buttons .appstore {
+  height: 60px;
+  object-fit: contain;
+}
+
+.store_buttons .playstore {
+  height: 88px;
+  object-fit: contain;
+}
