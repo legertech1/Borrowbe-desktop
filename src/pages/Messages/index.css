@@ -258,7 +258,7 @@
   overflow-y: scroll;
   display: flex;
   flex-direction: column-reverse;
-  gap: 3px;
+  gap: 4px;
   padding: 50px 20px;
   box-shadow: inset 1px 1px 4px #1112, inset -1px -1px 4px #1113;
   position: relative;
@@ -269,25 +269,21 @@
 }
 
 .messages_page .messaging_area .messages .message {
-  width: fit-content;
-  padding: 10px 20px;
+  word-wrap: break-word;
+  background: #1111;
   border-radius: 22px;
-  background: #eee;
-  height: -moz-fit-content;
-  height: fit-content;
+  box-shadow: 0px 0px 2px #1116;
+  box-sizing: border-box;
+  display: inline-block;
+  font-family: var(--font2);
   margin-left: 48px;
   margin-right: 48px;
-  min-height: 40px;
-  box-sizing: border-box;
-  font-family: var(--font2);
   max-width: 600px;
-  box-shadow: 1px 1px 2px #eee, -1px -1px 2px #eee;
+  min-height: 40px;
   overflow: hidden !important;
-  display: flex;
-  border: 1px solid #ddd;
-  display: inline-block;
-  word-wrap: break-word;
+  padding: 10px 20px;
   position: relative;
+  width: fit-content;
 }
 
 .messages_page .messaging_area .messages .message.image {
@@ -323,15 +319,15 @@
 }
 
 .messages_page .messaging_area .messages .message_container > img {
-  height: 42px;
-  width: 42px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  box-shadow: -1px -1px 4px #1114, 1px 1px 4px #1114;
   border-radius: 50%;
-  transition: all 0.3s var(--bc);
+  box-shadow: 0px 0px 4px #1116;
+  height: 42px;
+  left: 0;
   object-fit: cover;
+  position: absolute;
+  top: 0;
+  transition: all 0.3s var(--bc);
+  width: 42px;
 }
 .messages_page .messaging_area .messages .message_container.from img {
   left: unset;
@@ -345,11 +341,9 @@
 
 .messages_page .messaging_area .message.from {
   background: var(--blue) !important;
+  box-shadow: 0px 0px 2px #1118;
   color: #fff;
-  border: 1px solid var(--blue);
-  box-shadow: 1px 1px 2px #1114, -1px -1px 2px #1114;
-  /* margin: unset; */
-  /* margin-right: 45px; */
+  margin-top: -1px;
 }
 
 .messages_page .messaging_area .message_container.from:hover > img {
@@ -934,7 +928,7 @@
 .messages_page .messages_loader {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
 }
 
 .messages_page .messages_loader .line {
