@@ -124,6 +124,9 @@
   margin: auto;
   padding: 20px 0;
 }
+.Home .listings {
+  width: 100.2%;
+}
 
 .Home .featured > h1 {
   font-weight: 500;

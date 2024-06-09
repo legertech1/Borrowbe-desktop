@@ -1,7 +1,7 @@
 .search_main {
   background: var(--fg);
   height: 100px;
-  margin-top: 100px;
+  margin-top: 90px;
   display: flex;
   padding: 0 10%;
   box-sizing: border-box;
@@ -46,7 +46,7 @@
   gap: 10px;
   border-radius: 4px;
   align-items: center;
-  filter: drop-shadow(0px 0px 8px #ccc);
+  filter: drop-shadow(0px 0px 8px #1114);
   z-index: 10;
 }
 .search_main ._dropdown {
@@ -115,7 +115,7 @@
 }
 
 .search_main ._dropdown .options .option {
-  padding: 10px 16px;
+  padding: 12px 20px;
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -171,7 +171,7 @@
   box-sizing: border-box;
   background: var(--fg);
   padding: 16px;
-  filter: drop-shadow(0px 0px 8px #ccc);
+  filter: drop-shadow(0px 0px 8px #1114);
   border: 1px solid var(--blue);
   border-radius: 4px;
   width: 360px;
@@ -219,6 +219,7 @@
   margin: 0;
   padding: 0 10%;
   background: #fff;
+  box-shadow: 0px 0px 4px #1114;
 
   z-index: 12;
 }
@@ -229,7 +230,7 @@
 
 .search_page .search_tab {
   padding: 10px 20px;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1114;
   border: 1px solid var(--blue);
   border-radius: 4px;
   display: flex;
@@ -304,7 +305,7 @@
 }
 
 .search_page .search_content {
-  padding: 0px 10%;
+  padding: 20px 10% 0;
   display: flex;
   gap: 16px;
   flex-direction: row-reverse;
@@ -318,10 +319,9 @@
   height: fit-content;
   position: sticky;
   top: 75px;
-  margin-top: 10px;
   background: white;
   border-radius: 4px;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1114;
   gap: 10px;
 }
 
@@ -385,7 +385,7 @@
 
 .search_page .search_results_header {
   font-size: 18px;
-  padding: 8px 10%;
+  padding: 8px 10% 10px;
   box-sizing: border-box;
   width: 100%;
   margin: auto;
@@ -412,11 +412,11 @@
 
 .search_page .search_results_header p span {
   font-weight: 500;
-  font-size: 22px;
   color: var(--blue);
-}
-.search_page .search_results_header > p {
-  font-family: var(--font1);
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  overflow: hidden;
+  flex: 1;
 }
 
 .search_page .search_results {
@@ -430,7 +430,8 @@
 
 .search_page .search_results_header > div {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  margin-left: auto;
 }
 
 .search_page .search_results_header ._dropdown {
@@ -440,7 +441,7 @@
   border-radius: 4px;
   background: white;
   border: 1px solid var(--blue);
-  filter: drop-shadow(0px 0px 4px #ccc);
+  filter: drop-shadow(0px 0px 4px #1114);
   width: 250px;
   height: 50px;
   justify-content: space-between;
@@ -498,7 +499,7 @@
   align-items: center;
   background: white;
   border: 1px solid white;
-  filter: drop-shadow(0px 0px 4px #ccc);
+  filter: drop-shadow(0px 0px 4px #1114);
   box-sizing: border-box;
   border-radius: 4px;
   cursor: pointer;
@@ -530,7 +531,7 @@
   padding: 10px 20px;
   box-sizing: border-box;
   border-radius: 4px;
-  filter: drop-shadow(0px 0px 4px #ccc);
+  filter: drop-shadow(0px 0px 4px #1114);
   cursor: pointer;
   transition: all 0.3s var(--bc);
   font-weight: 500;
@@ -544,10 +545,17 @@
 
 .search_page .search_results_header > p {
   margin: 0;
+  font-weight: 500;
   display: flex;
   gap: 8px;
   align-items: center;
-  font-size: 20px;
+  font-size: 18px;
+  padding: 12px;
+  background: white;
+  color: #333;
+  max-width: 50%;
+  border-radius: 4px;
+  filter: drop-shadow(0px 0px 4px #1114);
 }
 
 .search_page .search_results_header .save_search svg {
@@ -563,10 +571,14 @@
 
 .search_page .row_listings {
   padding: 0;
-  padding-top: 10px;
+  width: 100.5%;
+  left: -0.5%;
+  position: relative;
 }
 .search_page .listings {
-  grid-template-columns: 1fr 1fr 1fr;
+  width: 100.33%;
+  position: relative;
+  left: -0.33%;
 }
 input[type="range"] {
   /* removing default appearance */

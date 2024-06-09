@@ -336,6 +336,12 @@ transform: perspective(1px) scale(0.98);
   background-color: var(--blue);
   color: white;
 }
+.profile_container .row_listings {
+  width: 100.5%;
+}
+.profile_container .listings {
+  width: 100.33%;
+}
 
 @media (max-width: 1600px) {
   .profile_container .main {
@@ -395,4 +401,3 @@ transform: perspective(1px) scale(0.98);
     width: 24px;
   }
 }
-

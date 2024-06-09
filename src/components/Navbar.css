@@ -1,6 +1,6 @@
 .nav {
   position: absolute;
-  top: -100px;
+  top: -90px;
   transform: translateY(100%) !important;
 
   display: flex;
@@ -34,7 +34,7 @@
   font-size: 36px;
   margin: 0;
   font-weight: 900;
-  height: 100px;
+  height: 90px;
   box-sizing: border-box;
   transition: all 0.3s var(--bc);
   display: flex;
@@ -43,13 +43,9 @@
 }
 
 .logo img {
-  height: 60px;
+  height: 50px;
 }
 
-.nav.white .logo img {
-  height: 50px;
-  position: relative;
-}
 
 .nav nav {
   display: flex;
@@ -129,7 +125,7 @@
   background: var(--fg);
   box-sizing: border-box;
   /* padding: 20px 0px; */
-  top: -100px;
+  top: -90px;
   box-shadow: 3px 3px 24px #1112;
   left: 0;
 }

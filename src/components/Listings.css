@@ -18,7 +18,7 @@
   box-sizing: border-box;
   height: 308px;
   min-height: 300px;
-  max-width: 450px;
+  max-width: 470px;
   transition: all 0.3s var(--bc);
   cursor: pointer;
   /* transform: scale(1); */
@@ -28,7 +28,6 @@
   box-shadow: -1px -1px 8px #1112, 1px 1px 8px #1112;
   -webkit-transform: perspective(1px) scale(0.98);
   transform: perspective(1px) scale(0.98);
-  
 }
 .listing.em {
   pointer-events: none;

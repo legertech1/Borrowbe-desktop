@@ -216,11 +216,7 @@ function SearchPage() {
       </div>
       <div className="search_results_header">
         <p>
-          Showing results for{" "}
-          <span>
-            {searches[current]?.query.slice(0, 30) +
-              (searches[current]?.query.length > 30 ? "..." : "") || "-"}
-          </span>{" "}
+          Showing results for <span>{searches[current]?.query || "-"}</span>{" "}
         </p>
 
         <div>
