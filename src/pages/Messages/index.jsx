@@ -62,11 +62,7 @@ function Messages() {
     if (loading) return;
     if (!containerRef.current) return;
     const container = containerRef.current;
-    console.log(
-      container.scrollTop,
-      container.clientHeight,
-      container.scrollHeight
-    );
+
     if (
       container.scrollTop - container.clientHeight <=
       container.scrollHeight - 10
@@ -74,6 +70,7 @@ function Messages() {
       setPage((prevPage) => prevPage + 1);
     }
   }
+  useEffect(() => console.log(current), [current]);
 
   useEffect(() => {
     if (chats?.length) {
@@ -83,7 +80,8 @@ function Messages() {
       );
       if (
         Math.abs((currentTime - timeToCompare) / 1000) <= 5 &&
-        chats[0].messages[chats[0].messages.length - 1]?.from == user._id
+        chats[0].messages[chats[0].messages.length - 1]?.from == user._id &&
+        chats[0].new
       ) {
         setCurrent(chats[0]);
         setPage(!page);
@@ -549,7 +547,7 @@ function Messages() {
             onKeyDown={(e) => e.key == "Escape" && setImagePreview(null)}
             className={"image"}
           >
-            <img  src={imagePreview} />
+            <img src={imagePreview} />
           </Modal>
         )}
       </div>

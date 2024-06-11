@@ -11,7 +11,7 @@ const chatSlice = createSlice({
       return [...action.payload];
     },
     addChat: (state, action) => {
-      return [action.payload, ...state];
+      return [{ ...action.payload, new: true }, ...state];
     },
     receiveMessage: (state, action) => {
       if (!state) return state;
@@ -20,7 +20,7 @@ const chatSlice = createSlice({
         if (conv._id == action.payload._id) {
           if (
             conv.info._id == action.payload.message.from &&
-            JSON.parse(localStorage.sound ||"{}").message
+            JSON.parse(localStorage.sound || "{}").message
           ) {
             notif
               .play()
