@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  padding-top: 100px;
+  padding-top: 90px;
   box-sizing: border-box;
   gap: 20px;
 }
@@ -170,7 +170,7 @@
   min-height: 200px;
 }
 .post_ad ._dropdown .options::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
   display: block !important;
 }
 
@@ -180,7 +180,7 @@
 
 .post_ad ._dropdown .options::-webkit-scrollbar-thumb {
   background-color: var(--blue);
-  border-radius: 10px;
+  border-radius: 0px;
   /* border: 3px solid var(--blue); */
 }
 
@@ -628,7 +628,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  /* box-shadow: 0px 0px 8px #ccc; */
+  /* box-shadow: 0px 0px 8px #1113; */
 }
 .pricing_section .package .details > div span.red {
   background: #cd5c5c22 !important;
@@ -662,7 +662,7 @@
   font-weight: 600;
   color: white;
   font-family: var(--font1);
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   border-radius: 4px;
   cursor: pointer;
   display: flex;
@@ -747,7 +747,7 @@
 .pricing_section .add_ons {
   display: flex;
   flex-direction: column-reverse;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   border-radius: 4px;
 }
 .pricing_section .add_on {
@@ -797,7 +797,7 @@
 
 .pricing_section .extra {
   min-height: 100px;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   margin-bottom: -20px;
 }
 .pricing_section .extra .info {
@@ -865,7 +865,7 @@
   width: 100px;
   object-fit: contain;
   border-radius: 4px;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
 }
 
 .pricing_section .business_ov > div {
@@ -903,7 +903,7 @@
   height: fit-content;
   box-sizing: border-box;
   min-height: 100px;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   margin-bottom: -30px;
   border-radius: 4px;
 }

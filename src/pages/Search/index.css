@@ -647,7 +647,7 @@ input[type="range"]::-moz-range-thumb {
   transition: all 0.2s var(--bc);
   cursor: pointer;
   color: var(--blue);
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
 }
 /* .search_page .term:hover {
   background-color: var(--blue);
@@ -696,7 +696,7 @@ input[type="range"]::-moz-range-thumb {
   flex: 1;
   border: 1px solid var(--blue);
   border-radius: 4px;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   font-size: 20px;
 
   font-family: var(--font2);

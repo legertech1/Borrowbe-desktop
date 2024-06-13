@@ -10,7 +10,7 @@ div.options.actions {
   width: 1200px;
 }
 .ad_config::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
   display: block !important;
 }
 
@@ -20,7 +20,7 @@ div.options.actions {
 
 .ad_config::-webkit-scrollbar-thumb {
   background-color: var(--blue);
-  border-radius: 10px;
+  border-radius: 0px;
   /* border: 3px solid var(--blue); */
 }
 
@@ -317,21 +317,21 @@ div.options.actions {
 .ad_config .Premium {
   background: var(--yellow);
   border-radius: 4px;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   padding: 6px 20px;
   color: white;
 }
 .ad_config .Standard {
   background: var(--blue);
   border-radius: 4px;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   padding: 6px 20px;
   color: white;
 }
 .ad_config .Basic {
   background: #555;
   border-radius: 4px;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   padding: 6px 20px;
   color: white;
 }

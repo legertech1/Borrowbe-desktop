@@ -193,7 +193,7 @@
   /* justify-content: center; */
 }
 .manage_ads .ads .main::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
   display: block !important;
 }
 
@@ -203,7 +203,7 @@
 
 .manage_ads .ads .main::-webkit-scrollbar-thumb {
   background-color: var(--blue);
-  border-radius: 10px;
+  border-radius: 0px;
   /* border: 3px solid var(--blue); */
 }
 
@@ -269,7 +269,7 @@
   min-width: 130px;
   object-fit: cover;
   max-width: 130px;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
 }
 
 .manage_ads .ads .main .ad .ad_info h4,
@@ -586,6 +586,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: none;
+  border: none !important;
 }
 .manage_ads .not_found_animation {
   border: none;

@@ -25,7 +25,7 @@
   flex: 1;
   outline: none !important;
   font-size: 20px;
-  filter: drop-shadow(0px 0px 8px #ccc);
+  filter: drop-shadow(0px 0px 8px #1113);
   font-family: var(--font2);
   border: 1px solid white;
   transition: all 0.3s var(--bc);
@@ -35,7 +35,7 @@
 ._autocomplete ul {
   position: absolute;
   background: white;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   width: 100%;
   box-sizing: border-box;
   padding: 0px;

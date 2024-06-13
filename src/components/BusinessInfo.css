@@ -92,7 +92,7 @@
 
 /* Works on Chrome, Edge, and Safari */
 .business_info::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
   display: block !important;
 }
 
@@ -102,8 +102,7 @@
 
 .business_info::-webkit-scrollbar-thumb {
   background-color: var(--blue);
-  border-radius: 10px;
-  /* border: 3px solid var(--blue); */
+  border-radius: 0px;
 }
 
 .business_info .image_input {

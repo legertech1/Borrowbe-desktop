@@ -295,7 +295,7 @@
 
 .row_listing .buttons button {
   height: 60px;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
 }
 
 .row_listing button.actions {
@@ -456,7 +456,7 @@
   font-family: var(--font2);
 }
 .row_listing .price .btn_classic {
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
 }
 
 .row_listing .price .price_num {

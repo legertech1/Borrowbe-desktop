@@ -46,7 +46,6 @@
   height: 50px;
 }
 
-
 .nav nav {
   display: flex;
   gap: 10px;
@@ -126,7 +125,7 @@
   box-sizing: border-box;
   /* padding: 20px 0px; */
   top: -90px;
-  box-shadow: 3px 3px 24px #1112;
+  box-shadow: 0px 0px 8px #1113;
   left: 0;
 }
 
@@ -498,7 +497,7 @@ li.country_select svg {
 /* Works on Chrome, Edge, and Safari */
 .nav .notifications::-webkit-scrollbar,
 .nav .user_menu::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
   display: block !important;
 }
 .nav .notifications::-webkit-scrollbar-track,
@@ -509,7 +508,7 @@ li.country_select svg {
 .nav .notifications::-webkit-scrollbar-thumb,
 .nav .user_menu::-webkit-scrollbar-thumb {
   background-color: var(--blue);
-  border-radius: 10px;
+  border-radius: 0px;
 }
 .nav .notification_box.active {
   opacity: 1;

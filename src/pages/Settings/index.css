@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  padding-top: 100px;
+  padding-top: 90px;
   box-sizing: border-box;
   gap: 20px;
 }
@@ -49,9 +49,9 @@
   border: 2px solid var(--blue);
   border-radius: 4px;
   font-weight: 500;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   font-weight: 500;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   font-family: var(--font2);
 }
 

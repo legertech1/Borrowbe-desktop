@@ -22,7 +22,7 @@
 }
 .payment_form *::-webkit-scrollbar,
 .payment_form::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
   display: block !important;
 }
 
@@ -34,7 +34,7 @@
 .payment_form *::-webkit-scrollbar-track,
 .payment_form::-webkit-scrollbar-thumb {
   background-color: var(--blue);
-  border-radius: 10px;
+  border-radius: 0px;
   /* border: 3px solid var(--blue); */
 }
 

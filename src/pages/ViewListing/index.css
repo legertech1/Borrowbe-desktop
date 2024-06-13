@@ -47,7 +47,7 @@
   width: 100%;
   overflow: hidden;
   border-radius: 4px;
-  box-shadow: -1px -1px 8px #ccc, 1px 1px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
 }
 
 .view_listing .images_container .carousel_button {
@@ -162,12 +162,13 @@
 }
 
 .view_listing .wishlist svg {
-  fill: #1114;
+  fill: transparent;
   stroke: var(--fg);
   stroke-width: 2;
   height: 36px;
   width: 36px;
-  filter: drop-shadow(0px 0px 8px #1118);
+
+  filter: drop-shadow(0px 0px 3px #1118);
   transition: all 0.3s var(--bc);
 }
 
@@ -216,7 +217,7 @@
   box-sizing: border-box;
   background: white;
   border-radius: 4px;
-  box-shadow: -1px -1px 8px #ccc, 1px 1px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -314,14 +315,14 @@
   width: 100%;
   border-radius: 4px;
   overflow: hidden;
-  box-shadow: -1px -1px 8px #ccc, 1px 1px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
 }
 
 .view_listing .main {
   position: relative;
   display: flex;
   width: 80%;
-  margin: 160px 10% 60px;
+  margin: 140px 10% 60px;
   gap: 16px;
 }
 
@@ -339,7 +340,7 @@
   height: 75px;
   width: 75px;
   border-radius: 50%;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   object-fit: cover;
   min-width: 75px;
   min-height: 75px;
@@ -719,15 +720,15 @@
 }
 
 .view_listing .path {
-  top: 134px;
+  top: 118px;
   position: absolute;
   width: 80%;
   margin: 0 10%;
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 16px;
   justify-content: start;
-  color: #555;
+  /* color: #555; */
   font-weight: 500;
   gap: 12px;
 }
@@ -747,7 +748,7 @@
 .view_listing .business_main img {
   height: 120px;
   border-radius: 4px;
-  box-shadow: 0px 0px 8px #ccc;
+  box-shadow: 0px 0px 8px #1113;
   object-fit: contain;
   max-width: 200px;
 }
