@@ -422,7 +422,7 @@ function ViewListing({ preview, edit }) {
                       <div className="info">
                         <h3 className="name">
                           {postedBy?.BusinessInfo?.name}
-                          {postedBy?.BusinessInfo?.email && (
+                          {/* {postedBy?.BusinessInfo?.email && (
                             <>
                               <hr />
                               <a
@@ -432,7 +432,7 @@ function ViewListing({ preview, edit }) {
                                 {postedBy?.BusinessInfo?.email}
                               </a>
                             </>
-                          )}
+                          )} */}
                         </h3>
                         <p className="address">
                           {postedBy?.BusinessInfo?.address}
