@@ -11,7 +11,8 @@ const chatSlice = createSlice({
       return [...action.payload];
     },
     addChat: (state, action) => {
-      return [{ ...action.payload, new: true }, ...state];
+      let chatPayload = modifyChat(action.payload);
+      return [{ ...chatPayload, new: true }, ...state];
     },
     receiveMessage: (state, action) => {
       if (!state) return state;
@@ -189,3 +190,15 @@ export const {
   addChat,
 } = chatSlice.actions;
 export default chatSlice;
+
+const modifyChat = (chat) => {
+  return {
+    ...chat,
+    _id: chat?._id || chat?._doc?._id,
+    participants: chat?.participants || chat?._doc?.participants,
+    blockedBy: chat?.blockedBy || chat?._doc?.blockedBy,
+    typing: chat?.typing || [],
+    createdAt: chat?.createdAt || chat?._doc?.createdAt,
+    updatedAt: chat?.updatedAt || chat?._doc?.updatedAt,
+  };
+};
