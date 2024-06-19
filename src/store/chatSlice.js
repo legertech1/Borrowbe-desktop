@@ -8,11 +8,9 @@ const chatSlice = createSlice({
   initialState: null,
   reducers: {
     setChats: (state, action) => {
-      console.log(action.payload)
       return [...action.payload];
     },
     addChat: (state, action) => {
-      console.log(action.payload);
       return [{ ...action.payload, new: true }, ...state];
     },
     receiveMessage: (state, action) => {
