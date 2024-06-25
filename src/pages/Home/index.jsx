@@ -10,6 +10,7 @@ import GridViewIcon from "@mui/icons-material/GridView";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import NotFoundAnimation from "../../components/Shared/NotFoundAnimation";
 import ReactGA from "react-ga4";
+import sortFeatured from "../../store/sortFeatured";
 
 function Home() {
   if (process.env.REACT_APP_NODE_ENV !== "development") {
@@ -42,17 +43,16 @@ function Home() {
         category,
         additional: { "meta.homepageGallery": false },
         sort: {
-          "meta.featured": -1,
           "meta.listingRank": -1,
         },
-        limit: 20,
+        limit: 24,
         page: 1,
         count: true,
         impressions: true,
         random: true,
       })
     ).data;
-    setListings(results);
+    setListings(sortFeatured(results));
     setCountRM(total);
     setLoadingRM(false);
     setPageRM(page);
@@ -64,24 +64,23 @@ function Home() {
         category,
         additional: { "meta.homepageGallery": true },
         sort: {
-          "meta.featured": -1,
           "meta.listingRank": -1,
         },
-        limit: 20,
+        limit: 24,
         page: 1,
         count: true,
         impressions: true,
         random: true,
       })
     ).data;
-    setHomepageGallery(results);
+    setHomepageGallery(sortFeatured(results));
     setCountHG(total);
     setLoadingHG(false);
     setPageHG(page);
   }
   async function loadMoreHG() {
     setLoadingMoreHG(true);
-    setPageHG((n) => n + 1);
+
     const results = (
       await axios.post(apis.search, {
         location: selectedLocation,
@@ -89,34 +88,44 @@ function Home() {
         additional: { "meta.homepageGallery": true },
 
         sort: {
-          "meta.featured": -1,
           "meta.listingRank": -1,
         },
-        limit: 20,
+        limit: 24,
         page: pageHG + 1,
       })
     ).data.results;
+    setPageHG((n) =>
+      Math.ceil(countHG / 24) == n + 1 &&
+      countHG > homepageGallery.length + results.length
+        ? 0
+        : n + 1
+    );
     setLoadingMoreHG(false);
-    setHomepageGallery((arr) => [...arr, ...results]);
+    setHomepageGallery((arr) => [...arr, ...sortFeatured(results)]);
   }
   async function loadMoreRM() {
     setLoadingMoreRM(true);
-    setPageRM((n) => n + 1);
+
     const results = (
       await axios.post(apis.search, {
         location: selectedLocation,
         category,
         additional: { "meta.homepageGallery": false },
         sort: {
-          "meta.featured": -1,
           "meta.listingRank": -1,
         },
-        limit: 20,
+        limit: 24,
         page: pageRM + 1,
       })
     ).data.results;
+    setPageRM((n) =>
+      Math.ceil(countRM / 24) == n + 1 &&
+      countRM > listings.length + results.length
+        ? 0
+        : n + 1
+    );
     setLoadingMoreRM(false);
-    setListings((arr) => [...arr, ...results]);
+    setListings((arr) => [...arr, ...sortFeatured(results)]);
   }
   useEffect(() => {
     if (selectedLocation) {
@@ -141,15 +150,13 @@ function Home() {
             Homepage Gallery
           </h1>
         )}
-        <Listings listings={homepageGallery} loading={loadingHG}></Listings>
+        <Listings listings={homepageGallery} loading={loadingHG || loadingMoreHG}></Listings>
         {homepageGallery.length < countHG && !loadingMoreHG && (
           <button className="load_more" onClick={() => loadMoreHG()}>
             Show more
           </button>
         )}
-        {loadingMoreHG && (
-          <Listings listings={[]} loading={loadingMoreHG}></Listings>
-        )}
+    
       </div>
       <div className="featured">
         {(loadingRM || Boolean(listings.length)) && (
@@ -159,15 +166,13 @@ function Home() {
             Recommended for You{" "}
           </h1>
         )}
-        <Listings listings={listings} loading={loadingRM}></Listings>
+        <Listings listings={listings} loading={loadingRM || loadingMoreRM}></Listings>
         {listings.length < countRM && !loadingMoreRM && (
           <button className="load_more" onClick={() => loadMoreRM()}>
             Show more
           </button>
         )}
-        {loadingMoreRM && (
-          <Listings listings={[]} loading={loadingMoreRM}></Listings>
-        )}
+     
       </div>
       {!loadingRM &&
         !loadingHG &&

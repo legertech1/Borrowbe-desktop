@@ -191,10 +191,7 @@ function SearchPage() {
                 onClick={() => dispatch(changeSearch({ current: index }))}
               >
                 <SearchIcon></SearchIcon>
-                <p>
-                  {" "}
-                  <pre>{search.query || "New Search"}</pre>
-                </p>
+                <p> {search.query || "New Search"}</p>
                 {index !== current && (
                   <button
                     onClick={(e) => {

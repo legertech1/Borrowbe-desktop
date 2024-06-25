@@ -15,7 +15,6 @@ function Listings({ listings, actions, setListings, loading = true }) {
       ))}
 
       {loading &&
-        !listings.length &&
         Array(24)
           .fill(null)
           .map((listing, index) => <Listing empty={true} />)}

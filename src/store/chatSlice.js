@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import ping from "../assets/audio/ping.mp3";
+
 import { removeDuplicates } from "../utils/helpers";
-let notif = new Audio(ping);
+let notif = new Audio(process.env.REACT_APP_BASE_URL + "/api/documents/ping");
 
 const chatSlice = createSlice({
   name: "chats",
@@ -11,8 +11,7 @@ const chatSlice = createSlice({
       return [...action.payload];
     },
     addChat: (state, action) => {
-      let chatPayload = modifyChat(action.payload);
-      return [{ ...chatPayload, new: true }, ...state];
+      return [{ ...action.payload, new: true }, ...state];
     },
     receiveMessage: (state, action) => {
       if (!state) return state;
@@ -21,12 +20,17 @@ const chatSlice = createSlice({
         if (conv._id == action.payload._id) {
           if (
             conv.info._id == action.payload.message.from &&
-            JSON.parse(localStorage.sound || "{}").message
+            JSON.parse(localStorage.sound || JSON.stringify({ message: true }))
+              .message
           ) {
             notif
               .play()
-              .then()
-              .catch((err) => console.error(err));
+              .then(() => {
+                console.log("Audio is playing");
+              })
+              .catch((error) => {
+                console.error("Error playing audio:", error);
+              });
           }
 
           return {
@@ -190,15 +194,3 @@ export const {
   addChat,
 } = chatSlice.actions;
 export default chatSlice;
-
-const modifyChat = (chat) => {
-  return {
-    ...chat,
-    _id: chat?._id || chat?._doc?._id,
-    participants: chat?.participants || chat?._doc?.participants,
-    blockedBy: chat?.blockedBy || chat?._doc?.blockedBy,
-    typing: chat?.typing || [],
-    createdAt: chat?.createdAt || chat?._doc?.createdAt,
-    updatedAt: chat?.updatedAt || chat?._doc?.updatedAt,
-  };
-};

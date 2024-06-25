@@ -6,6 +6,7 @@
   width: 100%;
   padding: 10px 0;
   justify-content: start;
+  grid-auto-flow: dense;
 }
 
 .listing *::-webkit-scrollbar {

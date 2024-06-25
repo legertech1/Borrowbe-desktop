@@ -208,9 +208,9 @@
 }
 
 .search_page .search_tabs {
-  padding: 0 0 16px;
+  padding: 4px 8px 16px;
   display: flex;
-  gap: 12px;
+  gap: 8px;
   background: var(--fg);
   overflow: scroll;
 }
@@ -219,7 +219,6 @@
   margin: 0;
   padding: 0 10%;
   background: #fff;
-  box-shadow: 0px 0px 4px #1114;
 
   z-index: 12;
 }
@@ -229,7 +228,7 @@
 }
 
 .search_page .search_tab {
-  padding: 10px 20px;
+  padding: 8px 16px;
   box-shadow: 0px 0px 8px #1114;
   border: 1px solid var(--blue);
   border-radius: 4px;
@@ -241,8 +240,9 @@
   font-weight: 500;
   border-radius: 100px;
   transition: all 0.3s var(--bc);
-  height: 46px;
+  height: 40px;
   box-sizing: border-box;
+  background-color: #2196f320;
 }
 .search_page .search_tab.active {
   background-color: var(--blue);
@@ -257,6 +257,15 @@
 
 .search_page .search_tab.add {
   padding: 10px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--blue);
+}
+.search_page .search_tab.add svg{
+  fill: white;
 }
 .search_page .search_tab svg {
   fill: var(--blue);
@@ -275,24 +284,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
-  margin-right: -10px;
+  margin-left: 4px;
+  margin-right: -6px;
   cursor: pointer;
   transition: all 0.3s var(--bc);
 }
-.search_page .search_tab button:hover {
-  transform: scale(1.1);
-}
+
 .search_page .search_tab button svg {
-  height: 28px;
-  width: 28px;
+  height: 22px;
+  width: 22px;
 }
 
 .search_page .search_tab p {
   max-width: 200px;
   overflow: hidden;
-  /* display: flex; */
-  /* flex-wrap: nowrap; */
+  text-overflow: ellipsis;
+  white-space: nowrap;
   height: 20px;
   margin: 0;
   padding: 0;

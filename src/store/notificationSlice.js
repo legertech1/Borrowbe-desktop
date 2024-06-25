@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import ping from "../assets/audio/ping.mp3";
-let notif = new Audio(ping);
+
+let notif = new Audio(process.env.REACT_APP_BASE_URL + "/api/documents/ping");
 
 const notificationSlice = createSlice({
   name: "notifications",
