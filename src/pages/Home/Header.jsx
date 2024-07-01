@@ -15,10 +15,12 @@ function Header({ setCategory, category }) {
       <Navbar></Navbar>
       <main>
         <div className="heading">
-          <h1>Own Nothing, Use Everything.</h1>
-          <p>
-            Your One-Stop Marketplace for Rentals, Leases, Financing and
-            Services.
+          <h1>Turn Your Assets Into Income</h1>
+          <p style={{ textAlign: "center", maxWidth: "90%" }}>
+            BorrowBe is a unique marketplace connecting owners who want to rent,
+            lease, or finance their items with interested people. Whether you’re
+            an owner, service provider, or a potential customer, the
+            opportunities are endless.
           </p>
         </div>
         <Search category={category} setCategory={setCategory}></Search>

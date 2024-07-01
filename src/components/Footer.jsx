@@ -30,10 +30,8 @@ const Footer = () => {
       <footer className="footer">
         <div className="footer-section logo-section">
           <p className="borrowbe-description">
-            BorrowBe Inc. operates as a comprehensive classified listing
-            platform, empowering users to connect for various transactions,
-            including renting, leasing, financing, and services, through their
-            thoughtfully crafted advertisements.
+            Discover the Freedom Renting, Financing, and Leasing Brings. Browse
+            Our Collection Today.
           </p>
           <StoreComponent type="footer" />
         </div>
@@ -105,7 +103,8 @@ const Footer = () => {
         style={{
           padding: 0,
           margin: 0,
-          paddingBottom: "10px",
+          paddingBottom: "20px",
+          paddingTop: "20px",
         }}
       >
         <p
