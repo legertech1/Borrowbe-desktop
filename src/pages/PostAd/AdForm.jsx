@@ -229,7 +229,7 @@ export default function AdForm({ edit }) {
         return notification.error("Price is required");
       if (formData.description.trim().length < 40)
         return notification.error(
-          "Description is required and must be between 40 to 4000 characters"
+          "Description is required and must be between 40 to 8000 characters"
         );
     }
     if (step >= 3) {
@@ -547,7 +547,7 @@ export default function AdForm({ edit }) {
           </h4>
           <TextArea
             onChange={(e) => {
-              handleFormData("description", e.target.value.slice(0, 4000));
+              handleFormData("description", e.target.value.slice(0, 8000));
             }}
             placeholder={
               "Describe your item, include all important details related to the item."
