@@ -33,6 +33,8 @@ import CookieConsent from "./components/CookieConsent";
 import ManageAds from "./pages/ManageAds";
 import { getBalance } from "./store/balanceSlice";
 import InfoComp from "./components/InfoComp";
+import Article1 from "./pages/blog/Article1";
+import Article2 from "./pages/blog/Article2";
 
 function App() {
   const dispatch = useDispatch();
@@ -78,13 +80,17 @@ function App() {
   useEffect(() => {
     user && loadChats(socket);
     user && getNotifications(socket);
-   
   }, [user]);
 
   return (
     <div className="__app">
       <Routes>
         <Route path="/" exact element={<Home />} />
+        <Route path="/blog/article1" exact element={<Article1 />} />
+        <Route path="/blog/article2" exact element={<Article2 />} />
+
+        <Route path="/" exact element={<Home />} />
+
         <Route path="/search" exact element={<Search />} />
         <Route
           path="/profile"

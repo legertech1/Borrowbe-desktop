@@ -8,11 +8,7 @@ import { socket, sendMessage } from "./socket";
 import NotificationService from "./services/notification";
 import ConfirmDialogService from "./services/confirmDialog";
 import { LoadScript } from "@react-google-maps/api";
-import {
-  BASE_URL,
-  MAP_API_KEY,
-  mapLibraries,
-} from "./utils/constants";
+import { BASE_URL, MAP_API_KEY, mapLibraries } from "./utils/constants";
 import axios from "axios";
 import apis from "./services/api";
 import IconPlayer from "./components/IconPlayer";
@@ -53,27 +49,31 @@ function Root() {
   }, []);
 
   return (
-      <BrowserRouter>
-        <NotificationService>
-          <ConfirmDialogService>
-            <Provider store={store}>
-              <LoadScript
-                loadingElement={
-                  <div className="logo_loader">
-                    <IconPlayer icon={blackAnimatedLOGO} />
-                  </div>
-                }
-                googleMapsApiKey={MAP_API_KEY}
-                libraries={mapLibraries}
-              >
-                <App />
-              </LoadScript>
-            </Provider>
-          </ConfirmDialogService>
-        </NotificationService>
-      </BrowserRouter>
+    <BrowserRouter>
+      <NotificationService>
+        <ConfirmDialogService>
+          <Provider store={store}>
+            <LoadScript
+              loadingElement={
+                <div className="logo_loader">
+                  <IconPlayer icon={blackAnimatedLOGO} />
+                </div>
+              }
+              googleMapsApiKey={MAP_API_KEY}
+              libraries={mapLibraries}
+            >
+              <App />
+            </LoadScript>
+          </Provider>
+        </ConfirmDialogService>
+      </NotificationService>
+    </BrowserRouter>
   );
 }
 
 const rootElement = document.getElementById("root");
-ReactDOM.createRoot(rootElement).render(<Root />);
+if (rootElement.hasChildNodes()) {
+  ReactDOM.hydrateRoot(rootElement).render(<Root />);
+} else {
+  ReactDOM.createRoot(rootElement).render(<Root />);
+}
