@@ -13,6 +13,7 @@ import axios from "axios";
 import apis from "./services/api";
 import IconPlayer from "./components/IconPlayer";
 import blackAnimatedLOGO from "./assets/animatedIcons/animated_black_LOGO.json";
+import { render } from "react-snapshot";
 
 function Root() {
   async function init() {
@@ -72,8 +73,5 @@ function Root() {
 }
 
 const rootElement = document.getElementById("root");
-if (rootElement.hasChildNodes()) {
-  ReactDOM.hydrateRoot(rootElement).render(<Root />);
-} else {
-  ReactDOM.createRoot(rootElement).render(<Root />);
-}
+
+render(rootElement);
