@@ -30,7 +30,7 @@ function AdPosthandler({ token, onSuccess, close }) {
     try {
       const res = await axios.post(apis.postAd, { ad, token });
     } catch (err) {
-      notification.error( err?.response?.data || err.message);
+      notification.error(err?.response?.data || err.message);
       setError(err);
     }
   }
@@ -59,7 +59,7 @@ function AdPosthandler({ token, onSuccess, close }) {
       setWait(true);
       setTimeout(() => setWait(false), 400);
     }
-  }, [updates, wait]);
+  }, [update, wait]);
 
   return (
     <div className="ad_post_handler">
