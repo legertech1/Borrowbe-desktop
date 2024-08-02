@@ -33,8 +33,14 @@ import CookieConsent from "./components/CookieConsent";
 import ManageAds from "./pages/ManageAds";
 import { getBalance } from "./store/balanceSlice";
 import InfoComp from "./components/InfoComp";
-
+function handleRedirect(){
+   
+  if(window.innerWidth < 1400)
+  window.location.href="https://m.borrowbe.com"
+}
 function App() {
+
+  
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
   const { selectedLocation, currentLocation } = useSelector(
@@ -61,6 +67,7 @@ function App() {
   const [showCc, setShowCc] = useState(!Cookies.get("cc"));
 
   useEffect(() => {
+    window.addEventListener("resize", handleRedirect)
     if (recentLocations[0]) dispatch(setSelectedLocation(recentLocations[0]));
     if (country != "CA" && country != "US") getCountry();
 

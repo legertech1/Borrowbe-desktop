@@ -43,14 +43,10 @@ function Root() {
     init();
   }, []);
 
-  function handleRedirect(){
-   
-    if(window.innerWidth < 1400)
-    window.location.href="https://borrowbe.com"
-  }
+ 
 
   useEffect(() => {
-    window.addEventListener("resize", handleRedirect)
+
     window.addEventListener("storage", function (event) {
       if (event.key === "logout" && event.newValue === "true") {
         localStorage.removeItem("logout");
