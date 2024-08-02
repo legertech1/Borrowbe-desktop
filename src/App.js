@@ -67,6 +67,7 @@ function App() {
   const [showCc, setShowCc] = useState(!Cookies.get("cc"));
 
   useEffect(() => {
+    handleRedirect()
     window.addEventListener("resize", handleRedirect)
     if (recentLocations[0]) dispatch(setSelectedLocation(recentLocations[0]));
     if (country != "CA" && country != "US") getCountry();
