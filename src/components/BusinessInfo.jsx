@@ -117,7 +117,6 @@ function BusinessInfo({ close }) {
               }}
               ref={imageInp}
               type="file"
-              accept=".jpg, .jpeg"
             />
           </div>
         </div>
