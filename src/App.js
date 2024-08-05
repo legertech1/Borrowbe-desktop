@@ -34,8 +34,8 @@ import ManageAds from "./pages/ManageAds";
 import { getBalance } from "./store/balanceSlice";
 import InfoComp from "./components/InfoComp";
 function handleRedirect(){
-   
-  if(window.innerWidth < 1400)
+   if(window.innerWidth < 1400 && navigator.maxTouchPoints)   window.location.href="https://m.borrowbe.com"
+  if(window.innerWidth < 1200)
   window.location.href="https://m.borrowbe.com"
 }
 function App() {
