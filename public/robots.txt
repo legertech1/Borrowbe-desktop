@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://borrowbe.com
+Host: borrowbe.com
 
 # Sitemaps
 Sitemap: https://borrowbe.com/sitemap.xml
