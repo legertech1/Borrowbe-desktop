@@ -437,7 +437,7 @@ export default function AdForm({ edit }) {
                 }
               />{" "}
               Do not disclose pricing details.
-              <span> (Contact us for prices)</span>
+              <span> (Contact me for prices)</span>
             </div>
             <PriceInput
               style={
