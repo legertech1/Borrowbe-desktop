@@ -1073,3 +1073,6 @@
   transform-origin: top;
   transition: all 0.1s var(--bc);
 }
+.ad_form .tax {
+  gap: 16px !important;
+}
