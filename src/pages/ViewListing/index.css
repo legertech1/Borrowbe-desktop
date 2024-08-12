@@ -262,7 +262,7 @@
   display: flex;
   align-items: center;
   gap: 2px;
-  margin-left: -5px;
+
   font-family: var(--font1);
 }
 
@@ -276,7 +276,7 @@
   display: flex;
   width: 45%;
   gap: 30px;
-  font-size: 18px;
+  font-size: 16px;
   height: 40px;
   align-items: center;
   justify-content: space-between;
@@ -285,7 +285,7 @@
 .view_listing .extra_fields {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 0px;
   justify-content: space-between;
 }
 
@@ -703,6 +703,11 @@
 .view_listing .actions .continue_editing:hover {
   color: white;
   background-color: var(--blue);
+}
+.view_listing .price_hidden {
+  font-size: large;
+  font-weight: 600;
+  color: var(--blue);
 }
 
 @keyframes cta_btn {

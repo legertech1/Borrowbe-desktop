@@ -188,24 +188,42 @@ function Listing({ listing, actions, setListings, empty }) {
         </div>
         <div className="price">
           <p className={empty ? "empty" : ""}>
-            {!empty && (
-              <>
-                <span className="price_num">
-                  {listing?.price ? "$" + listing?.price : "Free"}
-                </span>
-                /{listing?.term}
-                {listing.tax != "none" && (
-                  <p className="tax">+{listing?.tax}</p>
-                )}{" "}
-                {listing?.meta?.country != country && (
-                  <img
-                    className="country_img_global"
-                    src={countries[listing?.meta?.country]}
-                    alt=""
-                  />
-                )}
-              </>
-            )}
+            {!empty &&
+              (listing?.priceHidden ? (
+                <>
+                  {" "}
+                  <p
+                    className="contact_for_price"
+                    style={{ fontWeight: "600", color: "var(--blue)" }}
+                  >
+                    Contact us for Prices
+                  </p>
+                  {listing?.meta?.country != country && (
+                    <img
+                      className="country_img_global"
+                      src={countries[listing?.meta?.country]}
+                      alt=""
+                    />
+                  )}
+                </>
+              ) : (
+                <>
+                  <span className="price_num">
+                    {listing?.price ? "$" + listing?.price : "Free"}
+                  </span>
+                  /{listing?.term}
+                  {listing.tax != "none" && (
+                    <p className="tax">+{listing?.tax}</p>
+                  )}{" "}
+                  {listing?.meta?.country != country && (
+                    <img
+                      className="country_img_global"
+                      src={countries[listing?.meta?.country]}
+                      alt=""
+                    />
+                  )}
+                </>
+              ))}
           </p>
         </div>
       </main>
