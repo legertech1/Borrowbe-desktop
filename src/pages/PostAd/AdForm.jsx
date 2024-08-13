@@ -408,14 +408,7 @@ export default function AdForm({ edit }) {
             </div>
           </div>
         )}
-        <div
-          className="field_container"
-          style={
-            formData.priceHidden
-              ? { marginBottom: "-80px", transition: "all 0.1s var(--bc)" }
-              : { marginBottom: "0px", transition: "all 0.1s var(--bc)" }
-          }
-        >
+        <div className="field_container">
           <div className="field_info">
             <h4>
               Amount and Term <span>(required)</span>
@@ -436,14 +429,14 @@ export default function AdForm({ edit }) {
                   dispatch(setFormData({ ...formData, priceHidden: v }))
                 }
               />{" "}
-              Do not disclose pricing details.
-              <span> (Contact me for prices)</span>
+              I don't want to disclose pricing details. Show 'Please Contact'
+              instead of the price.
             </div>
             <PriceInput
               style={
                 formData.priceHidden
-                  ? { transform: "scaleY(0)", opacity: "0" }
-                  : { transform: "scaleY(1)", opacity: "1" }
+                  ? { filter: "grayscale(1)", pointerEvents: "none" }
+                  : { filter: "unset" }
               }
               onChangeTerm={(term) => {
                 handleFormData("term", term);
@@ -461,8 +454,8 @@ export default function AdForm({ edit }) {
               className="tax"
               style={
                 formData.priceHidden
-                  ? { transform: "scaleY(0)", opacity: "0" }
-                  : { transform: "scaleY(1)", opacity: "1" }
+                  ? { filter: "grayscale(1)", pointerEvents: "none" }
+                  : { filter: "unset" }
               }
             >
               <span className="free">*$0 will be shown as free</span>

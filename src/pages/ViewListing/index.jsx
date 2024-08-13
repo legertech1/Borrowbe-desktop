@@ -658,7 +658,12 @@ function ViewListing({ preview, edit }) {
                         )}{" "}
                       </>
                     ) : (
-                      <p className="price_hidden">Contact us for Prices</p>
+                      <p
+                        className="price_hidden"
+                        style={{ fontSize: "larger", fontWeight: "600" }}
+                      >
+                        Please Contact
+                      </p>
                     )}
                     <img
                       className="country_img_global"

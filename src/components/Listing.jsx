@@ -193,10 +193,14 @@ function Listing({ listing, actions, setListings, empty }) {
                 <>
                   {" "}
                   <p
-                    className="contact_for_price"
-                    style={{ fontWeight: "600", color: "var(--blue)" }}
+                    className="price_hidden"
+                    style={{
+                      fontSize: "larger",
+                      fontWeight: "600",
+                      color: "var(--blue)",
+                    }}
                   >
-                    Contact me for Prices
+                    Please Contact
                   </p>
                   {listing?.meta?.country != country && (
                     <img
