@@ -160,8 +160,10 @@
 }
 
 .post_ad ._dropdown .options {
-  min-height: auto;
-  overflow: visible;
+  min-height: 300px;
+  overflow-y: scroll;
+  max-height: 300px;
+  padding: 0 !important;
 }
 
 .post_ad ._ ._dropdown .options {
@@ -180,7 +182,7 @@
 
 .post_ad ._dropdown .options::-webkit-scrollbar-thumb {
   background-color: var(--blue);
-  border-radius: 0px;
+  border-radius: 4px;
   /* border: 3px solid var(--blue); */
 }
 
