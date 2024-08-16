@@ -232,9 +232,10 @@
 
 .post_ad h4 span,
 .post_ad h2 span {
-  font-size: 18px;
-  color: #aaa;
+  color: var(--blue);
+  font-size: 15px;
   font-weight: 500;
+  vertical-align: baseline;
 }
 
 .post_ad h2 {

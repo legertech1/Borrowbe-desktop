@@ -392,15 +392,16 @@
   height: 24px;
   width: 24px;
 }
-.row_listing .info .distance {
-  width: fit-content;
-  padding: 6px 16px;
-  background: #ddd;
+.row_listing .distance {
+  width: max-content;
+  padding: 4px 8px;
+  background: var(--blue);
   border-radius: 4px;
-  color: #333;
+  color: white;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   text-wrap: nowrap;
+  margin-left: auto;
 }
 
 .listing .status,
