@@ -33,14 +33,12 @@ import CookieConsent from "./components/CookieConsent";
 import ManageAds from "./pages/ManageAds";
 import { getBalance } from "./store/balanceSlice";
 import InfoComp from "./components/InfoComp";
-function handleRedirect(){
-   if(window.innerWidth < 1400 && navigator.maxTouchPoints)   window.location.href="https://m.borrowbe.com"
-  if(window.innerWidth < 1200)
-  window.location.href="https://m.borrowbe.com"
+function handleRedirect() {
+  if (window.innerWidth < 1400 && navigator.maxTouchPoints)
+    window.location.href = "https://m.borrowbe.com";
+  if (window.innerWidth < 1200) window.location.href = "https://m.borrowbe.com";
 }
 function App() {
-
-  
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
   const { selectedLocation, currentLocation } = useSelector(
@@ -67,8 +65,8 @@ function App() {
   const [showCc, setShowCc] = useState(!Cookies.get("cc"));
 
   useEffect(() => {
-    handleRedirect()
-    window.addEventListener("resize", handleRedirect)
+    handleRedirect();
+    window.addEventListener("resize", handleRedirect);
     if (recentLocations[0]) dispatch(setSelectedLocation(recentLocations[0]));
     if (country != "CA" && country != "US") getCountry();
 
@@ -86,7 +84,6 @@ function App() {
   useEffect(() => {
     user && loadChats(socket);
     user && getNotifications(socket);
-   
   }, [user]);
 
   return (
@@ -227,6 +224,10 @@ function App() {
                 Please verify your account with the link sent to your email
                 address.
               </h1>
+              <p style={{ marginTop: 0 }}>
+                If you don’t see the email in your inbox, please check your spam
+                or junk folder.
+              </p>
             </InfoComp>
           }
         />
@@ -247,6 +248,10 @@ function App() {
               <h1>
                 Please use the link sent to your email to reset your password
               </h1>
+              <p style={{ marginTop: 0 }}>
+                If you don’t see the email in your inbox, please check your spam
+                or junk folder.
+              </p>
             </InfoComp>
           }
         />
