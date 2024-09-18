@@ -224,10 +224,10 @@ function App() {
                 Please verify your account with the link sent to your email
                 address.
               </h1>
-              <p style={{ marginTop: 0, color: "red" }}>
+              <h3 style={{ marginTop: 0, color: "red" }}>
                 If you don’t see the email in your inbox, please check your spam
                 or junk folder.
-              </p>
+              </h3>
             </InfoComp>
           }
         />
@@ -248,10 +248,10 @@ function App() {
               <h1>
                 Please use the link sent to your email to reset your password
               </h1>
-              <p style={{ marginTop: 0, color: "red" }}>
+              <h3 style={{ marginTop: 0, color: "red" }}>
                 If you don’t see the email in your inbox, please check your spam
                 or junk folder.
-              </p>
+              </h3>
             </InfoComp>
           }
         />
