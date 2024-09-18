@@ -225,7 +225,7 @@ function App() {
                 address.
               </h1>
               <h3 style={{ marginTop: 0, color: "red" }}>
-                If you don’t see the email in your inbox, please check your spam
+                If you don’t see the email in your Inbox, please check your spam
                 or junk folder.
               </h3>
             </InfoComp>
@@ -249,7 +249,7 @@ function App() {
                 Please use the link sent to your email to reset your password
               </h1>
               <h3 style={{ marginTop: 0, color: "red" }}>
-                If you don’t see the email in your inbox, please check your spam
+                If you don’t see the email in your Inbox, please check your spam
                 or junk folder.
               </h3>
             </InfoComp>
