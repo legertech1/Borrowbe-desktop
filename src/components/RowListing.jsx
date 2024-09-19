@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -35,15 +35,16 @@ function RowListing({ listing, actions, setListings, empty }) {
     (state) => state.location.selectedLocation
   );
   const curr = useRef();
-  const distance =
-    listing?.location && selectedLocation
-      ? haversine(
-          listing.location?.coordinates.lat,
-          listing.location?.coordinates.long,
-          selectedLocation.coordinates.lat,
-          selectedLocation.coordinates.long
-        ).toFixed(0)
-      : -1;
+  const distance = useMemo(() => {
+    if (listing?.location && selectedLocation)
+      return haversine(
+        listing.location?.coordinates.lat,
+        listing.location?.coordinates.long,
+        selectedLocation.coordinates.lat,
+        selectedLocation.coordinates.long
+      ).toFixed(0);
+    else return -1;
+  }, [selectedLocation]);
 
   useEffect(() => {
     user?.data?.wishlist.includes(listing?._id)
@@ -181,29 +182,41 @@ function RowListing({ listing, actions, setListings, empty }) {
             {!empty && <PinDropOutlined />}
             {listing?.location.name}
           </span>
-          {distance <= 100 && distance > -1 && (
-            <div className="distance">~{distance} Km Away</div>
-          )}
         </div>
         <div className="price">
-          <p className={empty ? " empty" : ""}>
-            {!empty && (
-              <>
-                {" "}
-                <span className="price_num">${listing?.price || "Free"}</span>/
-                {listing?.term}
-                {listing?.tax != "none" && (
-                  <p className="tax">+{listing?.tax}</p>
-                )}{" "}
-                {listing?.meta?.country != country && (
-                  <img
-                    className="country_img_global"
-                    src={countries[listing?.meta?.country]}
-                    alt=""
-                  />
-                )}
-              </>
-            )}
+          <p className={empty ? "empty" : ""}>
+            {!empty &&
+              (listing?.priceHidden ? (
+                <>
+                  {" "}
+                  <p
+                    className="price_hidden"
+                    style={{
+                      fontSize: "larger",
+                      fontWeight: "600",
+                      color: "var(--blue)",
+                    }}
+                  >
+                    Please Contact
+                  </p>
+                  {distance <= 100 && distance > -1 && (
+                    <div className="distance">~{distance} Km Away</div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <span className="price_num">
+                    {listing?.price ? "$" + listing?.price : "Free"}
+                  </span>
+                  /{listing?.term}
+                  {listing.tax != "none" && (
+                    <p className="tax">+{listing?.tax}</p>
+                  )}{" "}
+                  {distance <= 100 && distance > -1 && (
+                    <div className="distance">~{distance} Km Away</div>
+                  )}
+                </>
+              ))}
           </p>
 
           <div className="buttons"></div>

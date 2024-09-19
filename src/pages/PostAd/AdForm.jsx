@@ -225,7 +225,7 @@ export default function AdForm({ edit }) {
         return notification.error("Selecting category is required");
       if (subCategoryIndex < 0)
         return notification.error("Selecting Sub-category is required");
-      if (formData.price.toString().trim().length < 1)
+      if (!formData.priceHidden && formData.price.toString().trim().length < 1)
         return notification.error("Price is required");
       if (formData.description.trim().length < 40)
         return notification.error(
@@ -408,7 +408,14 @@ export default function AdForm({ edit }) {
             </div>
           </div>
         )}
-        <div className="field_container">
+        <div
+          className="field_container"
+          style={
+            formData.priceHidden
+              ? { marginBottom: "-80px", transition: "all 0.1s var(--bc)" }
+              : { marginBottom: "0px", transition: "all 0.1s var(--bc)" }
+          }
+        >
           <div className="field_info">
             <h4>
               Amount and Term <span>(required)</span>
@@ -418,58 +425,85 @@ export default function AdForm({ edit }) {
               duration: Day, Month, or Year.
             </p>
           </div>
-          <PriceInput
-            onChangeTerm={(term) => {
-              handleFormData("term", term);
-            }}
-            price={formData.price}
-            term={formData.term}
-            onChange={(e) => {
-              if (isNaN(e.target.value)) return;
-              if (e.target.value.split(".")[1]?.length > 2) return;
+          <div
+            className="dropdowns"
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            <div className="price_hidden">
+              <Checkbox
+                checked={formData.priceHidden}
+                setChecked={(v) =>
+                  dispatch(setFormData({ ...formData, priceHidden: v }))
+                }
+              />{" "}
+              Do not disclose pricing details. Show "Please Contact" instead of
+              price.
+            </div>
+            <PriceInput
+              style={
+                formData.priceHidden
+                  ? { transform: "scaleY(0)", opacity: "0" }
+                  : { transform: "scaleY(1)", opacity: "1" }
+              }
+              onChangeTerm={(term) => {
+                handleFormData("term", term);
+              }}
+              price={formData.price}
+              term={formData.term}
+              onChange={(e) => {
+                if (isNaN(e.target.value)) return;
+                if (e.target.value.split(".")[1]?.length > 2) return;
 
-              handleFormData("price", e.target.value.trim().slice(0, 10));
-            }}
-          />
-          <div className="tax">
-            <span className="free">*$0 will be shown as free</span>
-            <span>Tax:</span>
-            <p>
-              <Checkbox
-                checked={formData.tax == "none"}
-                setChecked={(v) =>
-                  v && dispatch(setFormData({ ...formData, tax: "none" }))
-                }
-              />
-              none
-            </p>
-            <p>
-              <Checkbox
-                checked={formData.tax == "HST"}
-                setChecked={(v) =>
-                  v && dispatch(setFormData({ ...formData, tax: "HST" }))
-                }
-              />
-              +HST
-            </p>
-            <p>
-              <Checkbox
-                checked={formData.tax == "GST"}
-                setChecked={(v) =>
-                  v && dispatch(setFormData({ ...formData, tax: "GST" }))
-                }
-              />{" "}
-              +GST
-            </p>
-            <p>
-              <Checkbox
-                checked={formData.tax == "TAX"}
-                setChecked={(v) =>
-                  v && dispatch(setFormData({ ...formData, tax: "TAX" }))
-                }
-              />{" "}
-              +TAX
-            </p>
+                handleFormData("price", e.target.value.trim().slice(0, 10));
+              }}
+            />
+            <div
+              className="tax"
+              style={
+                formData.priceHidden
+                  ? { transform: "scaleY(0)", opacity: "0" }
+                  : { transform: "scaleY(1)", opacity: "1" }
+              }
+            >
+              <span className="free">*$0 will be shown as free</span>
+              <span>Tax:</span>
+              <p>
+                <Checkbox
+                  checked={formData.tax == "none"}
+                  setChecked={(v) =>
+                    v && dispatch(setFormData({ ...formData, tax: "none" }))
+                  }
+                />
+                none
+              </p>
+              <p>
+                <Checkbox
+                  checked={formData.tax == "HST"}
+                  setChecked={(v) =>
+                    v && dispatch(setFormData({ ...formData, tax: "HST" }))
+                  }
+                />
+                +HST
+              </p>
+              <p>
+                <Checkbox
+                  checked={formData.tax == "GST"}
+                  setChecked={(v) =>
+                    v && dispatch(setFormData({ ...formData, tax: "GST" }))
+                  }
+                />{" "}
+                +GST
+              </p>
+              <p>
+                <Checkbox
+                  checked={formData.tax == "TAX"}
+                  setChecked={(v) =>
+                    v && dispatch(setFormData({ ...formData, tax: "TAX" }))
+                  }
+                />{" "}
+                +TAX
+              </p>
+            </div>
           </div>
         </div>
         <div className="field_container">

@@ -16,7 +16,7 @@ import OurPricing from "./OurPricing";
 import Modal from "./Modal";
 import { AttachMoney, QuestionAnswerOutlined } from "@mui/icons-material";
 import StoreComponent from "../pages/Home/StoreComponent";
-
+import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 const Footer = () => {
   const [pricing, setPricing] = useState(false);
   const navigate = useNavigate();
@@ -73,13 +73,22 @@ const Footer = () => {
             <TeamIcon />
             <span>About Us</span>
           </Link>
-          <Link
+          {/* <Link
             className="link_text"
             to={"/help-doc/" + helpDocs.paymentScams.id}
           >
             <PaymentIcon />
             <span>Payment Scams</span>
-          </Link>
+          </Link> */}
+          <a
+            className="link_text"
+            href="https://blog.borrowbe.com"
+            target="_blank"
+            rel={"noreferrer"}
+          >
+            <FeedOutlinedIcon />
+            <span>Blog</span>
+          </a>
         </div>
 
         <div className="footer-section">

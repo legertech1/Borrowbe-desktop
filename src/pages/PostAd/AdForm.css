@@ -160,8 +160,10 @@
 }
 
 .post_ad ._dropdown .options {
-  min-height: auto;
-  overflow: visible;
+  min-height: 300px;
+  overflow-y: scroll;
+  max-height: 300px;
+  padding: 0 !important;
 }
 
 .post_ad ._ ._dropdown .options {
@@ -180,7 +182,7 @@
 
 .post_ad ._dropdown .options::-webkit-scrollbar-thumb {
   background-color: var(--blue);
-  border-radius: 0px;
+  border-radius: 4px;
   /* border: 3px solid var(--blue); */
 }
 
@@ -230,9 +232,10 @@
 
 .post_ad h4 span,
 .post_ad h2 span {
-  font-size: 18px;
-  color: #aaa;
+  color: var(--blue);
+  font-size: 15px;
   font-weight: 500;
+  vertical-align: baseline;
 }
 
 .post_ad h2 {
@@ -913,13 +916,10 @@
 }
 
 .ad_form .tax {
-  position: absolute;
   display: flex;
-  gap: 30px;
   justify-content: start;
-  top: 72px;
   align-items: center;
-  right: 0;
+  margin-top: -8px;
 }
 
 .ad_form .tax span {
@@ -1061,4 +1061,21 @@
 .post_ad ._ ._dropdown .options {
   top: 16px;
   gap: 0;
+}
+.post_ad .price_hidden {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 12px;
+}
+.post_ad .price_hidden span {
+  color: #555;
+}
+.post_ad .custom_price_input,
+.post_ad .tax {
+  transform-origin: top;
+  transition: all 0.1s var(--bc);
+}
+.ad_form .tax {
+  gap: 16px !important;
 }

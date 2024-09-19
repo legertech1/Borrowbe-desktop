@@ -225,15 +225,16 @@
   gap: 16px;
   font-size: 15px;
 }
-.listing .info .distance {
+.listing .distance {
   width: max-content;
   padding: 4px 8px;
-  background: #ddd;
+  background: var(--blue);
   border-radius: 4px;
-  color: #333;
+  color: white;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px;
   text-wrap: nowrap;
+  margin-left: auto;
 }
 .listing span.location svg {
   fill: var(--blue);
@@ -462,10 +463,6 @@
 
 .listing.highlighted {
   background-color: var(--yellow-light);
-}
-.listing.highlighted .info .distance,
-.row_listing.highlighted .info .distance {
-  background-color: white;
 }
 
 .listing h1.empty {

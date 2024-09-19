@@ -649,10 +649,22 @@ function ViewListing({ preview, edit }) {
 
                   <h2>{listing?.title}</h2>
                   <h1 className="price">
-                    <span>${listing?.price || "Free"}</span>/{listing?.term}{" "}
-                    {listing?.tax != "none" && (
-                      <p className="tax">+{listing?.tax}</p>
-                    )}{" "}
+                    {!listing?.priceHidden ? (
+                      <>
+                        {" "}
+                        <span>${listing?.price || "Free"}</span>/{listing?.term}{" "}
+                        {listing?.tax != "none" && (
+                          <p className="tax">+{listing?.tax}</p>
+                        )}{" "}
+                      </>
+                    ) : (
+                      <p
+                        className="price_hidden"
+                        style={{ fontSize: "larger", fontWeight: "600" }}
+                      >
+                        Please Contact
+                      </p>
+                    )}
                     <img
                       className="country_img_global"
                       src={countries[listing?.meta?.country || country]}

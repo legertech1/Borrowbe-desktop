@@ -596,8 +596,25 @@ function ManageAds() {
                             {ad.location.name}
                           </h5>
                           <span className="price">
-                            <span>${ad.price}</span>/
-                            {ad.term + (ad.tax == "none" ? "" : " +" + ad.tax)}
+                            {ad?.priceHidden ? (
+                              <p
+                                className="price_hidden"
+                                style={{
+                                  fontSize: "large",
+                                  fontWeight: "600",
+                                  color: "var(--blue)",
+                                }}
+                              >
+                                Please Contact
+                              </p>
+                            ) : (
+                              <>
+                                {" "}
+                                <span>${ad.price}</span>/
+                                {ad.term +
+                                  (ad.tax == "none" ? "" : " +" + ad.tax)}
+                              </>
+                            )}
                           </span>
                         </div>
                       </div>
