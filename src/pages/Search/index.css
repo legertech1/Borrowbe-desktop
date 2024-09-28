@@ -264,7 +264,7 @@
   justify-content: center;
   background-color: var(--blue);
 }
-.search_page .search_tab.add svg{
+.search_page .search_tab.add svg {
   fill: white;
 }
 .search_page .search_tab svg {
@@ -773,10 +773,6 @@ input[type="range"]::-moz-range-thumb {
   }
   .search_page .terms {
     gap: 6px !important;
-  }
-  svg {
-    height: 22px !important;
-    width: 22px !important;
   }
 }
 
