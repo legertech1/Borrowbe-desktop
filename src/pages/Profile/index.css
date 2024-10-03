@@ -36,7 +36,7 @@
   align-items: center;
   flex-direction: column;
   background: var(--fg);
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0 0 8px #ccc;
   min-width: 384px;
   max-width: 384px;
@@ -45,7 +45,7 @@
   padding: 20px 0 40px;
 }
 .profile_container .user_ads {
-  border-radius: 4px;
+  border-radius: 5px;
   box-sizing: border-box;
   flex: 1;
 }
@@ -180,7 +180,7 @@
   gap: 4px;
   font-size: 18px;
   width: 200px;
-  border-radius: 4px;
+  border-radius: 5px;
   padding: 12px 20px;
   font-family: var(--font2);
   font-weight: 600;
@@ -242,7 +242,7 @@
   filter: drop-shadow(0px 0px 4px #ccc);
   /* border: 2px solid #ccc; */
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s var(--bc);
 }
@@ -283,7 +283,7 @@
 
 /* .user_ads .listings .listing {
   background-color: var(--fg);
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0 0 8px #1116;
   box-sizing: border-box;
   max-width: 360px;
@@ -302,7 +302,7 @@ transform: perspective(1px) scale(0.98);
 }
 
 .user_ads .tabs {
-  border-radius: 4px;
+  border-radius: 5px;
   background: white;
   box-shadow: 0px 0px 8px #1113;
   display: flex;
@@ -335,12 +335,6 @@ transform: perspective(1px) scale(0.98);
 .user_ads .tabs h2.active {
   background-color: var(--blue);
   color: white;
-}
-.profile_container .row_listings {
-  width: 100.5%;
-}
-.profile_container .listings {
-  width: 100.33%;
 }
 
 @media (max-width: 1600px) {

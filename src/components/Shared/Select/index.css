@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   border: 1px solid #b2b2b2;
-  border-radius: 4px;
+  border-radius: 5px;
   padding: 0px 20px;
   box-sizing: border-box;
   align-items: center;
@@ -22,13 +22,8 @@
   background-repeat: no-repeat;
   background-size: 14px 14px;
   background-position: calc(100% - 16px);
-
 }
-
 
 .html_select:focus {
   border: 1px solid var(--blue);
-
 }
-
-

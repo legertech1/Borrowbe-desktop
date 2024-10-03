@@ -68,7 +68,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 1px 1px 4px #ccc, -1px -1px 4px #ccc;
   padding: 20px;
   animation: 0.15s open forwards var(--bc);
@@ -87,7 +87,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  border-radius: 4px;
+  border-radius: 5px;
   padding: 16px;
   box-shadow: 1px 1px 4px #ccc, -1px -1px 4px #ccc;
   animation: 0.15s open forwards var(--bc);
@@ -231,7 +231,7 @@
 }
 
 .payment_form .package {
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 1px 1px 4px #ccc, -1px -1px 4px #ccc;
   display: flex;
   flex-direction: column;
@@ -270,7 +270,7 @@
   background: linear-gradient(90deg, #1111, #1111, #1112);
   background-size: 300%;
   background-position: left center;
-  border-radius: 4px;
+  border-radius: 5px;
 
   animation: skeleton 1s var(--bc) forwards infinite;
 }
@@ -308,7 +308,7 @@
   padding: 20px 20px;
   display: flex;
   flex-direction: column;
-  border-radius: 4px;
+  border-radius: 5px;
   gap: 8px;
   box-sizing: border-box;
   box-shadow: 1px 1px 4px #ccc, -1px -1px 4px #ccc;
@@ -345,7 +345,7 @@
   gap: 4px;
   justify-content: center;
   box-shadow: inset 0px 0px 6px #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
   padding: 16px;
   box-sizing: border-box;
   font-size: 17px;

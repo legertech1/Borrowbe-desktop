@@ -45,6 +45,10 @@ export default function AdForm({ edit }) {
 
   const cart = useSelector((state) => state.cart);
   const [country, setCountry] = useLocalStorage("country", null);
+  const [lastLocation, setLastLocation] = useLocalStorage(
+    "last_location",
+    null
+  );
   const navigate = useNavigate();
   const notification = useNotification();
   const [currentStep, setCurrentStep] = useState(1);
@@ -290,8 +294,13 @@ export default function AdForm({ edit }) {
   };
 
   useEffect(() => {
-    if (currentLocation) setValue(currentLocation);
-  }, [currentLocation]);
+    if (!value && lastLocation?.description) {
+      setValue(lastLocation);
+    }
+    if (value?.description) {
+      setLastLocation(value);
+    }
+  }, [value]);
 
   const getCurrentLocation = () => {
     if (navigator.geolocation) {

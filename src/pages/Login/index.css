@@ -28,7 +28,7 @@
 .login .main {
   padding: 40px 120px 60px;
   box-shadow: 0px 0px 8px #1114;
-  border-radius: 4px;
+  border-radius: 5px;
   background-color: white;
 }
 
@@ -50,7 +50,7 @@
   width: 500px;
   height: 60px;
   border: 1px solid var(--blue);
-  border-radius: 4px;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   padding: 8px;
@@ -131,7 +131,7 @@
   margin: 0;
   gap: 4px;
   font-size: 20px;
-  border-radius: 4px;
+  border-radius: 5px;
   border: none;
   box-shadow: 0px 0px 4px #1114;
   background: var(--bg);
@@ -199,7 +199,7 @@ background: white;
 }
 .login .error div {
   background: #fff;
-  border-radius: 4px;
+  border-radius: 5px;
   left: 40px;
   max-width: 300px;
   padding: 10px;

@@ -1,6 +1,6 @@
 .listings {
   display: grid;
-  gap: 8px;
+  gap: 12px;
   grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)) !important;
   justify-content: start;
   width: 100%;
@@ -15,10 +15,12 @@
 
 .listings .listing {
   background-color: var(--fg);
-  border-radius: 4px;
+  border-radius: 5px;
   box-sizing: border-box;
   height: 308px;
   min-height: 300px;
+  overflow: hidden;
+  backface-visibility: hidden;
   max-width: 470px;
   transition: all 0.3s var(--bc);
   cursor: pointer;
@@ -26,9 +28,8 @@
   padding-bottom: 40px;
   position: relative;
   will-change: transform;
+  cursor: pointer;
   box-shadow: -1px -1px 8px #1112, 1px 1px 8px #1112;
-  -webkit-transform: perspective(1px) scale(0.98);
-  transform: perspective(1px) scale(0.98);
 }
 .listing.em {
   pointer-events: none;
@@ -42,7 +43,7 @@
   left: -2px;
   border: 2px solid transparent;
   z-index: 99;
-  border-radius: 4px;
+  border-radius: 5px;
   pointer-events: none;
   /* box-sizing: border-box; */
   transition: all 0.3s var(--bc);
@@ -71,10 +72,10 @@
   /* animation-delay: 20s; */
 }
 .listing:hover {
-  -webkit-transform: perspective(1px) scale(1);
-  transform: perspective(1px) scale(1);
-  /* transform: scale3d(1.01, 1.01, 1.01); */
-  box-shadow: -1px -1px 16px #1112, 1px 1px 16px #1112;
+  transform: translateY(-3px) scale(1.02);
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 @keyframes shine {
@@ -101,6 +102,7 @@
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
   overflow: hidden;
+  transform: none !important;
 }
 
 .listing ._ {
@@ -214,7 +216,6 @@
   cursor: pointer;
   opacity: 90%;
   background: transparent;
-  transform: perspective(1px) scale(0.96);
 }
 
 .listing .info {
@@ -229,7 +230,7 @@
   width: max-content;
   padding: 4px 8px;
   background: var(--blue);
-  border-radius: 4px;
+  border-radius: 5px;
   color: white;
   font-weight: 500;
   font-size: 14px;
@@ -273,12 +274,14 @@
 .listing .images img {
   min-height: 100%;
   max-height: 100%;
+
   object-fit: cover;
   min-width: 100%;
   pointer-events: none;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   /* transform: scale(1.01); */
+  will-change: transform;
 
   position: absolute;
   transition: all 0.3s ease-out;
@@ -387,7 +390,7 @@
   display: flex;
   flex-direction: column;
   background: white;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 1px 1px 8px #1112, -1px -1px 8px #1112;
   transition: all 0.15s var(--bc);
   transform: scale(0);

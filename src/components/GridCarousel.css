@@ -43,7 +43,7 @@
 
 .grid-carousel-item {
   /* TODO Here selected */
-  border-radius: 4px;
+  border-radius: 5px;
   text-align: center;
   margin-right: 0px;
   padding: 10px;
@@ -58,7 +58,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .grid-carousel-item .img_cont img {
