@@ -294,13 +294,15 @@ export default function AdForm({ edit }) {
   };
 
   useEffect(() => {
-    if (!value && lastLocation?.description) {
-      setValue(lastLocation);
-    }
     if (value?.description) {
       setLastLocation(value);
     }
   }, [value]);
+  useEffect(() => {
+    if (!value && lastLocation?.description) {
+      setValue(lastLocation);
+    }
+  }, []);
 
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
