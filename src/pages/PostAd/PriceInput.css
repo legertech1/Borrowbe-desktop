@@ -55,11 +55,9 @@
   align-items: center;
   width: auto;
   border-radius: 5px;
-  border: 1px solid #1112;
   color: #2196f3;
-  box-shadow: inset 0px 0px 8px #1111;
   cursor: pointer;
-  border: 1px solid #2196f388;
+  border: 1px solid #2196f3;
 }
 
 .custom_price_input .option_selected {

@@ -156,15 +156,16 @@
   gap: 12px;
 }
 .manage_ads .right {
-  width: 24%;
+  width: 27%;
   height: fit-content;
   position: sticky;
   top: -215px;
+  min-width: 200px;
 }
 
 .manage_ads .left {
   flex: 1 1;
-  width: 56%;
+  width: 53%;
   display: flex;
   align-items: stretch;
   justify-content: space-evenly;
