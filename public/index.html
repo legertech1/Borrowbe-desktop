@@ -102,6 +102,11 @@
         "%REACT_APP_GOOGLE_TAG_MANAGER%"
       );
     </script>
+    <script>
+      if (window.location.hash === "#_=_" || window.location.hash === "#") {
+        window.location.hash = ""; // Clears the hash from the URL
+      }
+    </script>
     <!-- End Google Tag Manager -->
   </head>
 
