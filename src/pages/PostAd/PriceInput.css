@@ -44,25 +44,27 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  column-gap: 10px;
+  column-gap: 6px;
 }
 
 .custom_price_input .price_option {
-  font-size: 15px;
+  font-size: 14px;
   display: flex;
   padding: 6px 12px;
   justify-content: center;
   align-items: center;
   width: auto;
   border-radius: 5px;
-  color: #2196f3;
   cursor: pointer;
   border: 1px solid #2196f3;
+  color: #333;
+  box-shadow: 0px 0px 4px #1114;
+  font-weight: 500;
 }
 
 .custom_price_input .option_selected {
   background: var(--blue);
   color: var(--fg);
-  border: none;
+  border-color: var(--blue);
   opacity: 1;
 }

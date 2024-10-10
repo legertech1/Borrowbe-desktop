@@ -614,7 +614,7 @@ function ViewListing({ preview, edit }) {
                           }
                         }}
                       >
-                        <KeyboardDoubleArrowUpOutlined /> Post
+                        <KeyboardDoubleArrowUpOutlined /> Post Ad
                       </button>
                     </div>
                   </div>
