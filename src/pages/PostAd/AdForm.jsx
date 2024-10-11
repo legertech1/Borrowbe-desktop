@@ -167,7 +167,6 @@ export default function AdForm({ edit }) {
   }, [categories]);
 
   function getLocationData(value, curr) {
-    console.log(value);
     if (value) {
       // if (value.coordinates && curr) dispatch(updateLocation(currentLocation));
       let name = value.label;
