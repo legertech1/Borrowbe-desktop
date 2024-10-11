@@ -167,8 +167,9 @@ export default function AdForm({ edit }) {
   }, [categories]);
 
   function getLocationData(value, curr) {
+    console.log(value);
     if (value) {
-      if (value.coordinates && curr) dispatch(updateLocation(currentLocation));
+      // if (value.coordinates && curr) dispatch(updateLocation(currentLocation));
       let name = value.label;
       geocodeByAddress(value.description || value.name).then(
         async (results) => {
@@ -287,6 +288,7 @@ export default function AdForm({ edit }) {
       let loc = await axios.get(apis.findMyLocation, {
         params: { ...coordinates, type: "ad" },
       });
+
       getLocationData(loc.data, true);
     } catch (error) {}
   };
