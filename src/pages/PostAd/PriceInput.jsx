@@ -19,7 +19,7 @@ export default function PriceInput({
       <div
         style={{
           height: "28px",
-          borderLeft: "1px solid #ccc",
+          borderLeft: "1px solid #1113",
         }}
       ></div>
       <input

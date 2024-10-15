@@ -109,9 +109,10 @@ export const init = (socket, dispatch) => {
   socket.on("user_read_message", (chatId, message) =>
     dispatch(updateMessage(chatId, message))
   );
-  socket.on("user_deleted_message", (chatId, message) =>
-    dispatch(updateMessage(chatId, message))
-  );
+  socket.on("user_deleted_message", (chatId, message) => {
+    console.log(message);
+    dispatch(updateMessage(chatId, message));
+  });
   socket.on("new_chat", (chat) => dispatch(addChat(chat)));
 
   socket.on("send_notification", (notif) =>

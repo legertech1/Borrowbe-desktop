@@ -348,7 +348,7 @@
   border-radius: 5px;
   border: 1px solid #777;
   color: #777;
-  box-shadow: 0px 0px 4px #ccc;
+  box-shadow: 0px 0px 4px #1113;
   cursor: pointer;
 }
 
@@ -390,7 +390,7 @@
   min-width: 450px;
   display: flex;
   border-radius: 5px;
-  box-shadow: 0px 0px 4px #ccc;
+  box-shadow: 0px 0px 4px #1113;
   /* flex: 1; */
 }
 
@@ -785,7 +785,7 @@
 }
 
 .pricing_section .add_on ._dropdown {
-  filter: drop-shadow(0px 0px 4px #ccc);
+  filter: drop-shadow(0px 0px 4px #1113);
   padding: 6px 16px;
   width: 120px;
 }

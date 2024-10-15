@@ -686,7 +686,7 @@
 .css-1nll0aq-MuiResponsiveChart-container > svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0px 0px 6px #ccc);
+  filter: drop-shadow(0px 0px 6px #1113);
 }
 
 .manage_ads .ads .ad button.actions {
@@ -804,7 +804,7 @@
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
-  box-shadow: 1px 1px 4px #ccc, -1px -1px 4px #ccc;
+  box-shadow: 1px 1px 4px #1113, -1px -1px 4px #1113;
   transition: all 0.3s var(--bc);
 }
 
@@ -820,21 +820,79 @@
 
 .manage_ads .more_info {
   box-sizing: border-box !important;
-  background-color: white;
-
   width: 100% !important;
-
   padding: 20px;
-
   animation: show_more_info 0.3s var(--bc) forwards;
+  background: linear-gradient(180deg, #777, #666, #555, #444, #333, #333);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: space-between;
 }
+
+.modal.line_graph {
+  background: linear-gradient(180deg, #777, #666, #555, #444, #333, #333, #222);
+  padding: 42px;
+  padding-top: 30px;
+}
+.modal.line_graph .stats_modal {
+  height: 45vh;
+  max-height: 560px;
+  min-height: 400px;
+  width: 80vw;
+  min-width: 1000px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  max-width: 1800px;
+}
+.modal.line_graph h1 {
+  margin: 0;
+  font-family: var(--font1);
+  font-weight: 500;
+  font-size: 22px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.modal.line_graph .recharts-surface {
+  width: calc(100% + 60px) !important;
+  height: 100%;
+  position: relative;
+  left: -40px;
+  min-height: 300px;
+  max-height: 500px;
+}
+
+.manage_ads .more_info .recharts-surface {
+  position: relative;
+  width: calc(100% + 40px) !important;
+  left: -32px;
+}
+.modal.line_graph h1 svg {
+  height: 32px;
+  width: 32px;
+  fill: var(--blue);
+}
+.modal.line_graph .graph {
+  flex: 1;
+  width: 100%;
+  min-height: 300px;
+}
+.modal.line_graph .close svg {
+  fill: white !important;
+}
+
 @keyframes show_more_info {
   0% {
     height: 0;
     opacity: 0;
   }
   100% {
-    height: 360px;
+    height: 370px;
     opacity: 100%;
   }
 }
@@ -848,11 +906,29 @@
   font-weight: 500;
   z-index: 10;
   position: relative;
+  color: white;
 }
 .manage_ads .more_info .info_row h4 {
   font-weight: 500;
   font-size: 16px;
-  color: #555;
+  margin: 0;
+}
+.legend_bullet {
+  position: relative;
+}
+.recharts-tooltip-label {
+  color: #fff !important; /* Ensure the heading is white */
+  font-weight: 600; /* Optional, for better visibility */
+}
+.legend_bullet::before {
+  content: "";
+  position: absolute;
+  left: -26px;
+  width: 18px;
+  height: 18px;
+  background-color: currentColor;
+  top: -1px;
+  border-radius: 2px;
 }
 
 .manage_ads .more_info .info_row_comp {
@@ -866,11 +942,10 @@
   display: flex;
   gap: 6px;
   align-items: center;
-  color: #333;
 }
 
 .manage_ads .badge {
-  box-shadow: 1px 1px 4px #ccc, -1px -1px 4px #ccc;
+  box-shadow: 1px 1px 4px #1112, -1px -1px 4px #1112;
   border-radius: 5px;
   padding: 5px 12px;
   font-size: 15px;
@@ -916,7 +991,8 @@
   display: flex;
   align-items: center;
   padding: 12px 20px;
-  gap: 8px;
+  gap: 6px;
+  padding-right: 6px;
 }
 .manage_ads .stats_header h2 {
   display: flex;
@@ -937,9 +1013,9 @@
 }
 
 .manage_ads div.stats button.reload {
-  background: white;
+  background: var(--blue);
   border: none;
-  border-radius: 50%;
+  border-radius: 4px;
   height: 40px;
   width: 40px;
   cursor: pointer;
@@ -947,11 +1023,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: -8px;
+
+  box-shadow: 0px 0px 6px #1114;
+}
+.manage_ads div.stats button.reload svg {
+  fill: white;
+  height: 26px;
+  width: 26px;
 }
 
 .manage_ads div.stats button.reload:hover {
-  background-color: #1111;
+  background-color: var(--blue-dark);
 }
 
 .manage_ads .info_row ._dropdown {
@@ -1084,10 +1166,6 @@
 }
 .MuiTooltip-popper {
   z-index: 9999999 !important;
-}
-.stats_modal {
-  /* margin: -30px; */
-  margin-bottom: -50px;
 }
 
 .stats_modal h2 {

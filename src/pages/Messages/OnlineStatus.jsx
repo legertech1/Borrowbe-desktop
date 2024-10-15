@@ -6,6 +6,7 @@ import "./index.css";
 function OnlineStatus({ current }) {
   const [online, setOnline] = useState(false);
   async function getOnlineStatus() {
+    if (!current?.info?._id) return setOnline(false);
     setOnline(
       (await axios.get(apis.getOnlineStatus + current?.info?._id))?.data?.active
     );

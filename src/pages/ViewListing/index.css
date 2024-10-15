@@ -389,8 +389,8 @@
 }
 
 .view_listing .send_message input {
-  border: 1px solid #ccc;
-  box-shadow: 0px 0px 4px #ccc;
+  border: 1px solid #1113;
+  box-shadow: 0px 0px 4px #1113;
   height: 100%;
   flex: 1;
   border-radius: 23px;
@@ -411,7 +411,7 @@
   color: white;
   justify-content: center;
   align-items: center;
-  box-shadow: 1px 1px 8px #ccc;
+  box-shadow: 1px 1px 8px #1113;
   cursor: pointer;
   transition: all 0.3s var(--bc);
 }
@@ -451,7 +451,7 @@
 .view_listing .posted_on .actions button svg {
   height: 32px;
   width: 32px;
-  filter: drop-shadow(0px 0px 2px #ccc);
+  filter: drop-shadow(0px 0px 2px #1113);
 }
 
 .view_listing .share svg {

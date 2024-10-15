@@ -87,9 +87,9 @@ export default function AdForm({ edit }) {
         updateCart({
           ...cart,
           package: {
-            name: cart?.package?.name || "Standard",
+            name: cart?.package?.name || "Basic",
             item: categories[categoryIndex]?.pricing[
-              cart?.package?.name || "Standard"
+              cart?.package?.name || "Basic"
             ],
           },
         })

@@ -37,7 +37,7 @@
   flex-direction: column;
   background: var(--fg);
   border-radius: 5px;
-  box-shadow: 0 0 8px #ccc;
+  box-shadow: 0 0 8px #1113;
   min-width: 384px;
   max-width: 384px;
   position: sticky;
@@ -239,8 +239,8 @@
   justify-content: center;
   align-items: center;
   background-color: white;
-  filter: drop-shadow(0px 0px 4px #ccc);
-  /* border: 2px solid #ccc; */
+  filter: drop-shadow(0px 0px 4px #1113);
+  /* border: 2px solid #1113; */
   box-sizing: border-box;
   border-radius: 5px;
   cursor: pointer;

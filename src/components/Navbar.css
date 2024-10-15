@@ -321,7 +321,7 @@ li.country_select svg {
   background-color: #fff;
   border: 1px solid var(--blue);
   border-radius: 5px;
-  box-shadow: 0 0 8px #ccc;
+  box-shadow: 0 0 8px #1113;
   color: var(--blue);
   font-size: 18px;
   font-weight: 500;
@@ -351,7 +351,7 @@ li.country_select svg {
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  box-shadow: 1px 1px 4px #ccc, -1px -1px 4px #ccc;
+  box-shadow: 1px 1px 4px #1113, -1px -1px 4px #1113;
   object-fit: cover;
 }
 
@@ -602,7 +602,7 @@ li.country_select svg {
   height: 65px;
   width: 65px;
   border-radius: 50%;
-  box-shadow: 1px 1px 4px #ccc, -1px -1px 4px #ccc;
+  box-shadow: 1px 1px 4px #1113, -1px -1px 4px #1113;
   object-fit: cover;
 }
 

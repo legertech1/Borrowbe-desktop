@@ -136,7 +136,7 @@
   box-shadow: 0px 0px 4px #1114;
   background: var(--bg);
   transition: all 0.3s var(--bc);
-  /* border: 1px solid #ccc; */
+  /* border: 1px solid #1113; */
 }
 .login .main-footer {
   position: absolute;

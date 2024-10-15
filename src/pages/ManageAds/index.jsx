@@ -22,6 +22,7 @@ import {
   PauseOutlined,
   PinDropOutlined,
   PlayArrowOutlined,
+  QueryStats,
   RemoveRedEye,
   RemoveRedEyeOutlined,
   SearchOutlined,
@@ -300,17 +301,7 @@ function ManageAds() {
           .reverse()
           .slice(23)
           .reduce((acc, i) => acc + i, 0),
-        ctr: (
-          (Object.values(stats?.clicks || {})
-            .reverse()
-            .slice(23)
-            .reduce((acc, i) => acc + i, 0) /
-            Object.values(stats?.impressions || {})
-              .reverse()
-              .slice(23)
-              .reduce((acc, i) => acc + i, 0)) *
-          100
-        ).toFixed(2),
+
         diff: {
           impressions:
             Object.values(stats?.impressions || {})
@@ -339,15 +330,6 @@ function ManageAds() {
         clicks: Object.values(stats?.clicks || {})
           .reverse()
           .reduce((acc, i) => acc + i, 0),
-        ctr: (
-          (Object.values(stats?.clicks || {})
-            .reverse()
-            .reduce((acc, i) => acc + i, 0) /
-            Object.values(stats?.impressions || {})
-              .reverse()
-              .reduce((acc, i) => acc + i, 0)) *
-          100
-        ).toFixed(2),
       },
     });
     setStatsLoading(false);
@@ -372,17 +354,7 @@ function ManageAds() {
           .reverse()
           .slice(23)
           .reduce((acc, i) => acc + i, 0),
-        ctr: (
-          (Object.values(stats?.clicks || {})
-            .reverse()
-            .slice(23)
-            .reduce((acc, i) => acc + i, 0) /
-            Object.values(stats?.impressions || {})
-              .reverse()
-              .slice(23)
-              .reduce((acc, i) => acc + i, 0)) *
-          100
-        ).toFixed(2),
+
         diff: {
           impressions:
             Object.values(stats?.impressions || {})
@@ -411,15 +383,6 @@ function ManageAds() {
         clicks: Object.values(stats?.clicks || {})
           .reverse()
           .reduce((acc, i) => acc + i, 0),
-        ctr: (
-          (Object.values(stats?.clicks || {})
-            .reverse()
-            .reduce((acc, i) => acc + i, 0) /
-            Object.values(stats?.impressions || {})
-              .reverse()
-              .reduce((acc, i) => acc + i, 0)) *
-          100
-        ).toFixed(2),
       },
     });
     setCategoryStatsLoading(false);
@@ -427,16 +390,6 @@ function ManageAds() {
   const [country, setCountry] = useLocalStorage("country", null);
   useEffect(() => setLocation(null), [country]);
 
-  // function setSize() {
-  //   const elem = document.querySelector(".manage_ads .right");
-  //   if (!elem) return;
-  //   document.querySelector(".manage_ads .left").style.height =
-  //     elem.clientHeight + "px";
-  // }
-  // useEffect(() => {
-  //   setSize();
-  //   window.onresize = setSize;
-  // }, []);
   useEffect(() => {
     if (!category || category == "All Categories") return;
     getCategoryStats(category);
@@ -784,17 +737,6 @@ function ManageAds() {
                               clicks: Object.values(
                                 ad?.analytics?.clicks?.byDate || {}
                               ),
-                              "click through rate": (() => {
-                                let imp = Object.values(
-                                  ad?.analytics?.impressions?.byDate || {}
-                                );
-                                let cli = Object.values(
-                                  ad?.analytics?.clicks?.byDate || {}
-                                );
-                                return imp.map(
-                                  (i, ind) => (cli[ind] / i) * 100 || 0
-                                );
-                              })(),
                             }}
                           />
                         </div>
@@ -836,6 +778,11 @@ function ManageAds() {
                 className="graph reload"
                 onClick={() => {
                   setShowGraph({
+                    heading: (
+                      <>
+                        <QueryStats /> Overall Ads Statistics this Month.
+                      </>
+                    ),
                     data: stats,
                     close: () => setShowGraph(null),
                   });
@@ -963,6 +910,11 @@ function ManageAds() {
                 onClick={() => {
                   if (!categoryStats || !category) return;
                   setShowGraph({
+                    heading: (
+                      <>
+                        <QueryStats /> {category} Ads Statistics this Month.
+                      </>
+                    ),
                     data: categoryStats,
                     close: () => setShowGraph(null),
                   });
@@ -1100,37 +1052,39 @@ function ManageAds() {
         </div>
       </div>
       {showGraph && (
-        <ShowDataModal data={showGraph.data} close={showGraph.close} />
+        <ShowDataModal
+          data={showGraph.data}
+          close={showGraph.close}
+          heading={showGraph.heading}
+        />
       )}
       <Footer></Footer>
     </>
   );
 }
-function ShowDataModal({ graph, data, close, title }) {
-  console.log(graph, data);
+function ShowDataModal({ graph, data, close, title, heading }) {
   return (
-    <Modal close={close}>
+    <Modal close={close} className={"line_graph"}>
       <div className="stats_modal">
-        <LineGraph
-          // dates={Obj.keys(ad?.analytics?.impressions?.byDate)}
-          dates={Object.keys(data?.clicks || {})
-            .reverse()
-            .map((i) => {
-              const str = new Date(i).toDateString();
-              return str.slice(4, str.length - 5);
-            })}
-          values={{
-            impressions: Object.values(data?.impressions || {}).reverse(),
-            clicks: Object.values(data?.clicks || {}).reverse(),
-            "click through rate": (() => {
-              let imp = Object.values(data?.impressions || {});
-              let cli = Object.values(data?.clicks || {});
-              return imp.map((i, ind) => (cli[ind] / i) * 100 || 0).reverse();
-            })(),
-          }}
-          width={1300}
-          height={560}
-        />
+        <h1>{heading}</h1>
+        <div className="graph">
+          {" "}
+          <LineGraph
+            // dates={Obj.keys(ad?.analytics?.impressions?.byDate)}
+            dates={Object.keys(data?.clicks || {})
+              .reverse()
+              .map((i) => {
+                const str = new Date(i).toDateString();
+                return str.slice(4, str.length - 5);
+              })}
+            values={{
+              impressions: Object.values(data?.impressions || {}).reverse(),
+              clicks: Object.values(data?.clicks || {}).reverse(),
+            }}
+            width={"100%"}
+            height={"100%"}
+          />
+        </div>
       </div>
     </Modal>
   );

@@ -265,7 +265,7 @@ input[type="range"] {
 /* Track: Mozilla Firefox */
 .web_location input[type="range"]::-moz-range-track {
   height: 12px;
-  background: #ccc;
+  background: #1113;
   border-radius: 16px;
 }
 

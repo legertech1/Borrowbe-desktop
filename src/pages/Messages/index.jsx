@@ -70,7 +70,6 @@ function Messages() {
       setPage((prevPage) => prevPage + 1);
     }
   }
-  useEffect(() => console.log(current), [current]);
 
   useEffect(() => {
     if (chats?.length) {
@@ -315,9 +314,6 @@ function Messages() {
                         <MoreVertIcon />
                       </div>
                       <div className="show_actions" ref={chatActions}>
-                        {/* <div className="option">
-                          <StarOutlineRoundedIcon /> Mark as Importrant
-                        </div> */}
                         <div
                           className="option"
                           onClick={(e) => {
@@ -364,75 +360,82 @@ function Messages() {
                     className="ad"
                     onClick={(e) => navigate("/listing/" + current?.ad?._id)}
                   >
-                    <img src={current?.ad?.image} alt="" />
+                    <img
+                      src={current?.ad?.image}
+                      onError={imageFallback}
+                      alt=""
+                    />
 
                     <div className="info">
-                      <div className="line">
-                        <div className="price">
-                          ${current?.ad?.price || "free"}
-                          <span>/{current?.ad?.term}</span>
-                        </div>
-                        <div className="location">
-                          <PinDropOutlined />
-                          <p>{current?.ad?.location?.name}</p>
-                        </div>
-                        <div className="ad_id">
-                          Ad ID: {current?.ad?.listingID}
-                        </div>
-                      </div>
                       <div className="line">
                         <h3>
                           <p>{current?.ad?.title}</p>
                         </h3>
+                        <div className="price">
+                          {current?.ad?.price ? (
+                            <>
+                              ${current?.ad?.price || "free"}{" "}
+                              <span>/{current?.ad?.term}</span>
+                            </>
+                          ) : current.ad.priceHidden ? (
+                            <>Please Contact</>
+                          ) : (
+                            "No Data"
+                          )}
+                        </div>
+                      </div>
+                      <div className="line">
+                        <div className="location">
+                          <PinDropOutlined />
+                          <p>{current?.ad?.location?.name}</p>
+                        </div>
 
                         <span className="view_ad">View Ad</span>
                       </div>
                     </div>
                   </div>
-                  <div
-                    className="messages"
-                    ref={containerRef}
-                    onScroll={handleScroll}
-                  >
-                    {current?.typing?.includes(current?.info?._id) && (
-                      <div className="message_container gap">
-                        <img src={current?.info?.image} alt="" />
-                        <div className="message typing">
-                          <div className="dot"></div>
-                          <div className="dot"></div>
-                          <div className="dot"></div>
+                  <div className="messages">
+                    <div
+                      className="overlay"
+                      ref={containerRef}
+                      onScroll={handleScroll}
+                    >
+                      {current?.typing?.includes(current?.info?._id) && (
+                        <div className="message_container gap">
+                          <img src={current?.info?.image} alt="" />
+                          <div className="message typing">
+                            <div className="dot"></div>
+                            <div className="dot"></div>
+                            <div className="dot"></div>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                    {(current.messages.length < 20 &&
-                    current.messages.length < current.messagesLength
-                      ? []
-                      : [...current?.messages]
-                    )
-                      .reverse()
-                      .map((message, ind, arr) => {
-                        return (
-                          <Message
-                            id={user?._id}
-                            message={message}
-                            next={arr[ind - 1]}
-                            prev={arr[ind + 1]}
-                            current={current}
-                            image={user?.image}
-                            setImagePreview={setImagePreview}
-                            ind={ind}
-                          />
-                        );
-                      })}
-                    {/* {current.messages.length >= 20 && loading && (
-                      <div className="loader_cont">
-                        <Loader />
-                      </div>
-                    )} */}
-                    {current.messages.length < 20 &&
-                      current.messages.length < current.messagesLength && (
-                        <MessagesLoader />
                       )}
+                      {(current.messages.length < 20 &&
+                      current.messages.length < current.messagesLength
+                        ? []
+                        : [...current?.messages]
+                      )
+                        .reverse()
+                        .map((message, ind, arr) => {
+                          return (
+                            <Message
+                              id={user?._id}
+                              message={message}
+                              next={arr[ind - 1]}
+                              prev={arr[ind + 1]}
+                              current={current}
+                              image={user?.image}
+                              setImagePreview={setImagePreview}
+                              ind={ind}
+                            />
+                          );
+                        })}
+
+                      {current.messages.length < 20 &&
+                        current.messages.length < current.messagesLength && (
+                          <MessagesLoader />
+                        )}
+                    </div>
                   </div>
                   <div
                     className={
