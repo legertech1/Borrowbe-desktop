@@ -731,7 +731,7 @@
   width: calc(100% + 4px);
   height: calc(100% + 4px);
   z-index: -1;
-  animation: steam 30s linear infinite;
+  animation: steam 50s linear infinite;
 }
 
 @keyframes steam {
@@ -747,7 +747,7 @@
 }
 
 .view_listing .actions .postAd:after {
-  filter: blur(16px);
+  filter: blur(12px);
 }
 .view_listing .actions .continue_editing:hover {
   color: white;

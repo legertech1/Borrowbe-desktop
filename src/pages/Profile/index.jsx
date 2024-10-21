@@ -247,16 +247,25 @@ function Profile() {
                     </div>
                   )}
 
-                  <div className="tabs manageAds">
-                    <h2 className="" onClick={() => navigate("/ads")}>
-                      <TuneOutlined /> Manage Ads
-                    </h2>
-                  </div>
-                  <div className="tabs manageAds">
-                    <h2 className="" onClick={() => setShowTransactions(true)}>
-                      <FormatListBulleted /> My Payments
-                    </h2>
-                  </div>
+                  {user?._id == currentUser?._id && (
+                    <>
+                      {" "}
+                      <div className="tabs manageAds">
+                        <h2 className="" onClick={() => navigate("/ads")}>
+                          <TuneOutlined /> Manage Ads
+                        </h2>
+                      </div>
+                      <div className="tabs manageAds">
+                        <h2
+                          className=""
+                          onClick={() => setShowTransactions(true)}
+                        >
+                          <FormatListBulleted /> My Payments
+                        </h2>
+                      </div>
+                    </>
+                  )}
+
                   <hr />
                   <div className="display_type">
                     <div

@@ -224,6 +224,39 @@
   border: none !important;
 }
 
+.post_ad .parallel_inp_container {
+  display: flex;
+  gap: 20px;
+}
+.post_ad .parallel_inp_container .input_container {
+  height: 52px;
+  min-height: 52px;
+  max-height: 52px;
+}
+.post_ad .parallel_inp_container .input_container input {
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  font-size: 16px;
+}
+
+.post_ad input.pricing {
+  font-weight: 600;
+  font-family: var(--font1);
+  /* color: var(--blue); */
+  font-size: larger !important;
+}
+
+.post_ad .optional_heading {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: -10px;
+  margin-top: 16px;
+}
+.post_ad input.pricing::placeholder {
+  font-weight: 500;
+  font-size: medium !important;
+}
 .post_ad .field_info p {
   color: #777 !important;
   font-weight: 500;

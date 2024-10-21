@@ -26,7 +26,7 @@ export default function PriceInput({
         value={price}
         placeholder={"Input price"}
         onChange={onChange}
-        className="price_input_field"
+        className="price_input_field pricing"
         aria-label="search google maps"
       />
       <div className="option_container">

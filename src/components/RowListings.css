@@ -23,6 +23,7 @@
   transition: all 0.3s var(--bc);
   will-change: transform;
   cursor: pointer;
+  overflow: hidden;
 }
 * {
   -webkit-font-smoothing: subpixel-antialiased !important;
@@ -45,6 +46,7 @@
   border-top-left-radius: 4px !important;
   border-bottom-left-radius: 4px !important;
   overflow: hidden;
+  z-index: 2;
 }
 .row_listing ._ {
   background: white;
@@ -397,6 +399,7 @@
   font-size: 14px;
   text-wrap: nowrap;
   margin-left: auto;
+  z-index: 2;
 }
 
 .listing .status,
@@ -550,5 +553,50 @@
   }
   .row_listing .main {
     width: 60%;
+  }
+}
+.row_listing .tax {
+  display: inline;
+  padding-left: 6px;
+  font-size: 15px !important;
+}
+
+.row_listing .price_cont,
+.row_listing .total_cont {
+  flex: 1 1;
+  display: flex;
+  align-items: baseline;
+  overflow: hidden;
+  position: absolute;
+  background: white;
+  width: 80%;
+}
+.row_listing.highlighted .price_cont,
+.row_listing.highlighted .total_cont {
+  background-color: var(--yellow-light);
+}
+
+.row_listing .total_cont {
+  border-radius: 24px;
+  transform: translateX(-100%);
+  animation: 12s slide_total var(--bc) forwards infinite;
+}
+
+@keyframes slide_total {
+  0% {
+    transform: translateX(-100%);
+  }
+  60% {
+    transform: translateX(-100%);
+  }
+  65% {
+    transform: translateX(0%);
+  }
+
+  95% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }

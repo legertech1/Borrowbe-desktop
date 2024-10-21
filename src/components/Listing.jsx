@@ -206,13 +206,34 @@ function Listing({ listing, actions, setListings, empty }) {
                 </>
               ) : (
                 <>
-                  <span className="price_num">
-                    {listing?.price ? "$" + listing?.price : "Free"}
-                  </span>
-                  /{listing?.term}
-                  {listing.tax != "none" && (
-                    <p className="tax">+{listing?.tax}</p>
-                  )}{" "}
+                  {
+                    <>
+                      <div className="price_cont">
+                        <span className="price_num">
+                          {listing?.price ? "$" + listing?.price : "Free"}
+                        </span>
+                        /{listing?.term}{" "}
+                        <p className="tax">
+                          {" "}
+                          {listing?.installments && (
+                            <span className="installments">
+                              {" "}
+                              x{listing?.installments}
+                            </span>
+                          )}{" "}
+                          {listing?.tax !== "none" && <>+{listing?.tax}</>}
+                        </p>
+                      </div>
+                      {listing?.total && (
+                        <div className="total_cont">
+                          <span className="price_num">
+                            {listing?.total && "$" + listing?.total}
+                          </span>{" "}
+                          <p className="tax"> Total</p>
+                        </div>
+                      )}
+                    </>
+                  }
                   {distance <= 100 && distance > -1 && (
                     <div className="distance">~{distance} Km Away</div>
                   )}

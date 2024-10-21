@@ -68,3 +68,6 @@
   border-color: var(--blue);
   opacity: 1;
 }
+.custom_price_input input {
+  color: var(--blue);
+}

@@ -426,7 +426,7 @@ export default function AdForm({ edit }) {
           className="field_container"
           style={
             formData.priceHidden
-              ? { marginBottom: "-80px", transition: "all 0.1s var(--bc)" }
+              ? { marginBottom: "-200px", transition: "all 0.1s var(--bc)" }
               : { marginBottom: "0px", transition: "all 0.1s var(--bc)" }
           }
         >
@@ -517,6 +517,55 @@ export default function AdForm({ edit }) {
                 />{" "}
                 +TAX
               </p>
+            </div>
+
+            <h2
+              className="optional_heading"
+              style={
+                formData.priceHidden
+                  ? { transform: "scaleY(0)", opacity: "0" }
+                  : { transform: "scaleY(1)", opacity: "1" }
+              }
+            >
+              Optional pricing information
+            </h2>
+            <div
+              className="parallel_inp_container"
+              style={
+                formData.priceHidden
+                  ? { transform: "scaleY(0)", opacity: "0" }
+                  : { transform: "scaleY(1)", opacity: "1" }
+              }
+            >
+              <Input
+                className="pricing"
+                placeholder={"Number of installments"}
+                onChange={(e) => {
+                  if (isNaN(e.target.value)) return;
+                  if (e.target.value.split(".")[1]) return;
+                  dispatch(
+                    setFormData({
+                      ...formData,
+                      installments: e.target.value.trim().slice(0, 2),
+                      total:
+                        Number(formData.price) *
+                          Number(e.target.value.trim().slice(0, 2)) || "",
+                    })
+                  );
+                }}
+                value={formData.installments}
+              ></Input>
+              <Input
+                className="pricing"
+                placeholder={"Total amount"}
+                onChange={(e) => {
+                  if (isNaN(e.target.value)) return;
+                  if (e.target.value.split(".")[1]?.length > 2) return;
+
+                  handleFormData("total", e.target.value.trim().slice(0, 10));
+                }}
+                value={formData.total}
+              ></Input>
             </div>
           </div>
         </div>
