@@ -107,7 +107,7 @@ export default function AdForm({ edit }) {
       }
     }
   }, [categoryIndex]);
-
+  const [state, setState] = useState("indefinite");
   async function prepareEdit() {
     let ad = null;
     if (!formData._id) {
@@ -231,8 +231,11 @@ export default function AdForm({ edit }) {
         return notification.error(
           "Description is required and must be between 40 to 8000 characters"
         );
-      if (!formData.term && !formData.priceHidden)
+      if (!formData.term && !formData.priceHidden && state != "total")
         return notification.error("Duration term is required");
+      if (state == "definite" && !formData.installments) {
+        return notification.error("No. of installments is required");
+      }
     }
     if (step >= 3) {
       const fields = [
@@ -426,17 +429,18 @@ export default function AdForm({ edit }) {
           className="field_container"
           style={
             formData.priceHidden
-              ? { marginBottom: "-200px", transition: "all 0.1s var(--bc)" }
+              ? { marginBottom: "-120px", transition: "all 0.1s var(--bc)" }
               : { marginBottom: "0px", transition: "all 0.1s var(--bc)" }
           }
         >
           <div className="field_info">
             <h4>
-              Amount and Term <span>(required)</span>
+              Price <span>(required)</span>
             </h4>
             <p>
-              Enter the amount for your ad along with the corresponding
-              duration: Day, Month, or Year.
+              Enter the payments and term (daily, weekly, monthly or yearly) for
+              definite/indefinite number of installments or enter the total
+              amount for your item.
             </p>
           </div>
           <div
@@ -454,21 +458,43 @@ export default function AdForm({ edit }) {
               price.
             </div>
             <PriceInput
+              state={state}
+              setState={setState}
               style={
                 formData.priceHidden
                   ? { transform: "scaleY(0)", opacity: "0" }
                   : { transform: "scaleY(1)", opacity: "1" }
               }
-              onChangeTerm={(term) => {
+              setTerm={(term) => {
                 handleFormData("term", term);
               }}
-              price={formData.price}
               term={formData.term}
-              onChange={(e) => {
+              price={formData.price}
+              setPrice={(e) => {
                 if (isNaN(e.target.value)) return;
                 if (e.target.value.split(".")[1]?.length > 2) return;
 
                 handleFormData("price", e.target.value.trim().slice(0, 10));
+              }}
+              installments={formData.installments}
+              setInstallments={(e) => {
+                if (isNaN(e.target.value)) return;
+                if (e.target.value.split(".")[1]?.length > 2) return;
+
+                handleFormData(
+                  "installments",
+                  e.target.value.trim().slice(0, 3)
+                );
+              }}
+              reset={() => {
+                dispatch(
+                  setFormData({
+                    ...formData,
+                    term: "",
+                    price: "",
+                    installments: "",
+                  })
+                );
               }}
             />
             <div
@@ -517,55 +543,6 @@ export default function AdForm({ edit }) {
                 />{" "}
                 +TAX
               </p>
-            </div>
-
-            <h2
-              className="optional_heading"
-              style={
-                formData.priceHidden
-                  ? { transform: "scaleY(0)", opacity: "0" }
-                  : { transform: "scaleY(1)", opacity: "1" }
-              }
-            >
-              Optional pricing information
-            </h2>
-            <div
-              className="parallel_inp_container"
-              style={
-                formData.priceHidden
-                  ? { transform: "scaleY(0)", opacity: "0" }
-                  : { transform: "scaleY(1)", opacity: "1" }
-              }
-            >
-              <Input
-                className="pricing"
-                placeholder={"Number of installments"}
-                onChange={(e) => {
-                  if (isNaN(e.target.value)) return;
-                  if (e.target.value.split(".")[1]) return;
-                  dispatch(
-                    setFormData({
-                      ...formData,
-                      installments: e.target.value.trim().slice(0, 2),
-                      total:
-                        Number(formData.price) *
-                          Number(e.target.value.trim().slice(0, 2)) || "",
-                    })
-                  );
-                }}
-                value={formData.installments}
-              ></Input>
-              <Input
-                className="pricing"
-                placeholder={"Total amount"}
-                onChange={(e) => {
-                  if (isNaN(e.target.value)) return;
-                  if (e.target.value.split(".")[1]?.length > 2) return;
-
-                  handleFormData("total", e.target.value.trim().slice(0, 10));
-                }}
-                value={formData.total}
-              ></Input>
             </div>
           </div>
         </div>

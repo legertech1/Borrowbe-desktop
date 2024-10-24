@@ -228,7 +228,7 @@
   font-weight: 600;
   word-wrap: unset;
   line-height: 1.2;
-  font-size: 30px;
+  font-size: 28px;
   font-family: var(--font1);
   color: #333;
   text-transform: capitalize;
@@ -240,20 +240,20 @@
 }
 
 .view_listing h1.price {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 500;
-  color: #444;
+  margin-bottom: -8px;
   margin-top: -10px;
   display: flex;
-  align-items: end;
+  align-items: baseline;
 }
 
 .view_listing h1.price span {
   color: var(--blue);
   font-weight: 600;
-  font-size: 42px;
+  font-size: 40px;
   position: relative;
-  top: 7px;
+  top: 3px;
 }
 
 .view_listing h1 {
@@ -906,11 +906,17 @@
   /* font-weight: 500;
   color: var(--blue) !important; */
   /* font-family: var(--font1); */
-  font-size: 20px !important;
+  font-size: 16px;
 }
 
 .view_listing .country_img_global {
   margin-left: auto;
+  align-self: center;
+  height: 30px;
+  width: 50px;
+  position: relative;
+  top: 2px;
+  border-radius: 4px;
 }
 @media (max-width: 1600px) {
   .view_listing .main {
@@ -924,9 +930,7 @@
   .view_listing h1.price span {
     font-size: 32px;
   }
-  .view_listing h1.price {
-    font-size: 18px;
-  }
+
   .view_listing h1 {
     font-size: 19px;
   }

@@ -652,7 +652,28 @@ function ViewListing({ preview, edit }) {
                     {!listing?.priceHidden ? (
                       <>
                         {" "}
-                        <span>${listing?.price || "Free"}</span>/{listing?.term}{" "}
+                        <span>${listing?.price || "Free"}</span>
+                        {listing?.price && listing?.term && (
+                          <>/{listing?.term}</>
+                        )}
+                        {listing?.price && !listing?.term && (
+                          <p className="tax"> Total</p>
+                        )}
+                        {listing?.price &&
+                          listing?.term &&
+                          listing?.installments && (
+                            <p
+                              className="tax"
+                              style={{
+                                fontSize: "x-large",
+                                color: "var(--blue)",
+                                fontWeight: "600",
+                              }}
+                            >
+                              {" "}
+                              x{listing?.installments}
+                            </p>
+                          )}
                         {listing?.tax != "none" && (
                           <p className="tax">+{listing?.tax}</p>
                         )}{" "}

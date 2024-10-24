@@ -528,7 +528,7 @@
 .listing .total_cont {
   border-radius: 24px;
   transform: translateX(-100%);
-  animation: 12s slide_total var(--bc) forwards infinite;
+  animation: 10s slide_total var(--bc) forwards infinite;
 }
 
 @keyframes slide_total {

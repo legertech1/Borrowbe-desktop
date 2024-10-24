@@ -211,7 +211,7 @@ function RowListing({ listing, actions, setListings, empty }) {
                         <span className="price_num">
                           {listing?.price ? "$" + listing?.price : "Free"}
                         </span>
-                        /{listing?.term}{" "}
+                        {listing?.term && <>/{listing?.term}</>}
                         <p className="tax">
                           {" "}
                           {listing?.installments && (
@@ -220,13 +220,14 @@ function RowListing({ listing, actions, setListings, empty }) {
                               x{listing?.installments}
                             </span>
                           )}{" "}
+                          {!listing.installments && !listing.term && "Total"}
                           {listing?.tax !== "none" && <>+{listing?.tax}</>}
                         </p>
                       </div>
-                      {listing?.total && (
+                      {listing?.installments && (
                         <div className="total_cont">
                           <span className="price_num">
-                            {listing?.total && "$" + listing?.total}
+                            ${listing?.price * listing?.installments}
                           </span>{" "}
                           <p className="tax"> Total</p>
                         </div>
