@@ -74,7 +74,7 @@ function RowListing({ listing, actions, setListings, empty }) {
       <div
         className={"images_container" + (empty ? " empty" : " _")}
         onScroll={(e) => e.preventDefault()}
-        onClick={(e) => e.stopPropagation()}
+        // onClick={(e) => e.stopPropagation()}
       >
         {listing?.thumbnails?.length > 1 && (
           <button

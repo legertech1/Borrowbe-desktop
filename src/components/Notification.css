@@ -21,7 +21,7 @@
 
 .notification-container .notification {
   padding: 16px;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 1px 1px 8px #1112, -1px -1px 8px #1112;
 
   cursor: pointer;

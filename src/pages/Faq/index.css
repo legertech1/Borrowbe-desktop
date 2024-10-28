@@ -62,15 +62,15 @@
   padding: 40px;
   background: white;
   box-shadow: 0px 0px 8px #1113;
-  border-radius: 4px;
+  border-radius: 5px;
   box-sizing: border-box;
 }
 .faq_page .FAQ {
   width: 100%;
   padding: 22px;
   box-sizing: border-box;
-  border-radius: 4px;
-  box-shadow: 1px 1px 8px #ccc, -1px -1px 8px #ccc;
+  border-radius: 5px;
+  box-shadow: 1px 1px 8px #1113, -1px -1px 8px #1113;
   background: white;
   cursor: pointer;
   box-sizing: border-box;

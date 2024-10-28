@@ -18,7 +18,7 @@ body.no-scroll {
 .confirm-dialog {
   background-color: #fff;
   padding: 30px;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0px 0px 8px #111a;
   z-index: 10000;
   width: 400px;

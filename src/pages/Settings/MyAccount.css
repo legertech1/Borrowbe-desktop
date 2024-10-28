@@ -14,7 +14,7 @@
   background: #fff;
   padding: 40px;
   box-shadow: 0px 0px 8px #1113;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .my_account .row {
@@ -53,7 +53,7 @@
   gap: 30px;
   background: #fff;
   padding: 40px;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0px 0px 8px #1113;
 }
 

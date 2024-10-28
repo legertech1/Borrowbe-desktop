@@ -51,10 +51,9 @@ const UploadPictures = () => {
     // console.log(files.length);
     const thumbnails = [];
     for (let file of files) {
-      // console.log(file.name);
-      const _img = await imageCompressor.compress(file, { quality: 0.5 });
+      const _img = await imageCompressor.compress(file, { quality: 0.8 });
       const _thumbnail = await imageCompressor.compress(_img, {
-        quality: 0.1,
+        quality: 0.5,
       });
       const img = await parseImage(_img);
       const thumbnail = await parseImage(_thumbnail);

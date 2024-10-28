@@ -41,7 +41,7 @@
   height: 66px;
   cursor: pointer;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 5px;
   transition: all 0.3s var(--bc);
   box-shadow: 0px 0px 8px #1113;
 }
@@ -82,8 +82,8 @@
 ._setting .inp {
   align-items: center;
   border: 1px solid var(--blue);
-  border-radius: 4px;
-  box-shadow: 0 0 8px #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 8px #1113;
   box-sizing: border-box;
   display: flex;
   gap: 5px;

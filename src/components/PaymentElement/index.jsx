@@ -29,7 +29,7 @@ const appearance = {
     ".Input": {
       outline: "none",
       border: "1px solid #fff",
-      boxShadow: "inset 0px 0px 6px #ccc",
+      boxShadow: "inset 0px 0px 6px #1113",
       fontSize: "17px",
       padding: "15px",
       fontWeight: "500",
@@ -41,7 +41,7 @@ const appearance = {
     ".Input:focus": {
       border: "none",
       outline: "none",
-      boxShadow: "inset 0px 0px 6px #ccc",
+      boxShadow: "inset 0px 0px 6px #1113",
     },
     ".Label": {
       color: "#555",

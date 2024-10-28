@@ -108,7 +108,7 @@
 .business_info .image_input {
   height: 180px;
   width: 180px;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0px 0px 8px #1114;
   margin-bottom: 30px;
   background: linear-gradient(45deg, #eee, transparent);

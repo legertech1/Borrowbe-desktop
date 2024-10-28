@@ -45,6 +45,10 @@ export default function AdForm({ edit }) {
 
   const cart = useSelector((state) => state.cart);
   const [country, setCountry] = useLocalStorage("country", null);
+  const [lastLocation, setLastLocation] = useLocalStorage(
+    "last_location",
+    null
+  );
   const navigate = useNavigate();
   const notification = useNotification();
   const [currentStep, setCurrentStep] = useState(1);
@@ -83,9 +87,9 @@ export default function AdForm({ edit }) {
         updateCart({
           ...cart,
           package: {
-            name: cart?.package?.name || "Standard",
+            name: cart?.package?.name || "Basic",
             item: categories[categoryIndex]?.pricing[
-              cart?.package?.name || "Standard"
+              cart?.package?.name || "Basic"
             ],
           },
         })
@@ -164,7 +168,7 @@ export default function AdForm({ edit }) {
 
   function getLocationData(value, curr) {
     if (value) {
-      if (value.coordinates) dispatch(updateLocation(currentLocation));
+      // if (value.coordinates && curr) dispatch(updateLocation(currentLocation));
       let name = value.label;
       geocodeByAddress(value.description || value.name).then(
         async (results) => {
@@ -184,31 +188,27 @@ export default function AdForm({ edit }) {
               },
               components: address_components,
             });
+          } else {
+            dispatch(
+              updateLocation({
+                formatted_address: results[0].formatted_address,
+                types: results[0].types,
+                name: value.description || value.name,
+                place_id: value.place_id,
+                coordinates: {
+                  lat: lat,
+                  long: lng,
+                },
+                components: address_components,
+              })
+            );
           }
-          dispatch(
-            updateLocation({
-              formatted_address: results[0].formatted_address,
-              types: results[0].types,
-              name: value.description || value.name,
-              place_id: value.place_id,
-              coordinates: {
-                lat: lat,
-                long: lng,
-              },
-              components: address_components,
-            })
-          );
         }
       );
     } else {
       dispatch(updateLocation(null));
     }
   }
-
-  useEffect(() => {
-    if (!value) return;
-    getLocationData(value);
-  }, [value]);
 
   // useEffect(() => {
   //   getLocationData(value);
@@ -231,6 +231,8 @@ export default function AdForm({ edit }) {
         return notification.error(
           "Description is required and must be between 40 to 8000 characters"
         );
+      if (!formData.term && !formData.priceHidden)
+        return notification.error("Duration term is required");
     }
     if (step >= 3) {
       const fields = [
@@ -285,13 +287,25 @@ export default function AdForm({ edit }) {
       let loc = await axios.get(apis.findMyLocation, {
         params: { ...coordinates, type: "ad" },
       });
+
       getLocationData(loc.data, true);
     } catch (error) {}
   };
 
   useEffect(() => {
-    if (currentLocation) setValue(currentLocation);
-  }, [currentLocation]);
+    if (value?.description) {
+      setLastLocation(value);
+    }
+  }, [value]);
+  useEffect(() => {
+    if (!value && lastLocation?.description) {
+      setValue(lastLocation);
+    }
+  }, []);
+  useEffect(() => {
+    if (!value) return;
+    getLocationData(value);
+  }, [value]);
 
   const getCurrentLocation = () => {
     if (navigator.geolocation) {

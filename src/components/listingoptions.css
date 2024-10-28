@@ -28,7 +28,7 @@ div.options.actions {
   display: flex;
   width: 100%;
   align-items: center;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 1px 1px 8px #1112, -1px -1px 8px #1112;
   /* margin: 0px 50px 0px; */
   box-sizing: border-box;
@@ -123,8 +123,8 @@ div.options.actions {
   align-items: center;
   gap: 4px;
   justify-content: center;
-  box-shadow: inset 0px 0px 6px #ccc;
-  border-radius: 4px;
+  box-shadow: inset 0px 0px 6px #1113;
+  border-radius: 5px;
   padding: 16px;
   box-sizing: border-box;
   font-size: 17px;
@@ -216,7 +216,7 @@ div.options.actions {
 }
 .ad_config .controls {
   /* box-shadow: 1px 1px 8px #1112, -1px -1px 8px #1112; */
-  border-radius: 4px;
+  border-radius: 5px;
   /* padding: 20px 40px; */
   display: flex;
   flex-direction: column;
@@ -257,8 +257,8 @@ div.options.actions {
 
 .ad_config .conf {
   padding: 20px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  border-radius: 5px;
+  border: 1px solid #1113;
   box-shadow: 0px 0px 4px #1114;
   margin: 16px 0 8px;
   flex: 1 1;
@@ -316,21 +316,21 @@ div.options.actions {
 
 .ad_config .Premium {
   background: var(--yellow);
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0px 0px 8px #1113;
   padding: 6px 20px;
   color: white;
 }
 .ad_config .Standard {
   background: var(--blue);
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0px 0px 8px #1113;
   padding: 6px 20px;
   color: white;
 }
 .ad_config .Basic {
   background: #555;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0px 0px 8px #1113;
   padding: 6px 20px;
   color: white;
@@ -374,7 +374,7 @@ div.options.actions {
 .ad_config .config > div {
   flex: 1;
   min-width: 300px;
-  border-radius: 4px;
+  border-radius: 5px;
   padding: 12px;
   box-shadow: 1px 1px 8px #1112, -1px -1px 8px #1112;
   border: 1px solid var(--blue);
