@@ -7,14 +7,14 @@ function CTA() {
   return (
     <div className="cta">
       <div className="cta_main">
-        <h1>BorrowBe's better when you're a member</h1>
+        <h1>Sign Up Now and Post Your Ad for Free!</h1>
         <p>
-          See more relevant listings, find what you're looking for quicker, and
-          more!{" "}
+          Discover more listings, connect faster, and reach the right people.
+          Join BorrowBe today and get your ad noticed!
         </p>
       </div>
       <button className="btn_classic" onClick={() => navigate("/register")}>
-        Sign Up for Free
+        Sign Up and Get Started!
       </button>
     </div>
   );

@@ -90,7 +90,7 @@
   color: var(--fg);
   cursor: pointer;
   box-sizing: border-box;
-  transition: all 0.33s var(--bc);
+  transition: all 0.3s var(--bc);
   box-shadow: 0px 0px 8px #1118;
 }
 
