@@ -50,21 +50,24 @@ function Search({ category, setCategory }) {
         </div>
       </div>
       <div className="recents">
-        <div className="recent" onClick={(e) => search("Home Decor")}>
+        <div className="recent" onClick={(e) => search("House for rent")}>
           <SearchIcon />
           House for rent
         </div>
-        <div className="recent" onClick={(e) => search("Boat")}>
+        <div className="recent" onClick={(e) => search("Car for lease")}>
           <SearchIcon />
           Car for lease
         </div>
-        <div className="recent" onClick={(e) => search("House")}>
+        <div className="recent" onClick={(e) => search("Vacation rental")}>
           <SearchIcon />
           Vacation rental
         </div>
-        <div className="recent" onClick={(e) => search("Heavy Machines")}>
+        <div
+          className="recent"
+          onClick={(e) => search("Construction machinery")}
+        >
           <SearchIcon />
-          Heavy Machinery
+          Construction machinery
         </div>
       </div>
     </div>
