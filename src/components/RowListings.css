@@ -1,8 +1,9 @@
 .row_listings {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(800px, auto));
-  gap: 10px;
+  gap: 12px;
   padding: 10px 0;
+  filter: drop-shadow(0px 0px 5px #1115);
 }
 
 .row_listing *::-webkit-scrollbar {
@@ -17,23 +18,34 @@
   padding: 16px;
   box-sizing: border-box;
   border-radius: 5px;
-  box-shadow: -1px -1px 8px #1112, 1px 1px 8px #1112;
+  /* box-shadow: -1px -1px 8px #1112, 1px 1px 8px #1112; */
   position: relative;
   /* overflow: hidden; */
   transition: all 0.3s var(--bc);
   will-change: transform;
   cursor: pointer;
   overflow: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  transform-origin: center center;
 }
 * {
   -webkit-font-smoothing: subpixel-antialiased !important;
 }
-
+.row_listings .row_listing * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translateZ(0);
+  transform-style: flat;
+}
 .row_listing:hover {
-  transform: translateY(-3px) scale(1.01);
+  transform: scale(1.01) translateZ(0);
 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
-    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 0px 20px #1112;
 }
 
 .row_listing .images_container {
@@ -213,6 +225,9 @@
   overflow: hidden;
   margin: 0;
 }
+.row_listing .main > p {
+  margin-bottom: 16px;
+}
 .row_listing .main {
   width: 64%;
   position: absolute;
@@ -223,7 +238,6 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .row_listing .main h1 {
@@ -237,6 +251,7 @@
   margin: 0;
   text-transform: capitalize;
   cursor: pointer;
+  margin-bottom: 8px;
 }
 
 .row_listings.actions .row_listing .main h1 {
@@ -277,12 +292,13 @@
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  bottom: 0px;
+  bottom: 6px;
   width: 100%;
+  padding: 0 16px;
   left: 0;
-  padding: 12px 16px;
   font-family: var(--font1);
   box-sizing: border-box;
+  height: 0;
 }
 
 .row_listing .buttons {
@@ -297,8 +313,7 @@
 
 .row_listing button.actions {
   position: absolute;
-  top: 12px;
-  right: 8px;
+  right: -6px;
   background: transparent;
   border: none;
   height: 40px;
@@ -306,6 +321,7 @@
   border-radius: 50%;
   display: flex;
   color: #444;
+  top: -10px;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -402,7 +418,7 @@
   z-index: 3;
   position: absolute;
   bottom: 12px;
-  right: 12px;
+  right: 0;
 }
 
 .listing .status,
@@ -443,6 +459,8 @@
   display: flex;
   gap: 2px;
   align-items: baseline;
+  overflow: visible;
+  height: 0;
 }
 .row_listing .price .country,
 .listing .price .country {
@@ -470,6 +488,13 @@
   color: var(--blue);
 }
 
+.row_listing .price_hidden {
+  font-size: larger;
+  font-weight: 600;
+  color: var(--blue);
+  bottom: 28px;
+  position: relative;
+}
 .row_listing .cap_bottom,
 .row_listing .cap_top {
   height: 60%;
@@ -479,7 +504,18 @@
 .row_listing.highlighted {
   background-color: var(--yellow-light);
 }
+.row_listing .type {
+  padding: 6px 16px;
+  background: var(--blue);
+  border-radius: 5px;
+  color: white;
 
+  font-weight: 500;
+  font-family: var(--font1);
+  transform: translatez(0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 .row_listing.highlighted::after {
   content: "";
   position: absolute;
@@ -520,12 +556,12 @@
 }
 
 .row_listing h1.empty {
-  height: 26px;
+  height: 25px;
   width: 75% !important;
 }
 .row_listing p.empty {
-  min-height: 19px;
-  max-height: 19px;
+  min-height: 18px;
+  max-height: 18px;
   margin: 0 0 4px;
 }
 
@@ -535,6 +571,8 @@
 .row_listing .price .empty {
   min-height: 36px;
   width: 200px;
+  bottom: 24px;
+  position: relative;
   margin: 0;
 }
 
@@ -546,8 +584,10 @@
   display: none;
 }
 .info.empty {
-  height: 24px;
+  height: 20px;
   width: 350px;
+  position: relative;
+  bottom: 4px;
 }
 .row_listing .main > p.t {
   height: 66px;
@@ -575,35 +615,10 @@
   position: ABSOLUTE;
   background: white;
   min-width: 100%;
-  left: 16px;
-  bottom: 8px;
+  bottom: 6px;
+  box-sizing: border-box;
 }
 .row_listing.highlighted .price_cont,
 .row_listing.highlighted .total_cont {
   background-color: var(--yellow-light);
-}
-
-.row_listing .total_cont {
-  border-radius: 24px;
-  transform: translateX(-100%);
-  animation: 10s slide_total var(--bc) forwards infinite;
-}
-
-@keyframes slide_total {
-  0% {
-    transform: translateX(-100%);
-  }
-  60% {
-    transform: translateX(-100%);
-  }
-  65% {
-    transform: translateX(0%);
-  }
-
-  95% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
 }

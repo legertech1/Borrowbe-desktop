@@ -183,6 +183,7 @@ function Listing({ listing, actions, setListings, empty }) {
             {!empty && <PinDropOutlined />}
             {listing?.location.name}
           </span>
+          {listing?.type && <div className="type">{listing?.type}</div>}
         </div>
         <div className="price">
           <p className={empty ? "empty" : ""}>
@@ -225,14 +226,6 @@ function Listing({ listing, actions, setListings, empty }) {
                           {listing?.tax !== "none" && <>+{listing?.tax}</>}
                         </p>
                       </div>
-                      {listing?.installments && (
-                        <div className="total_cont">
-                          <span className="price_num">
-                            ${listing?.price * listing?.installments}
-                          </span>{" "}
-                          <p className="tax"> Total</p>
-                        </div>
-                      )}
                     </>
                   }
                   {distance <= 100 && distance > -1 && (

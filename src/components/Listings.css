@@ -7,6 +7,7 @@
   padding: 10px 0;
   justify-content: start;
   grid-auto-flow: dense;
+  filter: drop-shadow(0px 0px 5px #1115);
 }
 
 .listing *::-webkit-scrollbar {
@@ -27,9 +28,20 @@
   /* transform: scale(1); */
   padding-bottom: 40px;
   position: relative;
+  transform: translateZ(0);
   will-change: transform;
   cursor: pointer;
-  box-shadow: -1px -1px 8px #1112, 1px 1px 8px #1112;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  transform-origin: center center;
+}
+
+.listings .listing main * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translateZ(0);
+  transform-style: flat;
 }
 .listing.em {
   pointer-events: none;
@@ -79,10 +91,9 @@
   /* animation-delay: 20s; */
 }
 .listing:hover {
-  transform: translateY(-3px) scale(1.02);
+  transform: scale(1.02) translateZ(0);
 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
-    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 0px 20px #1112;
 }
 
 @keyframes shine {
@@ -98,6 +109,18 @@
   }
 }
 
+.listing .type {
+  padding: 4px 12px;
+  background: var(--blue);
+  border-radius: 5px;
+  color: white;
+
+  font-weight: 500;
+  font-family: var(--font1);
+  transform: translatez(0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 .listing .images_container {
   height: 170px;
   width: 100%;
@@ -282,7 +305,8 @@
 .listing .images img {
   min-height: 100%;
   max-height: 100%;
-
+  image-rendering: auto;
+  transform: translateZ(0);
   object-fit: cover;
   min-width: 100%;
   pointer-events: none;
@@ -299,8 +323,9 @@
 .listing main {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+
   padding: 12px;
+  transform: none !important;
 }
 
 .listing main p {
@@ -311,6 +336,10 @@
   font-family: var(--font2);
   overflow: hidden;
   margin: 0;
+}
+
+.listing main > p {
+  margin-bottom: 12px;
 }
 .listing main h1 {
   font-size: 18px;
@@ -323,21 +352,22 @@
   margin: 0;
   text-transform: capitalize;
   cursor: pointer;
+  margin-bottom: 6px;
 }
 .listings.actions .listing main h1 {
   width: calc(100% - 50px);
 }
 
 .listing .price {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   position: absolute;
-  bottom: 12px;
+  bottom: 18px;
   width: 100%;
+  display: flex;
+  align-items: baseline;
+  padding: 0 12px 10px;
   left: 0;
   box-sizing: border-box;
-  padding: 0 12px;
+  height: 0px;
 }
 
 .listing .price p {
@@ -346,7 +376,10 @@
   font-family: var(--font1);
   color: black;
   display: flex;
-  align-items: flex-end;
+  overflow: visible;
+  align-items: center;
+  transform: translateZ(0);
+  height: 0px;
 }
 .listing .price .btn_classic {
   box-shadow: 0px 0px 8px #1113;
@@ -468,9 +501,9 @@
   box-sizing: border-box;
   align-items: center;
   font-weight: 500;
-  border-radius: 3px;
+  border-radius: 4px;
   box-shadow: 0px 0px 4px #1116;
-  font-size: 15px;
+  font-size: 14px;
   font-family: var(--font1);
 }
 
@@ -479,11 +512,11 @@
 }
 
 .listing h1.empty {
-  height: 23px;
+  height: 22px;
   margin-right: auto;
 }
 .listing p.empty {
-  min-height: 20px;
+  min-height: 19px;
 }
 .listing .price .empty {
   height: 28px;
@@ -492,7 +525,7 @@
   position: absolute;
 }
 .listing .info.empty {
-  height: 23px;
+  height: 19px;
   width: 250px;
 }
 
@@ -523,29 +556,4 @@
 .listing.highlighted .price_cont,
 .listing.highlighted .total_cont {
   background-color: var(--yellow-light);
-}
-
-.listing .total_cont {
-  border-radius: 24px;
-  transform: translateX(-100%);
-  animation: 10s slide_total var(--bc) forwards infinite;
-}
-
-@keyframes slide_total {
-  0% {
-    transform: translateX(-100%);
-  }
-  60% {
-    transform: translateX(-100%);
-  }
-  65% {
-    transform: translateX(0%);
-  }
-
-  95% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
 }

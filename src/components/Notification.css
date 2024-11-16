@@ -41,25 +41,25 @@
 .notification-container .notification.info {
   border: 1px solid var(--blue);
   background-color: var(--blue);
-  color: white;
+  color: white !important;
 }
 
 .notification-container .notification.success {
   border: 1px solid var(--blue);
   background-color: var(--blue);
-  color: white;
+  color: white !important;
 }
 
 .notification-container .notification.warning {
   border: 1px solid var(--yellow);
   background-color: var(--yellow);
-  color: white;
+  color: white !important;
 }
 
 .notification-container .notification.error {
   border: 1px solid var(--red);
   background-color: var(--red);
-  color: white;
+  color: white !important;
 }
 
 .notification-container .notification.hidden {

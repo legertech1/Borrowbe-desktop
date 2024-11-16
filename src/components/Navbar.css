@@ -76,8 +76,9 @@
   padding: 12px !important;
   border-radius: 5px;
   position: relative;
-  height: 46px !important;
+  height: 50px !important;
   box-sizing: border-box;
+  margin-left: 4px;
 }
 .btn_classic {
   background-color: var(--blue);
@@ -143,37 +144,50 @@
   margin: 0;
   transition: all 0.3s var(--bc);
 }
-
+.nav li:hover {
+  background-color: #fff2;
+  backdrop-filter: blur(5px);
+  box-shadow: 0px 0px 4px #1112;
+}
 .nav.white li {
-  align-items: center;
   color: black;
-  display: flex;
-  font-family: var(--font2);
-  font-size: 16px;
-  gap: 5px;
-  list-style: none;
-  padding: 10px 0;
-  transition: all 0.3s var(--bc);
-  padding: 10px;
-  border-radius: 5px;
 }
 
-.nav.white li svg {
+.nav li > svg {
+  height: 26px;
+  width: 26px;
+  fill: transparent;
+  stroke-width: 2;
+  stroke: white;
+}
+
+.nav.white li > svg {
   fill: var(--blue);
+  height: 26px;
+  width: 26px;
+  fill: transparent;
+  stroke-width: 2;
+  stroke: var(--blue);
 }
 .nav li:hover {
   background-color: #fff2;
 }
-
+.nav li:hover > svg {
+  fill: white;
+}
 .nav li.active {
   background-color: #fff2;
 }
-.nav.white li:hover {
-  background-color: #1111;
-}
+.nav.white li:hover,
 .nav.white li.active {
-  background-color: #1111;
+  box-shadow: 0px 0px 8px #1114;
+  background-color: white;
+  z-index: 2;
 }
+.nav.white li:hover > svg {
+  fill: var(--blue);
+}
+
 li.country_select {
   align-items: center;
   color: black;
@@ -235,6 +249,15 @@ li.country_select svg {
   align-items: center;
   justify-content: center;
 }
+
+.nav .location_box svg {
+  stroke-width: 0 !important;
+  fill: white !important;
+}
+
+.nav.white .location_box svg {
+  fill: var(--blue) !important;
+}
 .select_country .country {
   height: 60px;
   width: 160px;
@@ -267,7 +290,7 @@ li.country_select svg {
 .nav.fixed {
   background: var(--fg);
   /* border-radius: 500px; */
-  box-shadow: 3px 3px 24px #1112;
+  box-shadow: 3px 3px 24px #1114;
   /* margin: 0 10%; */
   min-width: 800px;
   padding: 0px 40px;
@@ -287,7 +310,7 @@ li.country_select svg {
 
 .nav .location {
   /* margin-left: 10px; */
-  margin-right: auto;
+  margin-right: 4px;
 }
 
 .nav .user_menu {
@@ -453,7 +476,7 @@ li.country_select svg {
 
 #nav_profile_container {
   height: fit-content;
-  padding: 8px 16px !important;
+  padding: 4px 16px !important;
   box-sizing: content-box;
 }
 
@@ -692,11 +715,10 @@ li.country_select svg {
   .nav .location_box {
     padding: 0;
     margin: 0;
-    width: 180px;
   }
   .nav ul li {
-    height: 40px !important;
-    padding: 8px !important ;
+    height: 46px !important;
+    padding: 12px !important ;
   }
 }
 

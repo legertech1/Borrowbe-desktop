@@ -24,10 +24,11 @@
   z-index: 10;
   padding: 0 0px 0 20px;
   box-sizing: border-box;
-  filter: drop-shadow(0px 0px 8px #1114);
+  filter: drop-shadow(0px 0px 5px #1115);
   background: white;
   border-radius: 5px;
   gap: 4px;
+  border: 1px solid var(--blue);
 }
 .our_pricing ._dropdown .option img,
 .our_pricing ._dropdown .option svg {
@@ -95,7 +96,7 @@
   /* box-shadow: 0px 0px 8px #1113; */
 }
 .our_pricing ._dropdown .options .option {
-  padding: 10px 18px;
+  padding: 12px 18px;
   width: 100%;
   box-sizing: border-box;
   display: flex;

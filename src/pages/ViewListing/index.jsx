@@ -180,7 +180,10 @@ function ViewListing({ preview, edit }) {
   function initEdit(token) {
     dispatch(editAd(ad))
       .unwrap()
-      .then((ad) => navigate("/profile"))
+      .then((ad) => {
+        notification.info("Ad has been updated successfully!");
+        navigate("/profile");
+      })
       .catch((err) => console.log(err));
   }
 

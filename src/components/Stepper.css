@@ -1,59 +1,71 @@
-.stepper_container {
+.steps {
   display: flex;
+  overflow: hidden;
+  justify-content: space-around;
   align-items: center;
-  min-height: 100px;
-  column-gap: 30px;
-  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 0px 0px 8px #1114;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  margin-top: 20px;
 }
-
-.stepper_container .stepper {
+.steps .step {
+  flex: 1;
+  /* padding: 40px; */
+  padding-left: 50px;
+  font-size: 18px;
+  font-family: var(--font1);
+  font-weight: 600;
   display: flex;
-  align-items: center;
-}
-
-.stepper_container .step_circle {
-  width: 30px;
-  height: 30px;
-  background-color: var(--blue);
-  color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  margin-right: 6px;
-  cursor: pointer;
-}
-
-.stepper_container .step_title {
-  font-size: 20px;
-  flex-grow: 1;
-  font-weight: 500;
-  cursor: pointer;
-  font-family: var(--FONT1);
+  gap: 12px;
+  width: 25%;
   position: relative;
-  bottom: 2px;
-  color: #333;
+  min-width: 25%;
+  align-items: center;
+  transition: all 0.3s var(--bc);
+  box-sizing: border-box;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.steps .step span {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--blue);
+  transition: all 0.3s var(--bc);
 }
 
-.stepper_container .step_icon_cont {
-  display: flex;
-  color: #999;
-  margin-left: 50px;
+.step .bg {
+  content: "";
+  height: 500px;
+  width: 500px;
+  background: white;
+  position: absolute;
+  z-index: -1;
+  transform: rotate(45deg);
+  right: 80px;
+
+  box-shadow: 5px -5px 0px var(--blue);
+}
+.step.selected,
+.step:hover,
+.step.selected span,
+.step:hover span {
+  color: white;
 }
 
-.stepper_container .step_circle.disabled {
-  background-color: #999;
+.step:last-child .bg {
+  border: none;
 }
 
-.stepper_container .step_title.disabled {
-  color: #999;
-}
-
-.stepper_container .step_icon_cont.disabled {
-  color: #999;
-}
-
-.stepper_container .step_circle.disabled {
-  background-color: #999;
+.step.selected .bg,
+.step:hover .bg {
+  content: "";
+  height: 500px;
+  width: 500px;
+  background: var(--blue);
+  position: absolute;
+  z-index: -1;
+  box-shadow: 6px -6px 0px white;
+  transform: rotate(45deg);
 }

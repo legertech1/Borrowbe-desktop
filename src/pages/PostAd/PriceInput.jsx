@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setFormData } from "../../store/adSlice";
+import { useMemo } from "react";
 
 export default function PriceInput({
   price,
@@ -18,9 +19,20 @@ export default function PriceInput({
   reset,
   state,
   setState,
+  type,
 }) {
   const [country, setCountry] = useLocalStorage("country", null);
   const dispatch = useDispatch();
+
+  const options = useMemo(() => {
+    if (type == "Service") {
+      return PriceOptions.filter((o) => o != "Year");
+    } else if (type == "Rent") {
+      return PriceOptions.filter((o) => o != "Hour");
+    } else if (type == "Lease" || type == "Finance")
+      return PriceOptions.filter((o) => o != "Hour" && o != "Day");
+    return PriceOptions;
+  }, [type]);
 
   return (
     <div className="price_controls" style={style}>
@@ -33,17 +45,9 @@ export default function PriceInput({
             reset();
           }}
         >
-          Indefinite payments
+          Recurring Payments
         </div>
-        {state == "total" && (
-          <div
-            style={{
-              height: "16px",
-              borderLeft: "1px solid #1113",
-              marginBottom: "2px",
-            }}
-          ></div>
-        )}
+
         <div
           className={"type" + (state == "definite" ? " selected" : "")}
           onClick={(e) => {
@@ -51,17 +55,9 @@ export default function PriceInput({
             reset();
           }}
         >
-          Definite installments
+          Installments
         </div>
-        {state == "indefinite" && (
-          <div
-            style={{
-              height: "16px",
-              borderLeft: "1px solid #1113",
-              marginBottom: "2px",
-            }}
-          ></div>
-        )}
+
         <div
           className={"type" + (state == "total" ? " selected" : "")}
           onClick={(e) => {
@@ -69,11 +65,15 @@ export default function PriceInput({
             reset();
           }}
         >
-          Total amount
+          Total Amount
         </div>
       </div>
       <div className="custom_price_input">
-        <div style={{ padding: "10px" }} aria-label="menu" className="symbol">
+        <div
+          style={{ marginRight: "6px", position: "relative", top: "2px" }}
+          aria-label="menu"
+          className="symbol"
+        >
           {country}$
         </div>
         <div
@@ -112,7 +112,7 @@ export default function PriceInput({
         )}
         {state != "total" && (
           <div className="option_container">
-            {PriceOptions.map((option) => (
+            {options.map((option) => (
               <div
                 onClick={() => setTerm(option)}
                 className={`price_option ${
@@ -125,6 +125,7 @@ export default function PriceInput({
           </div>
         )}
       </div>
+      <p className="info"> $0 will be shown as Free</p>
     </div>
   );
 }

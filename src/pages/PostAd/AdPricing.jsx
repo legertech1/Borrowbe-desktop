@@ -16,6 +16,18 @@ import CheckIcon from "@mui/icons-material/Check";
 import BusinessInfo from "../../components/BusinessInfo";
 import Dropdown from "../../components/Shared/Dropdown";
 import { setFormData } from "../../store/adSlice";
+import {
+  AddCircleOutline,
+  Adjust,
+  AdjustOutlined,
+  AutoAwesome,
+  AutoAwesomeMotionOutlined,
+  AutoAwesomeOutlined,
+  Sell,
+  ShoppingBag,
+} from "@mui/icons-material";
+import { PackageIcon } from "styled-icons/feather";
+import { PackageDependencies } from "styled-icons/octicons";
 
 function AdPricing({ category, preconfig, ignoreFree }) {
   const formData = useSelector((state) => state.ad);
@@ -30,7 +42,9 @@ function AdPricing({ category, preconfig, ignoreFree }) {
   return (
     <>
       <div className="pricing_section">
-        <h2>Pick a Plan that fits</h2>
+        <h2>
+          <PackageIcon className="package_icon" /> Pick a Package that fits
+        </h2>
         <div className="plans">
           <Package
             ignoreFree={ignoreFree}
@@ -95,44 +109,30 @@ function AdPricing({ category, preconfig, ignoreFree }) {
         </div>
       </div>
       <div className="pricing_section">
-        <h2>Features to Promote your Ad</h2>
+        <h2>
+          <AddCircleOutline /> Choose Add-Ons for your Ad
+        </h2>
         <div className="add_ons">
-          {category?.pricing?.AddOns?.homepageGallery && (
+          {category?.pricing?.AddOns?.bumpUp && (
             <AddOn
-              addOn={category.pricing.AddOns.homepageGallery}
-              name={"Listed on Homepage Gallery"}
-              selected={cart?.addOns?.homepageGallery}
+              addOn={category.pricing.AddOns.bumpUp}
+              name={"Bump Up your Ad"}
+              selected={cart?.addOns?.bumpUp}
               setSelected={(val) =>
                 dispatch(
                   updateCart({
                     ...cart,
-                    addOns: { ...cart.addOns, homepageGallery: val },
+                    addOns: { ...cart.addOns, bumpUp: val },
                   })
                 )
               }
-              type={"homepage"}
+              type={"bumpUp"}
             />
-          )}
-          {category?.pricing?.AddOns?.highlighted && (
-            <AddOn
-              addOn={category.pricing.AddOns.highlighted}
-              name={"Highlighted Ad for"}
-              selected={cart?.addOns?.highlighted}
-              setSelected={(val) =>
-                dispatch(
-                  updateCart({
-                    ...cart,
-                    addOns: { ...cart.addOns, highlighted: val },
-                  })
-                )
-              }
-              type={"highlighted"}
-            />
-          )}
+          )}{" "}
           {category?.pricing?.AddOns?.featured && (
             <AddOn
               addOn={category.pricing.AddOns.featured}
-              name={"Featured Ad for"}
+              name={"Featured Ad"}
               selected={cart?.addOns?.featured}
               setSelected={(val) =>
                 dispatch(
@@ -145,208 +145,217 @@ function AdPricing({ category, preconfig, ignoreFree }) {
               type={"featured"}
             />
           )}
-          {category?.pricing?.AddOns?.bumpUp && (
+          {category?.pricing?.AddOns?.highlighted && (
             <AddOn
-              addOn={category.pricing.AddOns.bumpUp}
-              name={"Bump Up Your Ad Every"}
-              selected={cart?.addOns?.bumpUp}
+              addOn={category.pricing.AddOns.highlighted}
+              name={"Highlighted Ad"}
+              selected={cart?.addOns?.highlighted}
               setSelected={(val) =>
                 dispatch(
                   updateCart({
                     ...cart,
-                    addOns: { ...cart.addOns, bumpUp: val },
+                    addOns: { ...cart.addOns, highlighted: val },
                   })
                 )
               }
-              type={"bumpUp"}
+              type={"highlighted"}
+            />
+          )}
+          {category?.pricing?.AddOns?.homepageGallery && (
+            <AddOn
+              addOn={category.pricing.AddOns.homepageGallery}
+              name={"Homepage Gallery"}
+              selected={cart?.addOns?.homepageGallery}
+              setSelected={(val) =>
+                dispatch(
+                  updateCart({
+                    ...cart,
+                    addOns: { ...cart.addOns, homepageGallery: val },
+                  })
+                )
+              }
+              type={"homepage"}
             />
           )}
         </div>
       </div>
       <div className="pricing_section">
-        <h2>Some extras to enhance your Ad</h2>
-        <div className="extra">
-          <div className="info">
-            <Checkbox
-              checked={cart?.extras?.business}
-              setChecked={(v) =>
-                dispatch(
-                  updateCart({
-                    ...cart,
-                    extras: {
-                      business: v ? category.pricing.Extras.business : null,
-                    },
-                  })
-                )
-              }
-            />
-            <h3>
-              Post as Business Ad{" "}
-              <Info
-                info={
-                  "Business ads include your business details and are great for building your business's reach on the platform."
+        <h2>
+          <AutoAwesomeOutlined /> Some extras to enhance your Ad
+        </h2>
+        <div className="extras">
+          {" "}
+          <div className="extra" style={{ width: "100%" }}>
+            <div className="info">
+              <Checkbox
+                checked={cart?.extras?.business}
+                setChecked={(v) =>
+                  dispatch(
+                    updateCart({
+                      ...cart,
+                      extras: {
+                        business: v ? category.pricing.Extras.business : null,
+                      },
+                    })
+                  )
                 }
               />
-            </h3>
-            <p className="price">
-              ${category?.pricing?.Extras?.business?.price}
-            </p>
-          </div>
+              <h3>
+                Post as Business Ad{" "}
+                <Info
+                  info={
+                    "Business ads include your business details and are great for building your business's reach on the platform."
+                  }
+                />
+              </h3>
+              <p className="price">
+                ${category?.pricing?.Extras?.business?.price}
+              </p>
+            </div>
 
-          <div className={"form" + (cart?.extras?.business ? " active" : "")}>
-            {user?.BusinessInfo?.name &&
-              user.BusinessInfo?.LOGO &&
-              user.BusinessInfo.address && (
-                <div className="business_ov">
-                  <img src={user?.BusinessInfo.LOGO} alt="" />
-                  <div>
-                    <h4>{user?.BusinessInfo?.name}</h4>
-                    <p>{user?.BusinessInfo?.address}</p>
+            <div className={"form" + (cart?.extras?.business ? " active" : "")}>
+              {user?.BusinessInfo?.name &&
+                user.BusinessInfo?.LOGO &&
+                user.BusinessInfo.address && (
+                  <div className="business_ov">
+                    <img src={user?.BusinessInfo.LOGO} alt="" />
+                    <div>
+                      <h4>{user?.BusinessInfo?.name}</h4>
+                      <p>{user?.BusinessInfo?.address}</p>
+                    </div>
                   </div>
+                )}
+              {(!user.BusinessInfo?.name ||
+                !user.BusinessInfo?.LOGO ||
+                !user.BusinessInfo.address) && (
+                <div className="no_business_info">
+                  Please Enter your Business Info to Post as a Business
                 </div>
               )}
-            {(!user.BusinessInfo?.name ||
-              !user.BusinessInfo?.LOGO ||
-              !user.BusinessInfo.address) && (
-              <div className="no_business_info">
-                Please Enter your Business Info to Post as a Business
-              </div>
-            )}
-            <button
-              className="review_business_info btn_blue_m"
-              onClick={(e) => setShowBusinessInfoForm(true)}
-            >
-              Edit Business Info
-            </button>
-            {showBusinessInfoForm && (
-              <Modal close={(e) => setShowBusinessInfoForm(false)}>
-                <BusinessInfo close={(e) => setShowBusinessInfoForm(false)} />
-              </Modal>
-            )}
+              <button
+                className="review_business_info btn_blue_m"
+                onClick={(e) => setShowBusinessInfoForm(true)}
+              >
+                Edit Business Info
+              </button>
+              {showBusinessInfoForm && (
+                <Modal close={(e) => setShowBusinessInfoForm(false)}>
+                  <BusinessInfo close={(e) => setShowBusinessInfoForm(false)} />
+                </Modal>
+              )}
+            </div>
           </div>
+          {!cart?.extras?.business && (
+            <>
+              <div className="extra">
+                <div className="info">
+                  <Checkbox
+                    checked={cart?.extras?.website}
+                    setChecked={(v) =>
+                      dispatch(
+                        updateCart({
+                          ...cart,
+                          extras: {
+                            ...cart.extras,
+                            website: v ? category.pricing.Extras.website : null,
+                          },
+                        })
+                      )
+                    }
+                  />
+                  <h3>
+                    Add your Website{" "}
+                    <Info
+                      info={
+                        "Adding a link to your website or a link to someplace about your service or product are great to provide all details and information about the item in question and can lead to a higher demand."
+                      }
+                    />
+                  </h3>
+                  <p className="price">
+                    ${category?.pricing?.Extras?.website?.price}
+                  </p>
+                </div>
+                <div
+                  className={"form" + (cart?.extras?.website ? " active" : "")}
+                >
+                  <div className="field_container">
+                    <Input
+                      value={cart?.extras?.website?.url || ""}
+                      placeholder={"Website URL"}
+                      onChange={(e) =>
+                        dispatch(
+                          updateCart({
+                            ...cart,
+                            extras: {
+                              ...cart.extras,
+                              website: {
+                                ...cart?.extras?.website,
+                                url: e.target.value,
+                              },
+                            },
+                          })
+                        )
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="extra">
+                <div className="info">
+                  <Checkbox
+                    checked={cart?.extras?.youtube}
+                    setChecked={(v) =>
+                      dispatch(
+                        updateCart({
+                          ...cart,
+                          extras: {
+                            ...cart.extras,
+                            youtube: v ? category.pricing.Extras.youtube : null,
+                          },
+                        })
+                      )
+                    }
+                  />
+                  <h3>
+                    Add a Youtube Video{" "}
+                    <Info
+                      info={
+                        "Youtube videos about your service or product are great to provide all details and information about the item in question and can lead to a higher demand."
+                      }
+                    />
+                  </h3>
+                  <p className="price">
+                    ${category?.pricing?.Extras?.youtube?.price}
+                  </p>
+                </div>
+                <div
+                  className={"form" + (cart?.extras?.youtube ? " active" : "")}
+                >
+                  <div className="field_container">
+                    <Input
+                      value={cart?.extras?.youtube?.url || ""}
+                      placeholder={"Youtube video URL"}
+                      onChange={(e) =>
+                        dispatch(
+                          updateCart({
+                            ...cart,
+                            extras: {
+                              ...cart.extras,
+                              youtube: {
+                                ...cart?.extras?.youtube,
+                                url: e.target.value,
+                              },
+                            },
+                          })
+                        )
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
-        {!cart?.extras?.business && (
-          <>
-            <div className="extra">
-              <div className="info">
-                <Checkbox
-                  checked={cart?.extras?.website}
-                  setChecked={(v) =>
-                    dispatch(
-                      updateCart({
-                        ...cart,
-                        extras: {
-                          ...cart.extras,
-                          website: v ? category.pricing.Extras.website : null,
-                        },
-                      })
-                    )
-                  }
-                />
-                <h3>
-                  Add your Website{" "}
-                  <Info
-                    info={
-                      "Adding a link to your website or a link to someplace about your service or product are great to provide all details and information about the item in question and can lead to a higher demand."
-                    }
-                  />
-                </h3>
-                <p className="price">
-                  ${category?.pricing?.Extras?.website?.price}
-                </p>
-              </div>
-              <div
-                className={"form" + (cart?.extras?.website ? " active" : "")}
-              >
-                <div className="field_container">
-                  <div className="field_info">
-                    <h4>Website URL: </h4>
-                    <p>
-                      Add a link to your website for people to be able to visit
-                      through your Ad.
-                    </p>
-                  </div>
-                  <Input
-                    value={cart?.extras?.website?.url || ""}
-                    onChange={(e) =>
-                      dispatch(
-                        updateCart({
-                          ...cart,
-                          extras: {
-                            ...cart.extras,
-                            website: {
-                              ...cart?.extras?.website,
-                              url: e.target.value,
-                            },
-                          },
-                        })
-                      )
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="extra">
-              <div className="info">
-                <Checkbox
-                  checked={cart?.extras?.youtube}
-                  setChecked={(v) =>
-                    dispatch(
-                      updateCart({
-                        ...cart,
-                        extras: {
-                          ...cart.extras,
-                          youtube: v ? category.pricing.Extras.youtube : null,
-                        },
-                      })
-                    )
-                  }
-                />
-                <h3>
-                  Add a Youtube Video{" "}
-                  <Info
-                    info={
-                      "Youtube videos about your service or product are great to provide all details and information about the item in question and can lead to a higher demand."
-                    }
-                  />
-                </h3>
-                <p className="price">
-                  ${category?.pricing?.Extras?.youtube?.price}
-                </p>
-              </div>
-              <div
-                className={"form" + (cart?.extras?.youtube ? " active" : "")}
-              >
-                <div className="field_container">
-                  <div className="field_info">
-                    <h4>Youtube video URL: </h4>
-                    <p>
-                      Add a link to a Youtube Video about your product for
-                      people to be able to visit through the Ad.
-                    </p>
-                  </div>
-                  <Input
-                    value={cart?.extras?.youtube?.url || ""}
-                    onChange={(e) =>
-                      dispatch(
-                        updateCart({
-                          ...cart,
-                          extras: {
-                            ...cart.extras,
-                            youtube: {
-                              ...cart?.extras?.youtube,
-                              url: e.target.value,
-                            },
-                          },
-                        })
-                      )
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-          </>
-        )}
       </div>
     </>
   );
@@ -368,19 +377,21 @@ export function Package({
       className={"package" + (selected ? " selected" : "") + " " + name}
       onClick={() => onClick(free)}
     >
-      <div className={"coloured " + name}>
-        <div className="icon">
-          <Play
-            icon={(() => {
-              if (name == "Basic") return Balloon;
-              else if (name == "Standard") return AirplaneIcon;
-              else if (name == "Premium") return Rocket;
-            })()}
-          />
+      <div className="coloured_cont">
+        <div className={"coloured " + name}>
+          <div className="icon">
+            <Play
+              icon={(() => {
+                if (name == "Basic") return Balloon;
+                else if (name == "Standard") return AirplaneIcon;
+                else if (name == "Premium") return Rocket;
+              })()}
+            />
+          </div>
+          <h1 className={name}>
+            {name} <span></span>
+          </h1>
         </div>
-        <h1 className={name}>
-          {name} <span></span>
-        </h1>
       </div>
       <div className="lower">
         <div className="details">
@@ -467,12 +478,12 @@ function AddOn({ addOn, setSelected, name, selected, type }) {
   }, [current]);
   return (
     <div className="add_on">
-      <Checkbox
+      {/* <Checkbox
         checked={selected}
         setChecked={(e) =>
           !selected ? setSelected(addOn[current]) : setSelected(null)
         }
-      />{" "}
+      />{" "} */}
       <h3>{name} </h3>{" "}
       {type == "bumpUp" && (
         <Info info="After the ad is posted it gradually loses rankings as new ads get posted. A bump up makes your ad go to the top rankings again and is great to keep your ad fresh and in front of the buyers."></Info>
@@ -494,7 +505,7 @@ function AddOn({ addOn, setSelected, name, selected, type }) {
           }
         />
       )}
-      <Dropdown
+      {/* <Dropdown
         value={(addOn[current].days || addOn[current].frequency) + " days"}
         array={addOn.map((item, index) => {
           return {
@@ -503,8 +514,30 @@ function AddOn({ addOn, setSelected, name, selected, type }) {
           };
         })}
         setValue={(v) => setCurrent(v.index)}
-      />{" "}
-      <span className="price">${addOn[current].price}</span>
+      />{" "} */}
+      <div className="addon_select">
+        {addOn.map((item, index) => {
+          return (
+            <div
+              onClick={() => {
+                if (selected && current == index) setSelected(false);
+                if ((selected && current != index) || !selected) {
+                  setCurrent(index);
+                  setSelected(true);
+                }
+              }}
+              className={current == index && selected ? "selected" : ""}
+            >
+              {item.frequency
+                ? "every " + item.frequency + " days"
+                : "+" + item.days + " days"}{" "}
+              for
+              <span>${item.price}</span>
+            </div>
+          );
+        })}
+      </div>
+      {/* <span className="price">${addOn[current].price}</span> */}
     </div>
   );
 }

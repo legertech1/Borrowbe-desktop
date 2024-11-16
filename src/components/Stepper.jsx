@@ -4,30 +4,16 @@ import "./Stepper.css";
 
 const Stepper = ({ steps, current, onClick }) => {
   return (
-    <div className="stepper_container">
+    <div className="steps">
       {steps.map((step, index) => (
-        <div className="stepper" key={index}>
-          <div
-            onClick={() => onClick(index + 1)}
-            className={`step_circle ${index + 1 === current ? "" : "disabled"}`}
-          >
-            {index + 1}
-          </div>
-          <div
-            onClick={() => onClick(index + 1)}
-            className={`step_title ${index + 1 === current ? "" : "disabled"}`}
-          >
-            {step.step}
-          </div>
-          {index + 1 !== steps.length && (
-            <div
-              className={`step_icon_cont ${
-                index + 1 === current ? "" : "disabled"
-              }`}
-            >
-              <NavigateNextIcon />
-            </div>
-          )}
+        <div
+          className={"step" + (index + 1 == current ? " selected" : "")}
+          style={{ zIndex: steps.length - index }}
+          onClick={() => onClick(index + 1)}
+        >
+          <span>{index + 1}</span>
+          {step}
+          <div className="bg"></div>
         </div>
       ))}
     </div>
