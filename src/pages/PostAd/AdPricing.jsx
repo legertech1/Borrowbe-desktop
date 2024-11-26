@@ -478,12 +478,6 @@ function AddOn({ addOn, setSelected, name, selected, type }) {
   }, [current]);
   return (
     <div className="add_on">
-      {/* <Checkbox
-        checked={selected}
-        setChecked={(e) =>
-          !selected ? setSelected(addOn[current]) : setSelected(null)
-        }
-      />{" "} */}
       <h3>{name} </h3>{" "}
       {type == "bumpUp" && (
         <Info info="After the ad is posted it gradually loses rankings as new ads get posted. A bump up makes your ad go to the top rankings again and is great to keep your ad fresh and in front of the buyers."></Info>
@@ -505,25 +499,15 @@ function AddOn({ addOn, setSelected, name, selected, type }) {
           }
         />
       )}
-      {/* <Dropdown
-        value={(addOn[current].days || addOn[current].frequency) + " days"}
-        array={addOn.map((item, index) => {
-          return {
-            text: (item.days || item.frequency) + " days",
-            index: index,
-          };
-        })}
-        setValue={(v) => setCurrent(v.index)}
-      />{" "} */}
       <div className="addon_select">
         {addOn.map((item, index) => {
           return (
             <div
               onClick={() => {
-                if (selected && current == index) setSelected(false);
+                if (selected && current == index) setSelected(null);
                 if ((selected && current != index) || !selected) {
                   setCurrent(index);
-                  setSelected(true);
+                  setSelected(item);
                 }
               }}
               className={current == index && selected ? "selected" : ""}
@@ -537,7 +521,6 @@ function AddOn({ addOn, setSelected, name, selected, type }) {
           );
         })}
       </div>
-      {/* <span className="price">${addOn[current].price}</span> */}
     </div>
   );
 }
