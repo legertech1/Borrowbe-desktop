@@ -31,7 +31,7 @@ export default function PriceInput({
       return PriceOptions.filter((o) => o != "Hour");
     } else if (type == "Lease" || type == "Finance")
       return PriceOptions.filter((o) => o != "Hour" && o != "Day");
-    return PriceOptions;
+    return PriceOptions.filter((o) => o != "Hour");
   }, [type]);
 
   return (

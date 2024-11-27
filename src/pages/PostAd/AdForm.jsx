@@ -230,6 +230,8 @@ export default function AdForm({ edit }) {
         return notification.error("Selecting category is required");
       if (subCategoryIndex < 0)
         return notification.error("Selecting Sub-category is required");
+      if (!formData.type)
+        return notification.error("Selecting Ad Type is required");
       if (!formData.priceHidden && formData.price.toString().trim().length < 1)
         return notification.error("Price is required");
       if (formData.description.trim().length < 40)
