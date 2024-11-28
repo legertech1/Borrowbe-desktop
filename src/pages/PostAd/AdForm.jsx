@@ -72,7 +72,6 @@ export default function AdForm({ edit }) {
   };
 
   function init() {
-    if (value) return;
     let loc;
     if (formData?.location) loc = formData?.location;
     getCurrentLocation();
