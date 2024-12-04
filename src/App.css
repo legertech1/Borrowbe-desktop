@@ -134,3 +134,10 @@ input::-webkit-inner-spin-button {
   left: 0;
   background-color: var(--bg);
 }
+
+iframe.not_found_animation {
+  height: 300px;
+  width: 100%;
+  border: none;
+  max-height: 40vh;
+}

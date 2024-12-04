@@ -20,7 +20,13 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { PinDropOutlined } from "@mui/icons-material";
 const countries = { CA, US };
 
-function RowListing({ listing, actions, setListings, empty }) {
+function RowListing({
+  listing,
+  actions,
+  setListings,
+  empty,
+  parser = new DOMParser(),
+}) {
   const carousel = useRef();
   const nextBtn = useRef();
   const prevBtn = useRef();
@@ -175,7 +181,9 @@ function RowListing({ listing, actions, setListings, empty }) {
               <p className={empty ? " empty" : ""}></p>
             </>
           )}{" "}
-          {listing?.description}
+          {parser
+            .parseFromString(listing?.description || "", "text/html")
+            .body.textContent.trim()}
         </p>
         <div className={"info" + (empty ? " empty" : "")}>
           <span className="location">

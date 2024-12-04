@@ -10,7 +10,7 @@ import {
 } from "@mui/icons-material";
 import Loader from "../Loader";
 
-function Details({ payment }) {
+function Details({ payment, parser = new DOMParser() }) {
   let cart = payment.cart;
   const [ad, setAd] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -57,7 +57,12 @@ function Details({ payment }) {
                       </p>
                     </div>
                     <h4 className="line">{ad.title}</h4>
-                    <p className="line">{ad.description}</p>
+                    <p className="line">
+                      {" "}
+                      {parser
+                        .parseFromString(ad?.description, "text/html")
+                        .body.textContent.trim()}
+                    </p>
                     <p className="line location">
                       <PinDropOutlined />
                       {ad.location.name}

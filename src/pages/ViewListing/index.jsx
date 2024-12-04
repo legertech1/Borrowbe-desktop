@@ -558,9 +558,10 @@ function ViewListing({ preview, edit }) {
                     {" "}
                     <DescriptionOutlinedIcon /> Description
                   </h1>
-                  <p>
-                    <pre>{listing?.description}</pre>
-                  </p>
+
+                  <div
+                    dangerouslySetInnerHTML={{ __html: listing.description }}
+                  ></div>
                 </div>
 
                 {listing?.tags?.length ? (

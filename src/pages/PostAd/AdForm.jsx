@@ -43,6 +43,7 @@ import AdPricing from "./AdPricing";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import Info from "../../components/Info";
 import { PinDropOutlined } from "@mui/icons-material";
+import Editor from "../../components/Editor/EditorWrapper";
 export default function AdForm({ edit }) {
   const formData = useSelector((state) => state.ad);
 
@@ -233,7 +234,7 @@ export default function AdForm({ edit }) {
         return notification.error("Selecting Ad Type is required");
       if (!formData.priceHidden && formData.price.toString().trim().length < 1)
         return notification.error("Price is required");
-      if (formData.description.trim().length < 40)
+      if (formData.description && !Object.keys(formData.description).length)
         return notification.error(
           "Description is required and must be between 40 to 8000 characters"
         );
@@ -283,7 +284,7 @@ export default function AdForm({ edit }) {
 
       if (!edit && cart?.extras?.business && !user?.BusinessInfo?.name)
         return notification.error("Please provide business details");
-      if (formData.location.components.country.short_name != country)
+      if (formData.location?.components?.country.short_name != country)
         return notification.error(
           "Please select an address within your selected Country"
         );
@@ -719,7 +720,7 @@ export default function AdForm({ edit }) {
           <h4>
             Description <span>(required)</span>
           </h4>
-          <TextArea
+          {/* <TextArea
             onChange={(e) => {
               handleFormData("description", e.target.value.slice(0, 8000));
             }}
@@ -727,6 +728,11 @@ export default function AdForm({ edit }) {
               "Describe your item, include all important details related to the item."
             }
             value={formData.description}
+          /> */}
+          <Editor
+            placeholder={
+              "Describe your offering, include all important details related to the item/service/asset"
+            }
           />
         </div>
       </>

@@ -20,7 +20,13 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { PinDropOutlined } from "@mui/icons-material";
 const countries = { CA, US };
 
-function Listing({ listing, actions, setListings, empty }) {
+function Listing({
+  listing,
+  actions,
+  setListings,
+  empty,
+  parser = new DOMParser(),
+}) {
   const user = useSelector((state) => state.auth);
   const [wishlisted, setWishlisted] = useState(false);
   const navigate = useNavigate();
@@ -176,7 +182,9 @@ function Listing({ listing, actions, setListings, empty }) {
           }}
           className={empty ? "empty" : ""}
         >
-          {listing?.description}
+          {parser
+            .parseFromString(listing?.description || "", "text/html")
+            .body.textContent.trim()}
         </p>
         <div className={"info" + (empty ? " empty" : "")}>
           <span className="location">

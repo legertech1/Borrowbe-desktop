@@ -15,6 +15,7 @@ function RelistAd({
   setPaymentModal,
   onPaymentSuccessful,
   onPaymentFailed,
+  parser = new DOMParser(),
 }) {
   const categories = useSelector((state) => state.categories);
   const cart = useSelector((state) => state.cart);
@@ -39,7 +40,12 @@ function RelistAd({
               </p>
             </div>
             <h4 className="line">{ad.title}</h4>
-            <p className="line">{ad.description}</p>
+            <p className="line">
+              {" "}
+              {parser
+                .parseFromString(ad?.description, "text/html")
+                .body.textContent.trim()}
+            </p>
             <p className="line location">
               <PinDropOutlined />
               {ad.location.name}
