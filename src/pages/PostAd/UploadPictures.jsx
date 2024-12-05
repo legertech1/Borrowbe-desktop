@@ -31,21 +31,7 @@ const UploadPictures = () => {
 
   const AD_IMAGES_LIMIT = cart?.package?.item?.images;
   const [loading, setLoading] = useState(0);
-  useEffect(() => {
-    if (changedKey !== "delete") {
-      handleScroll();
-    }
-  }, [changedKey, images]);
 
-  const handleScroll = () => {
-    if (lastImageRef.current) {
-      lastImageRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center",
-      });
-    }
-  };
   const imageCompressor = new ImageCompressor();
   const handleFiles = async (files) => {
     setLoading(files.length);

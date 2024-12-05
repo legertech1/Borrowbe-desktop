@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Input from "../../components/Shared/Input";
 import Dropdown from "../../components/Shared/Dropdown";
 import FieldError from "../../components/FieldError";
@@ -44,6 +44,8 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import Info from "../../components/Info";
 import { PinDropOutlined } from "@mui/icons-material";
 import Editor from "../../components/Editor/EditorWrapper";
+
+const parser = new DOMParser();
 export default function AdForm({ edit }) {
   const formData = useSelector((state) => state.ad);
 
@@ -60,17 +62,21 @@ export default function AdForm({ edit }) {
   const dispatch = useDispatch();
   const [value, setValue] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
-
+  const [initialState, setInitialState] = useState(null);
   const [locationError, setLocationError] = useState(null);
   const user = useSelector((state) => state.auth);
   const [categoryIndex, setCategoryIndex] = useState(-1);
   const [subCategoryIndex, setSubCategoryIndex] = useState(-1);
   const params = useParams();
 
-  const [showBusinessInfoForm, setShowBusinessInfoForm] = useState(false);
   const handleFormData = (name, value) => {
     dispatch(setFormData({ ...formData, [name]: value }));
   };
+
+  useEffect(() => {
+    if (!initialState && formData.description)
+      setInitialState(formData.description);
+  }, [formData.description]);
 
   function init() {
     let loc;
@@ -139,10 +145,6 @@ export default function AdForm({ edit }) {
   const confirm = useConfirmDialog();
 
   const discard = () => {
-    // dispatch(setFormData(initialAdState));
-    //               setValue(null);
-    //               navigate("/");
-
     let onConfirm = () => {
       dispatch(setFormData(initialAdState));
       dispatch(updateCart({}));
@@ -173,8 +175,6 @@ export default function AdForm({ edit }) {
 
   function getLocationData(value, curr) {
     if (value) {
-      // if (value.coordinates && curr) dispatch(updateLocation(currentLocation));
-      let name = value.label;
       geocodeByAddress(value.description || value.name).then(
         async (results) => {
           const { lat, lng } = await getLatLng(results[0]);
@@ -219,90 +219,99 @@ export default function AdForm({ edit }) {
   //   getLocationData(value);
   // }, [value]);
 
-  const formNav = (step, url) => {
-    if (step >= 2) {
-      if (formData.title.trim().length < 8)
-        return notification.error(
-          "Title is required and must be between 8 to 150 characters"
-        );
+  const formNav = useCallback(
+    (step, url) => {
+      if (step >= 2) {
+        if (formData.title.trim().length < 8)
+          return notification.error(
+            "Title is required and must be between 8 to 150 characters"
+          );
 
-      if (categoryIndex < 0)
-        return notification.error("Selecting category is required");
-      if (subCategoryIndex < 0)
-        return notification.error("Selecting Sub-category is required");
-      if (!formData.type)
-        return notification.error("Selecting Ad Type is required");
-      if (!formData.priceHidden && formData.price.toString().trim().length < 1)
-        return notification.error("Price is required");
-      if (formData.description && !Object.keys(formData.description).length)
-        return notification.error(
-          "Description is required and must be between 40 to 8000 characters"
-        );
-      if (!formData.term && !formData.priceHidden && state != "total")
-        return notification.error("Duration term is required");
-      if (state == "definite" && !formData.installments) {
-        return notification.error("No. of installments is required");
+        if (categoryIndex < 0)
+          return notification.error("Selecting category is required");
+        if (subCategoryIndex < 0)
+          return notification.error("Selecting Sub-category is required");
+        if (!formData.type)
+          return notification.error("Selecting Ad Type is required");
+        if (
+          !formData.priceHidden &&
+          formData.price.toString().trim().length < 1
+        )
+          return notification.error("Price is required");
+        if (
+          parser
+            .parseFromString(formData.description || "", "text/html")
+            .body.textContent.trim().length < 40
+        )
+          return notification.error(
+            "Description is required and must be between 40 to 8000 characters"
+          );
+        if (!formData.term && !formData.priceHidden && state != "total")
+          return notification.error("Duration term is required");
+        if (state == "definite" && !formData.installments) {
+          return notification.error("No. of installments is required");
+        }
       }
-    }
-    if (step >= 3) {
-      const fields = [
-        ...categories[categoryIndex].fields,
-        ...categories[categoryIndex].subCategories[subCategoryIndex].fields,
-      ];
+      if (step >= 3) {
+        const fields = [
+          ...categories[categoryIndex].fields,
+          ...categories[categoryIndex].subCategories[subCategoryIndex].fields,
+        ];
 
-      for (let field of fields) {
-        if (field.required) {
-          if (
-            (field.inputType == "text" ||
-              field.inputType == "number" ||
-              field.inputType == "radio" ||
-              field.inputType == "dropdown" ||
-              field.inputType == "date") &&
-            !formData?.extraFields[field.name]?.trim().length
-          )
-            return notification.error(field.name + " is required");
-          else if (
-            field.inputType == "checkbox" &&
-            formData?.extraFields[field.name] === undefined
-          ) {
-            return notification.error(field.name + " is required");
+        for (let field of fields) {
+          if (field.required) {
+            if (
+              (field.inputType == "text" ||
+                field.inputType == "number" ||
+                field.inputType == "radio" ||
+                field.inputType == "dropdown" ||
+                field.inputType == "date") &&
+              !formData?.extraFields[field.name]?.trim().length
+            )
+              return notification.error(field.name + " is required");
+            else if (
+              field.inputType == "checkbox" &&
+              formData?.extraFields[field.name] === undefined
+            ) {
+              return notification.error(field.name + " is required");
+            }
           }
         }
       }
-    }
-    if (edit && step == 4) {
-      if (formData.images.length < 1)
-        return notification.error("At least one image is required");
+      if (edit && step == 4) {
+        if (formData.images.length < 1)
+          return notification.error("At least one image is required");
 
-      if (!formData.location)
-        return notification.error("Selecting a location is required");
-      return navigate("/preview/" + formData._id);
-    }
-    if (step >= 4) {
-      if (!edit && !cart.package.name)
-        return notification.error("Please select a package");
+        if (!formData.location)
+          return notification.error("Selecting a location is required");
+        return navigate("/preview/" + formData._id);
+      }
+      if (step >= 4) {
+        if (!edit && !cart.package.name)
+          return notification.error("Please select a package");
 
-      if (!edit && cart?.extras?.business && !user?.BusinessInfo?.name)
-        return notification.error("Please provide business details");
-      if (formData.location?.components?.country.short_name != country)
-        return notification.error(
-          "Please select an address within your selected Country"
-        );
-    }
-    if (step == 5) {
-      if (formData.images.length < 1)
-        return notification.error("At least one image is required");
+        if (!edit && cart?.extras?.business && !user?.BusinessInfo?.name)
+          return notification.error("Please provide business details");
+        if (formData.location?.components?.country.short_name != country)
+          return notification.error(
+            "Please select an address within your selected Country"
+          );
+      }
+      if (step == 5) {
+        if (formData.images.length < 1)
+          return notification.error("At least one image is required");
 
-      if (!formData.location)
-        return notification.error("Selecting a location is required");
-      return navigate("/preview-ad");
-    }
-    setCurrentStep(step);
-    window.scrollTo(0, 0);
-  };
+        if (!formData.location)
+          return notification.error("Selecting a location is required");
+        return navigate("/preview-ad");
+      }
+      setCurrentStep(step);
+      window.scrollTo(0, 0);
+    },
+    [formData]
+  );
 
   const findMyLocation = async (coordinates) => {
-    // if (user?.currentLocation) setValue(user?.currentLocation);
     try {
       let loc = await axios.get(apis.findMyLocation, {
         params: { ...coordinates, type: "ad" },
@@ -341,21 +350,6 @@ export default function AdForm({ edit }) {
           setLocationError(error.message);
         }
       );
-    }
-  };
-
-  const onTitleClick = (clickedStep) => {
-    if (clickedStep === 1) {
-      setCurrentStep(1);
-    }
-    if (clickedStep === 2) {
-      setCurrentStep(2);
-    }
-    if (clickedStep === 3) {
-      setCurrentStep(3);
-    }
-    if (clickedStep === 4) {
-      setCurrentStep(4);
     }
   };
 
@@ -685,11 +679,6 @@ export default function AdForm({ edit }) {
                         tags: [...formData.tags, newTag],
                       })
                     );
-                    e.target.scrollTo({
-                      top: 0,
-                      left: e.target.innerWidth,
-                      behavior: "smooth",
-                    });
 
                     e.target.value = "";
                   }
@@ -733,6 +722,7 @@ export default function AdForm({ edit }) {
             placeholder={
               "Describe your offering, include all important details related to the item/service/asset"
             }
+            initialState={initialState}
           />
         </div>
       </>

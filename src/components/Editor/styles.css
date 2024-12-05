@@ -338,8 +338,8 @@ pre::-webkit-scrollbar-thumb {
 
 .toolbar button.toolbar-item svg,
 .toolbar button.toolbar-item img {
-  height: 20px !important;
-  width: 20px !important;
+  height: 24px !important;
+  width: 24px !important;
 }
 
 .toolbar button.toolbar-item:disabled {

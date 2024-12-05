@@ -1,6 +1,7 @@
 import React from "react";
 import Listing from "./RowListing";
 import "./RowListings.css";
+const parser = new DOMParser();
 
 function RowListings({ listings, actions, setListings, loading = true, cb }) {
   return (
@@ -11,6 +12,7 @@ function RowListings({ listings, actions, setListings, loading = true, cb }) {
           listing={listing}
           key={listing._id}
           actions={actions}
+          parser={parser}
           cb={cb}
         />
       ))}
