@@ -1,11 +1,10 @@
-import * as React from "react";
+import React from "react";
 import "./PriceInput.css";
 import { PriceOptions } from "../../utils/constants";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { useState } from "react";
-import { useEffect } from "react";
+
 import { useDispatch } from "react-redux";
-import { setFormData } from "../../store/adSlice";
+
 import { useMemo } from "react";
 
 export default function PriceInput({
@@ -16,13 +15,12 @@ export default function PriceInput({
   setTerm,
   term,
   style,
-  reset,
+
   state,
   setState,
   type,
 }) {
   const [country, setCountry] = useLocalStorage("country", null);
-  const dispatch = useDispatch();
 
   const options = useMemo(() => {
     if (type == "Service") {
@@ -42,7 +40,6 @@ export default function PriceInput({
           className={"type" + (state == "indefinite" ? " selected" : "")}
           onClick={(e) => {
             setState("indefinite");
-            reset();
           }}
         >
           Recurring Payments
@@ -52,7 +49,6 @@ export default function PriceInput({
           className={"type" + (state == "definite" ? " selected" : "")}
           onClick={(e) => {
             setState("definite");
-            reset();
           }}
         >
           Installments
@@ -62,7 +58,6 @@ export default function PriceInput({
           className={"type" + (state == "total" ? " selected" : "")}
           onClick={(e) => {
             setState("total");
-            reset();
           }}
         >
           Total Amount

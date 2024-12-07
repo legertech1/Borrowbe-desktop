@@ -70,11 +70,17 @@ export default function AdForm({ edit }) {
   const params = useParams();
 
   const handleFormData = (name, value) => {
-    dispatch(setFormData({ ...formData, [name]: value }));
+    console.log(name, value);
+    console.log(dispatch(setFormData({ ...formData, [name]: value })).payload);
   };
 
   useEffect(() => {
-    if (!initialState && formData.description)
+    if (
+      !initialState &&
+      parser
+        .parseFromString(formData.description || "", "text/html")
+        .body.textContent.trim().length > 20
+    )
       setInitialState(formData.description);
   }, [formData.description]);
 
@@ -116,7 +122,7 @@ export default function AdForm({ edit }) {
       }
     }
   }, [categoryIndex]);
-  const [state, setState] = useState("indefinite");
+
   async function prepareEdit() {
     let ad = null;
     if (!formData._id) {
@@ -128,8 +134,9 @@ export default function AdForm({ edit }) {
           ...ad,
         })
       );
-      if (!ad.term && !ad.installments) setState("total");
-      if (ad.installments) setState("definite");
+      if (!ad.term && !ad.installments) handleFormData("state", "definite");
+      else if (ad.installments) handleFormData("state", "definite");
+      else handleFormData("state", "indefinite");
     } else ad = formData;
     categories.forEach((c, i) => {
       if (c.name == ad.meta.category) {
@@ -247,9 +254,13 @@ export default function AdForm({ edit }) {
           return notification.error(
             "Description is required and must be between 40 to 8000 characters"
           );
-        if (!formData.term && !formData.priceHidden && state != "total")
+        if (
+          !formData.term &&
+          !formData.priceHidden &&
+          formData.state != "total"
+        )
           return notification.error("Duration term is required");
-        if (state == "definite" && !formData.installments) {
+        if (formData.state == "definite" && !formData.installments) {
           return notification.error("No. of installments is required");
         }
       }
@@ -516,9 +527,9 @@ export default function AdForm({ edit }) {
                   : { transform: "scaleY(1)", opacity: "1" }
               }
             >
-              {state == "indefinite"
+              {formData.state == "indefinite"
                 ? "Amount and Term"
-                : state == "definite"
+                : formData.state == "definite"
                 ? "Amount, Term and no. of Installments"
                 : "Amount"}
             </p>
@@ -567,8 +578,8 @@ export default function AdForm({ edit }) {
               style={{ display: "flex", flexDirection: "column" }}
             >
               <PriceInput
-                state={state}
-                setState={setState}
+                state={formData.state}
+                // setState={(v) => handleFormData("state", v)}
                 style={
                   formData.priceHidden
                     ? { transform: "scaleY(0)", opacity: "0" }
@@ -596,13 +607,14 @@ export default function AdForm({ edit }) {
                     e.target.value.trim().slice(0, 3)
                   );
                 }}
-                reset={() => {
+                setState={(v) => {
                   dispatch(
                     setFormData({
                       ...formData,
                       term: "",
                       price: "",
                       installments: "",
+                      state: v,
                     })
                   );
                 }}
