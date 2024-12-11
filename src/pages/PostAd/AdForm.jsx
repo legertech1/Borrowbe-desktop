@@ -70,8 +70,7 @@ export default function AdForm({ edit }) {
   const params = useParams();
 
   const handleFormData = (name, value) => {
-    console.log(name, value);
-    console.log(dispatch(setFormData({ ...formData, [name]: value })).payload);
+    dispatch(setFormData({ ...formData, [name]: value }));
   };
 
   useEffect(() => {
@@ -124,19 +123,21 @@ export default function AdForm({ edit }) {
   }, [categoryIndex]);
 
   async function prepareEdit() {
+    console.log("edit");
     let ad = null;
     if (!formData._id) {
       const id = params.id;
       ad = (await axios.get(apis.ad + id)).data;
+      let pricingType = "indefinite";
+      if (!ad.term && !ad.installments) pricingType = "total";
+      else if (ad.installments) pricingType = "definite";
 
       dispatch(
         setFormData({
           ...ad,
+          state: pricingType,
         })
       );
-      if (!ad.term && !ad.installments) handleFormData("state", "definite");
-      else if (ad.installments) handleFormData("state", "definite");
-      else handleFormData("state", "indefinite");
     } else ad = formData;
     categories.forEach((c, i) => {
       if (c.name == ad.meta.category) {
