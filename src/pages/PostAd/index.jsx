@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import AdForm from "./AdForm";
 import { useLocation } from "react-router-dom";
@@ -8,7 +8,10 @@ import Footer from "../../components/Footer";
 function PostAd({ edit }) {
   const { state } = useLocation();
   const ad = state?.ad;
-
+  useEffect(() => {
+    console.log("///");
+    setTimeout(() => window.scrollTo(0, 0), 0);
+  }, []);
   return (
     <>
       <div className="post_ad_page">

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Input from "../../components/Shared/Input";
 import Dropdown from "../../components/Shared/Dropdown";
 import FieldError from "../../components/FieldError";
@@ -8,6 +8,7 @@ import UploadPictures from "./UploadPictures";
 import CategoryOutlinedIcon from "@mui/icons-material/CategoryOutlined";
 import {
   adLocationTypesExcluded,
+  AdTypes,
   defaultMapProps,
   mapStyles,
 } from "../../utils/constants";
@@ -40,6 +41,11 @@ import useNotification from "../../hooks/useNotification";
 
 import AdPricing from "./AdPricing";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import Info from "../../components/Info";
+import { PinDropOutlined } from "@mui/icons-material";
+import Editor from "../../components/Editor/EditorWrapper";
+
+const parser = new DOMParser();
 export default function AdForm({ edit }) {
   const formData = useSelector((state) => state.ad);
 
@@ -56,23 +62,31 @@ export default function AdForm({ edit }) {
   const dispatch = useDispatch();
   const [value, setValue] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
-
+  const [initialState, setInitialState] = useState(null);
   const [locationError, setLocationError] = useState(null);
   const user = useSelector((state) => state.auth);
   const [categoryIndex, setCategoryIndex] = useState(-1);
   const [subCategoryIndex, setSubCategoryIndex] = useState(-1);
   const params = useParams();
 
-  const [showBusinessInfoForm, setShowBusinessInfoForm] = useState(false);
   const handleFormData = (name, value) => {
     dispatch(setFormData({ ...formData, [name]: value }));
   };
 
+  useEffect(() => {
+    if (
+      !initialState &&
+      parser
+        .parseFromString(formData.description || "", "text/html")
+        .body.textContent.trim().length > 20
+    )
+      setInitialState(formData.description);
+  }, [formData.description]);
+
   function init() {
-    if (value) return;
     let loc;
     if (formData?.location) loc = formData?.location;
-    else getCurrentLocation();
+    getCurrentLocation();
 
     loc &&
       setValue({
@@ -109,14 +123,19 @@ export default function AdForm({ edit }) {
   }, [categoryIndex]);
 
   async function prepareEdit() {
+    console.log("edit");
     let ad = null;
     if (!formData._id) {
       const id = params.id;
       ad = (await axios.get(apis.ad + id)).data;
+      let pricingType = "indefinite";
+      if (!ad.term && !ad.installments) pricingType = "total";
+      else if (ad.installments) pricingType = "definite";
 
       dispatch(
         setFormData({
           ...ad,
+          state: pricingType,
         })
       );
     } else ad = formData;
@@ -134,10 +153,6 @@ export default function AdForm({ edit }) {
   const confirm = useConfirmDialog();
 
   const discard = () => {
-    // dispatch(setFormData(initialAdState));
-    //               setValue(null);
-    //               navigate("/");
-
     let onConfirm = () => {
       dispatch(setFormData(initialAdState));
       dispatch(updateCart({}));
@@ -168,8 +183,6 @@ export default function AdForm({ edit }) {
 
   function getLocationData(value, curr) {
     if (value) {
-      // if (value.coordinates && curr) dispatch(updateLocation(currentLocation));
-      let name = value.label;
       geocodeByAddress(value.description || value.name).then(
         async (results) => {
           const { lat, lng } = await getLatLng(results[0]);
@@ -214,75 +227,104 @@ export default function AdForm({ edit }) {
   //   getLocationData(value);
   // }, [value]);
 
-  const formNav = (step, url) => {
-    if (step >= 2) {
-      if (formData.title.trim().length < 8)
-        return notification.error(
-          "Title is required and must be between 8 to 150 characters"
-        );
+  const formNav = useCallback(
+    (step, url) => {
+      if (step == 1) setInitialState(formData.description);
+      if (step >= 2) {
+        if (formData.title.trim().length < 8)
+          return notification.error(
+            "Title is required and must be between 8 to 150 characters"
+          );
 
-      if (categoryIndex < 0)
-        return notification.error("Selecting category is required");
-      if (subCategoryIndex < 0)
-        return notification.error("Selecting Sub-category is required");
-      if (!formData.priceHidden && formData.price.toString().trim().length < 1)
-        return notification.error("Price is required");
-      if (formData.description.trim().length < 40)
-        return notification.error(
-          "Description is required and must be between 40 to 8000 characters"
-        );
-      if (!formData.term && !formData.priceHidden)
-        return notification.error("Duration term is required");
-    }
-    if (step >= 3) {
-      const fields = [
-        ...categories[categoryIndex].fields,
-        ...categories[categoryIndex].subCategories[subCategoryIndex].fields,
-      ];
+        if (categoryIndex < 0)
+          return notification.error("Selecting category is required");
+        if (subCategoryIndex < 0)
+          return notification.error("Selecting Sub-category is required");
+        if (!formData.type)
+          return notification.error("Selecting Ad Type is required");
+        if (
+          !formData.priceHidden &&
+          formData.price.toString().trim().length < 1
+        )
+          return notification.error("Price is required");
+        if (
+          parser
+            .parseFromString(formData.description || "", "text/html")
+            .body.textContent.trim().length < 40
+        )
+          return notification.error(
+            "Description is required and must be between 40 to 8000 characters"
+          );
+        if (
+          !formData.term &&
+          !formData.priceHidden &&
+          formData.state != "total"
+        )
+          return notification.error("Duration term is required");
+        if (formData.state == "definite" && !formData.installments) {
+          return notification.error("No. of installments is required");
+        }
+      }
+      if (step >= 3) {
+        const fields = [
+          ...categories[categoryIndex].fields,
+          ...categories[categoryIndex].subCategories[subCategoryIndex].fields,
+        ];
 
-      for (let field of fields) {
-        if (field.required) {
-          if (
-            (field.inputType == "text" ||
-              field.inputType == "number" ||
-              field.inputType == "radio" ||
-              field.inputType == "dropdown" ||
-              field.inputType == "date") &&
-            !formData?.extraFields[field.name]?.trim().length
-          )
-            return notification.error(field.name + " is required");
-          else if (
-            field.inputType == "checkbox" &&
-            formData?.extraFields[field.name] === undefined
-          ) {
-            return notification.error(field.name + " is required");
+        for (let field of fields) {
+          if (field.required) {
+            if (
+              (field.inputType == "text" ||
+                field.inputType == "number" ||
+                field.inputType == "radio" ||
+                field.inputType == "dropdown" ||
+                field.inputType == "date") &&
+              !formData?.extraFields[field.name]?.trim().length
+            )
+              return notification.error(field.name + " is required");
+            else if (
+              field.inputType == "checkbox" &&
+              formData?.extraFields[field.name] === undefined
+            ) {
+              return notification.error(field.name + " is required");
+            }
           }
         }
       }
-    }
-    if (step >= 4) {
-      if (!edit && !cart.package.name)
-        return notification.error("Please select a package");
-      if (!formData.location)
-        return notification.error("Selecting a location is required");
-      if (!edit && cart?.extras?.business && !user?.BusinessInfo?.name)
-        return notification.error("Please provide business details");
-      if (formData.location.components.country.short_name != country)
-        return notification.error(
-          "Please select an address within your selected Country"
-        );
-    }
-    if (step == 5) {
-      if (formData.images.length < 1)
-        return notification.error("At least one image is required");
-      return navigate(url || "/preview-ad");
-    }
-    setCurrentStep(step);
-    window.scrollTo(0, 0);
-  };
+      if (edit && step == 4) {
+        if (formData.images.length < 1)
+          return notification.error("At least one image is required");
+
+        if (!formData.location)
+          return notification.error("Selecting a location is required");
+        return navigate("/preview/" + formData._id);
+      }
+      if (step >= 4) {
+        if (!edit && !cart.package.name)
+          return notification.error("Please select a package");
+
+        if (!edit && cart?.extras?.business && !user?.BusinessInfo?.name)
+          return notification.error("Please provide business details");
+      }
+      if (step == 5) {
+        if (formData.images.length < 1)
+          return notification.error("At least one image is required");
+
+        if (!formData.location)
+          return notification.error("Selecting a location is required");
+        if (formData.location?.components?.country.short_name != country)
+          return notification.error(
+            "Please select an address within your selected Country"
+          );
+        return navigate("/preview-ad");
+      }
+      setCurrentStep(step);
+      window.scrollTo(0, 0);
+    },
+    [formData]
+  );
 
   const findMyLocation = async (coordinates) => {
-    // if (user?.currentLocation) setValue(user?.currentLocation);
     try {
       let loc = await axios.get(apis.findMyLocation, {
         params: { ...coordinates, type: "ad" },
@@ -324,21 +366,6 @@ export default function AdForm({ edit }) {
     }
   };
 
-  const onTitleClick = (clickedStep) => {
-    if (clickedStep === 1) {
-      setCurrentStep(1);
-    }
-    if (clickedStep === 2) {
-      setCurrentStep(2);
-    }
-    if (clickedStep === 3) {
-      setCurrentStep(3);
-    }
-    if (clickedStep === 4) {
-      setCurrentStep(4);
-    }
-  };
-
   const stepData = {
     1: (
       <>
@@ -354,6 +381,7 @@ export default function AdForm({ edit }) {
             </p>
           </div>
           <Input
+            className={"mw"}
             placeholder={"Write a concise informative title for your Ad"}
             onChange={(e) => {
               handleFormData("title", e.target.value.slice(0, 150));
@@ -376,7 +404,8 @@ export default function AdForm({ edit }) {
                 is posted.
               </p>
             </div>
-            <div className="dropdowns">
+
+            <div className="dropdowns mw">
               <Dropdown
                 placeholder={"Select category"}
                 array={categories.map((item) => item.name)}
@@ -422,101 +451,216 @@ export default function AdForm({ edit }) {
             </div>
           </div>
         )}
+
+        <div className="field_container">
+          <div className="field_info">
+            <h4>
+              Ad Type <span>(required)</span>
+            </h4>
+            <p>
+              Select the option that best describes your offering type—whether
+              it’s a service, rental, lease, or financing deal—to clearly
+              communicate what users can expect.
+            </p>
+          </div>
+
+          <div className="ad_type_container mw">
+            {AdTypes.map((t) => (
+              <div
+                className={"ad_type" + (formData.type == t ? " active" : "")}
+                onClick={() => {
+                  dispatch(setFormData({ ...formData, type: t, term: "" }));
+                  // handleFormData("term", "");
+                }}
+              >
+                {t}
+              </div>
+            ))}
+          </div>
+        </div>
         <div
           className="field_container"
           style={
             formData.priceHidden
-              ? { marginBottom: "-80px", transition: "all 0.1s var(--bc)" }
+              ? { marginBottom: "-160px", transition: "all 0.1s var(--bc)" }
               : { marginBottom: "0px", transition: "all 0.1s var(--bc)" }
           }
         >
           <div className="field_info">
             <h4>
-              Amount and Term <span>(required)</span>
+              Price <span>(required)</span>
             </h4>
-            <p>
-              Enter the amount for your ad along with the corresponding
-              duration: Day, Month, or Year.
-            </p>
-          </div>
-          <div
-            className="dropdowns"
-            style={{ display: "flex", flexDirection: "column" }}
-          >
-            <div className="price_hidden">
-              <Checkbox
-                checked={formData.priceHidden}
-                setChecked={(v) =>
-                  dispatch(setFormData({ ...formData, priceHidden: v }))
-                }
-              />{" "}
-              Do not disclose pricing details. Show "Please Contact" instead of
-              price.
-            </div>
-            <PriceInput
-              style={
-                formData.priceHidden
-                  ? { transform: "scaleY(0)", opacity: "0" }
-                  : { transform: "scaleY(1)", opacity: "1" }
-              }
-              onChangeTerm={(term) => {
-                handleFormData("term", term);
-              }}
-              price={formData.price}
-              term={formData.term}
-              onChange={(e) => {
-                if (isNaN(e.target.value)) return;
-                if (e.target.value.split(".")[1]?.length > 2) return;
-
-                handleFormData("price", e.target.value.trim().slice(0, 10));
-              }}
-            />
-            <div
-              className="tax"
+            <p
+              className="price_info"
               style={
                 formData.priceHidden
                   ? { transform: "scaleY(0)", opacity: "0" }
                   : { transform: "scaleY(1)", opacity: "1" }
               }
             >
-              <span className="free">*$0 will be shown as free</span>
-              <span>Tax:</span>
-              <p>
-                <Checkbox
-                  checked={formData.tax == "none"}
-                  setChecked={(v) =>
-                    v && dispatch(setFormData({ ...formData, tax: "none" }))
+              How do you want to display the price?{" "}
+              <Info
+                info={
+                  <span>
+                    {" "}
+                    <b>Recurring Payments:</b> Set a regular payment amount that
+                    continues indefinitely. Great for ongoing services or
+                    rentals without a predetermined end date.
+                    <br />
+                    <br />
+                    <b>Installments:</b> Break down the total price into equal
+                    payments over a set period. Ideal for financing or leasing,
+                    allowing customers to pay over time.
+                    <br />
+                    <br />
+                    <b>Total Amount:</b> Display the full price upfront. You can
+                    discuss and arrange the payment schedule with your customer,
+                    offering flexibility.
+                  </span>
+                }
+              />
+            </p>
+            <p
+              className="price_info"
+              style={
+                formData.priceHidden
+                  ? { transform: "scaleY(0)", opacity: "0" }
+                  : { transform: "scaleY(1)", opacity: "1" }
+              }
+            >
+              {formData.state == "indefinite"
+                ? "Amount and Term"
+                : formData.state == "definite"
+                ? "Amount, Term and no. of Installments"
+                : "Amount"}
+            </p>
+            <p
+              className="price_info"
+              style={
+                formData.priceHidden
+                  ? { transform: "scaleY(0)", opacity: "0" }
+                  : { transform: "scaleY(1)", opacity: "1" }
+              }
+            >
+              Additional Tax
+            </p>
+          </div>
+          <div className="pricing_container mw">
+            {" "}
+            <div className="price_hidden">
+              <Checkbox
+                checked={formData.priceHidden}
+                setChecked={(v) =>
+                  dispatch(
+                    setFormData({
+                      ...formData,
+                      priceHidden: v,
+                      term: "",
+                      price: "",
+                      installments: "",
+                    })
+                  )
+                }
+              />{" "}
+              Do not disclose pricing details. Show{" "}
+              <span
+                style={{
+                  color: "var(--blue)",
+                  margin: "-6px",
+                  fontWeight: "500",
+                }}
+              >
+                Please Contact{" "}
+              </span>
+              instead.
+            </div>
+            <div
+              className="dropdowns"
+              style={{ display: "flex", flexDirection: "column" }}
+            >
+              <PriceInput
+                state={formData.state}
+                // setState={(v) => handleFormData("state", v)}
+                style={
+                  formData.priceHidden
+                    ? { transform: "scaleY(0)", opacity: "0" }
+                    : { transform: "scaleY(1)", opacity: "1" }
+                }
+                type={formData.type}
+                setTerm={(term) => {
+                  handleFormData("term", term);
+                }}
+                term={formData.term}
+                price={formData.price}
+                setPrice={(e) => {
+                  if (isNaN(e.target.value)) return;
+                  if (e.target.value.split(".")[1]?.length > 2) return;
+
+                  handleFormData("price", e.target.value.trim().slice(0, 10));
+                }}
+                installments={formData.installments}
+                setInstallments={(e) => {
+                  if (isNaN(e.target.value)) return;
+                  if (e.target.value.split(".")[1]?.length > 2) return;
+
+                  handleFormData(
+                    "installments",
+                    e.target.value.trim().slice(0, 3)
+                  );
+                }}
+                setState={(v) => {
+                  dispatch(
+                    setFormData({
+                      ...formData,
+                      term: "",
+                      price: "",
+                      installments: "",
+                      state: v,
+                    })
+                  );
+                }}
+              />
+              <div
+                className="tax"
+                style={
+                  formData.priceHidden
+                    ? { transform: "scaleY(0)", opacity: "0" }
+                    : { transform: "scaleY(1)", opacity: "1" }
+                }
+              >
+                <div
+                  className={
+                    "tax_field" + (formData.tax == "none" ? " selected" : "")
                   }
-                />
-                none
-              </p>
-              <p>
-                <Checkbox
-                  checked={formData.tax == "HST"}
-                  setChecked={(v) =>
-                    v && dispatch(setFormData({ ...formData, tax: "HST" }))
+                  onClick={() => handleFormData("tax", "none")}
+                >
+                  None
+                </div>
+                <div
+                  className={
+                    "tax_field" + (formData.tax == "TAX" ? " selected" : "")
                   }
-                />
-                +HST
-              </p>
-              <p>
-                <Checkbox
-                  checked={formData.tax == "GST"}
-                  setChecked={(v) =>
-                    v && dispatch(setFormData({ ...formData, tax: "GST" }))
+                  onClick={() => handleFormData("tax", "TAX")}
+                >
+                  TAX
+                </div>
+                <div
+                  className={
+                    "tax_field" + (formData.tax == "HST" ? " selected" : "")
                   }
-                />{" "}
-                +GST
-              </p>
-              <p>
-                <Checkbox
-                  checked={formData.tax == "TAX"}
-                  setChecked={(v) =>
-                    v && dispatch(setFormData({ ...formData, tax: "TAX" }))
+                  onClick={() => handleFormData("tax", "HST")}
+                >
+                  HST
+                </div>
+                <div
+                  className={
+                    "tax_field" + (formData.tax == "GST" ? " selected" : "")
                   }
-                />{" "}
-                +TAX
-              </p>
+                  onClick={() => handleFormData("tax", "GST")}
+                >
+                  GST
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -525,46 +669,19 @@ export default function AdForm({ edit }) {
             <h4>Search Tags </h4>
             <p>
               Use relevant buzzwords to tag your ad with what you're offering.
-              You can include up to 5 tags.
+              You can include up to 5 tags, maximum 20 characters long.
             </p>
           </div>
 
-          <div className="tag_inp">
-            {formData?.tags?.map((tag, index) => (
-              <div className="tag">
-                <pre>{tag} </pre>
-                <CloseOutlinedIcon
-                  onClick={(e) =>
-                    dispatch(
-                      setFormData({
-                        ...formData,
-                        tags: formData.tags.filter((tag, i) => i != index),
-                      })
-                    )
-                  }
-                />
-              </div>
-            ))}
+          <div className="pricing_container">
             {formData?.tags?.length < 5 && (
-              <input
+              <Input
+                className="tags mw"
                 type="text"
-                placeholder={
-                  !formData?.tags?.length && "Enter tags related to your Ad"
-                }
+                placeholder={"Enter tags related to your Ad"}
                 onKeyDown={(e) => {
                   if (e.key == "Tab") e.preventDefault();
-                  if (e.key == "Backspace" && e.target.value == "")
-                    return dispatch(
-                      dispatch(
-                        setFormData({
-                          ...formData,
-                          tags: formData.tags.slice(
-                            0,
-                            formData.tags.length - 1
-                          ),
-                        })
-                      )
-                    );
+
                   if ((e.key == "Enter" || e.key == "Tab") && e.target.value) {
                     const newTag = e.target.value
                       .toLowerCase()
@@ -576,24 +693,37 @@ export default function AdForm({ edit }) {
                         tags: [...formData.tags, newTag],
                       })
                     );
-                    e.target.scrollTo({
-                      top: 0,
-                      left: e.target.innerWidth,
-                      behavior: "smooth",
-                    });
 
                     e.target.value = "";
                   }
                 }}
               />
             )}
+
+            <div className="tags mw">
+              {formData?.tags?.map((tag, index) => (
+                <div className="tag">
+                  <pre>{tag} </pre>
+                  <CloseOutlinedIcon
+                    onClick={(e) =>
+                      dispatch(
+                        setFormData({
+                          ...formData,
+                          tags: formData.tags.filter((tag, i) => i != index),
+                        })
+                      )
+                    }
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className="desc_container">
           <h4>
             Description <span>(required)</span>
           </h4>
-          <TextArea
+          {/* <TextArea
             onChange={(e) => {
               handleFormData("description", e.target.value.slice(0, 8000));
             }}
@@ -601,6 +731,12 @@ export default function AdForm({ edit }) {
               "Describe your item, include all important details related to the item."
             }
             value={formData.description}
+          /> */}
+          <Editor
+            placeholder={
+              "Describe your offering, include all important details related to the item/service/asset"
+            }
+            initialState={initialState}
           />
         </div>
       </>
@@ -625,16 +761,19 @@ export default function AdForm({ edit }) {
         ))}
       </>
     ),
-    4: (
-      <>
-        <UploadPictures />
-      </>
-    ),
+
     3: (
       <div className="step3">
         {!edit && <AdPricing category={categories[categoryIndex]} />}
+      </div>
+    ),
+    [edit ? 3 : 4]: (
+      <>
+        <UploadPictures />
         <div>
-          <h2>Choose Location for your Ad</h2>
+          <h2>
+            <PinDropOutlined /> Choose Location for your Ad
+          </h2>
           <div className="location">
             <div className="selections">
               {" "}
@@ -726,35 +865,28 @@ export default function AdForm({ edit }) {
             </div>
           </div>
         </div>
-      </div>
+      </>
     ),
   };
 
   return (
     <div className="post_ad">
+      <Stepper
+        current={currentStep}
+        steps={
+          edit
+            ? ["Basic Info", "Specific Details", "Images"]
+            : [
+                "Basic Info",
+                "Specific Details",
+                "Package and Add-ons",
+                "Images and Location",
+              ]
+        }
+        onClick={formNav}
+      />
       <div className="main">
         <div className="ad_form">
-          <div className="step_cont">
-            <Stepper
-              current={currentStep}
-              steps={
-                edit
-                  ? [
-                      { step: "Basic Info" },
-                      { step: "Specific Details" },
-                      { step: "Location" },
-                      { step: "Upload Images" },
-                    ]
-                  : [
-                      { step: "Basic Info" },
-                      { step: "Specific Details" },
-                      { step: "Plan and Location" },
-                      { step: "Upload Images" },
-                    ]
-              }
-              onClick={formNav}
-            />
-          </div>
           <div className={"form_content" + (currentStep == 2 ? " _" : "")}>
             {stepData[currentStep]}
 
@@ -768,22 +900,12 @@ export default function AdForm({ edit }) {
                 Discard
               </button>
 
-              {!edit && (
-                <Button
-                  className="btn_blue_m next_btn"
-                  onClick={() => formNav(currentStep + 1)}
-                >
-                  {currentStep == 4 ? "Proceed to Preview" : "Save & Continue"}
-                </Button>
-              )}
-              {edit && (
-                <button
-                  className="btn_blue_m next_btn"
-                  onClick={(e) => formNav(5, "/preview/" + formData._id)}
-                >
-                  Save and Preview
-                </button>
-              )}
+              <Button
+                className="btn_blue_m next_btn"
+                onClick={() => formNav(currentStep + 1)}
+              >
+                {currentStep == 4 ? "Proceed to Preview" : "Save & Continue"}
+              </Button>
             </div>
           </div>
         </div>

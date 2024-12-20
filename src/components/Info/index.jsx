@@ -6,7 +6,7 @@ function Info({ info }) {
   return (
     <div className="_info">
       <img src={HelpIcon} />
-      <p>{info}</p>
+      {info && <p>{info}</p>}
     </div>
   );
 }

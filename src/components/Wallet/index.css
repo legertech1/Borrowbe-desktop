@@ -198,6 +198,5 @@
 }
 
 .wallet ._info {
-  position: relative;
-  top: 2px;
+  margin-left: auto;
 }

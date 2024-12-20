@@ -278,7 +278,7 @@
 .manage_ads .ads .main .ad .ad_info h5 {
   margin: 0;
   text-overflow: ellipsis;
-  width: 100%;
+  /* width: 100%; */
   white-space: nowrap;
   overflow: hidden;
 }
@@ -367,16 +367,21 @@
   justify-content: start;
 
   margin: 0;
-  align-items: center;
+  align-items: baseline;
   overflow: hidden;
   font-size: 15px;
   font-family: var(--font1);
+}
+.manage_ads .ads .ad .price p {
+  margin-left: 4px !important;
 }
 
 .manage_ads .ads .ad .price span {
   font-size: 20px;
   color: var(--blue);
   font-weight: 600;
+  position: relative;
+  top: 1px;
   /* position: relative;
   top: 3px; */
 }

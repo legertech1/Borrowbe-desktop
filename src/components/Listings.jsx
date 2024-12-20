@@ -1,7 +1,7 @@
 import React from "react";
 import Listing from "./Listing";
 import "./Listings.css";
-
+const parser = new DOMParser();
 function Listings({ listings, actions, setListings, loading = true }) {
   return (
     <div className="listings">
@@ -11,6 +11,7 @@ function Listings({ listings, actions, setListings, loading = true }) {
           listing={listing}
           key={listing._id}
           actions={actions}
+          parser={parser}
         />
       ))}
 

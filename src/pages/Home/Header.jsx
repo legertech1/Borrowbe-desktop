@@ -16,7 +16,7 @@ function Header({ setCategory, category }) {
       <main>
         <div className="heading">
           <h1>Turn Your Assets Into Income</h1>
-          <p style={{ textAlign: "center", maxWidth: "90%" }}>
+          <p>
             BorrowBe is a unique marketplace connecting owners who want to rent,
             lease, or finance their items with interested people. Whether you’re
             an owner, service provider, or a potential customer, the

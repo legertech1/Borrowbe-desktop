@@ -1,6 +1,6 @@
 .html_textarea {
   width: 100%;
-  border: 1px solid transparent;
+  border: 1px solid var(--blue);
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -21,24 +21,26 @@
   border: none;
   outline: none;
   resize: none;
-  font-size: 20px;
+  font-size: 18px;
   font-family: var(--font2);
-  height: 450px;
+  height: 360px;
 }
 
 /* Works on Chrome, Edge, and Safari */
 .html_textarea textarea::-webkit-scrollbar {
   width: 7px;
   display: block !important;
+  border-radius: 5px;
 }
 
 .html_textarea textarea::-webkit-scrollbar-track {
   background: var(--bg);
+  border-radius: 5px;
 }
 
 .html_textarea textarea::-webkit-scrollbar-thumb {
   background-color: var(--blue);
-  border-radius: 0px;
+  border-radius: 5px;
   /* border: 3px solid var(--blue); */
 }
 

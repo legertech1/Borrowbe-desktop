@@ -13,13 +13,16 @@ export default function Input({
   onKeyDown,
   defaultValue,
   maxLength,
+  className,
+  pretext,
 }) {
   const [show, setShow] = React.useState(false);
   return (
     <div className="input_container">
+      <span>{pretext}</span>
       <input
         placeholder={placeholder || ""}
-        className="html-input"
+        className={"html-input " + className}
         name={name || "name"}
         id={id || ""}
         type={show ? "text" : type || "text"}

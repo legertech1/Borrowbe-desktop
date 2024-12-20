@@ -9,7 +9,6 @@ function OurPricing() {
   // const user = useSelector((state) => state.auth);
   return (
     <div className="our_pricing  pricing_section">
-      <h1>Our Pricing </h1>
       <div className="controls">
         <p> Select a category to view pricing for </p>
         <hr />
@@ -33,7 +32,7 @@ function OurPricing() {
             (a, c) => (c.name == category ? c : a),
             null
           )}
-          ads={{data:{postedAds:{}}}}
+          ads={{ data: { postedAds: {} } }}
         />
         <Package
           plan={
@@ -45,7 +44,7 @@ function OurPricing() {
             (a, c) => (c.name == category ? c : a),
             null
           )}
-          ads={{data:{postedAds:{}}}}
+          ads={{ data: { postedAds: {} } }}
         />
         <Package
           plan={
@@ -57,7 +56,7 @@ function OurPricing() {
             (a, c) => (c.name == category ? c : a),
             null
           )}
-          ads={{data:{postedAds:{}}}}
+          ads={{ data: { postedAds: {} } }}
         />
       </div>
     </div>

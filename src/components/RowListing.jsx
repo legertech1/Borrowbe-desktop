@@ -20,7 +20,13 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { PinDropOutlined } from "@mui/icons-material";
 const countries = { CA, US };
 
-function RowListing({ listing, actions, setListings, empty }) {
+function RowListing({
+  listing,
+  actions,
+  setListings,
+  empty,
+  parser = new DOMParser(),
+}) {
   const carousel = useRef();
   const nextBtn = useRef();
   const prevBtn = useRef();
@@ -175,13 +181,16 @@ function RowListing({ listing, actions, setListings, empty }) {
               <p className={empty ? " empty" : ""}></p>
             </>
           )}{" "}
-          {listing?.description}
+          {parser
+            .parseFromString(listing?.description || "", "text/html")
+            .body.textContent.trim()}
         </p>
         <div className={"info" + (empty ? " empty" : "")}>
           <span className="location">
             {!empty && <PinDropOutlined />}
             {listing?.location.name}
           </span>
+          {listing?.type && <div className="type">{listing?.type}</div>}
         </div>
         <div className="price">
           <p className={empty ? "empty" : ""}>
@@ -205,13 +214,27 @@ function RowListing({ listing, actions, setListings, empty }) {
                 </>
               ) : (
                 <>
-                  <span className="price_num">
-                    {listing?.price ? "$" + listing?.price : "Free"}
-                  </span>
-                  /{listing?.term}
-                  {listing.tax != "none" && (
-                    <p className="tax">+{listing?.tax}</p>
-                  )}{" "}
+                  {
+                    <>
+                      <div className="price_cont">
+                        <span className="price_num">
+                          {listing?.price ? "$" + listing?.price : "Free"}
+                        </span>
+                        {listing?.term && <>/{listing?.term}</>}
+                        <p className="tax">
+                          {" "}
+                          {listing?.installments && (
+                            <span className="installments">
+                              {" "}
+                              x{listing?.installments}
+                            </span>
+                          )}{" "}
+                          {!listing.installments && !listing.term && "Total"}
+                          {listing?.tax !== "none" && <>+{listing?.tax}</>}
+                        </p>
+                      </div>
+                    </>
+                  }
                   {distance <= 100 && distance > -1 && (
                     <div className="distance">~{distance} Km Away</div>
                   )}

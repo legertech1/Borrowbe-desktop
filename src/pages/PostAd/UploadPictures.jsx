@@ -11,6 +11,7 @@ import { setFormData } from "../../store/adSlice";
 import ImageCompressor from "image-compressor.js";
 import "./UploadPictures.css";
 import Loader from "../../components/Loader";
+import { CollectionsOutlined } from "@mui/icons-material";
 // import { AD_IMAGES_LIMIT } from "../../utils/constants";
 
 // TODO: improve this component
@@ -27,23 +28,10 @@ const UploadPictures = () => {
   const [dragged, setDragged] = useState(null);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+
   const AD_IMAGES_LIMIT = cart?.package?.item?.images;
   const [loading, setLoading] = useState(0);
-  useEffect(() => {
-    if (changedKey !== "delete") {
-      handleScroll();
-    }
-  }, [changedKey, images]);
 
-  const handleScroll = () => {
-    if (lastImageRef.current) {
-      lastImageRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center",
-      });
-    }
-  };
   const imageCompressor = new ImageCompressor();
   const handleFiles = async (files) => {
     setLoading(files.length);
@@ -151,6 +139,9 @@ const UploadPictures = () => {
           <img src={images[imageIndex]} alt={`img ${imageIndex + 1}`} />
         </Modal>
       )}
+      <h2>
+        <CollectionsOutlined /> Upload Images
+      </h2>
       <div className="image_gallery">
         <div className="image_scroll">
           {[...Array(AD_IMAGES_LIMIT)].map((image, index) => (

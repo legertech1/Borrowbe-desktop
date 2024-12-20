@@ -8,58 +8,61 @@
 ._info > img {
   border-radius: 50%;
   fill: var(--blue) !important;
-  transform: scale(0.9);
+
   will-change: transform;
 
-  height: 20px !important;
-  width: 20px !important;
+  height: 22px !important;
+  width: 22px !important;
   /* padding: 5px; */
   cursor: pointer;
   /* border: 1px solid var(--blue); */
   box-sizing: border-box;
   /* background-color: var(--blue); */
   transition: all 0.3s var(--bc);
-}
-._info > svg:hover,
-._info > img:hover {
-  transform: scale(1);
+  /* filter: drop-shadow(0px 0px 1px var(--blue)); */
 }
 
 ._info p {
-  font-size: 15px !important;
+  font-size: 14px !important;
   background: white;
   text-align: left !important;
+  margin: 0 !important;
   position: absolute;
   padding: 12px;
   border-radius: 5px;
-  top: 7px;
-  margin: 0;
-  filter: drop-shadow(0px 0px 8px #1114);
-  left: 35px;
-  max-width: 260px;
+  border: 1px solid var(--blue);
+  top: 8px;
+  filter: drop-shadow(0px 0px 5px #1115);
+  left: 36px;
+  max-width: 300px;
   width: max-content;
   z-index: 999;
   transform: scale(0) translateY(-50%);
   opacity: 0;
-  transition: all 0.3s var(--bc);
+  transition: opacity 0.3s var(--bc), transform 0.2s var(--bc);
   transform-origin: top left;
   color: white;
+  color: black !important;
 }
 ._info:hover p {
   transform: scale(1) translateY(-50%);
   opacity: 1;
-  color: #333;
 }
 
 ._info p::before {
-  content: "";
-  background: white;
   height: 20px;
   width: 20px;
-  position: absolute;
+
   z-index: -1;
   transform: rotate(45deg) translatey(-50%);
-  border-bottom-left-radius: 4px;
-  left: -16px;
+
+  content: "";
+  background: linear-gradient(45deg, var(--blue) 48%, white 49%);
+  z-index: -10;
   top: 50%;
+  position: absolute;
+  left: -17px;
+}
+._info b {
+  font-weight: 600;
 }

@@ -6,8 +6,9 @@ import PinDropOutlinedIcon from "@mui/icons-material/PinDropOutlined";
 import Arrow from "@mui/icons-material/KeyboardArrowDown";
 import AddIcon from "@mui/icons-material/Add";
 import TuneIcon from "@mui/icons-material/Tune";
-import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
+
+import { BookmarkFill } from "@styled-icons/octicons/BookmarkFill";
+import { Bookmark } from "@styled-icons/octicons/Bookmark";
 import TableRowsSharpIcon from "@mui/icons-material/TableRowsSharp";
 import WindowSharpIcon from "@mui/icons-material/WindowSharp";
 import Listings from "../../components/Listings";
@@ -34,6 +35,8 @@ import Footer from "../../components/Footer";
 import PageControl from "../../components/PageControl";
 import NotFoundAnimation from "../../components/Shared/NotFoundAnimation";
 import CategoriesIcon from "../../assets/images/CategoriesIcon";
+import { AdTypes, PriceOptions } from "../../utils/constants";
+import Input from "../../components/Shared/Input";
 
 function SearchPage() {
   const [viewMode, setViewMode] = useState("rows");
@@ -67,7 +70,12 @@ function SearchPage() {
       $gte: 0,
     },
   });
-  const [searchFilters, setSearchFilters] = useState({});
+  const [searchFilters, setSearchFilters] = useState({
+    price: {
+      $lte: 9999999,
+      $gte: 0,
+    },
+  });
 
   useEffect(() => {
     dispatch(emptyResults());
@@ -131,6 +139,16 @@ function SearchPage() {
       : setSaved(false);
   }, [user, current, searches]);
 
+  useEffect(() => {
+    let tm = setTimeout(
+      () => setSearchFilters({ ...searchFilters, ...filters }),
+      300
+    );
+
+    return () => {
+      clearTimeout(tm);
+    };
+  }, [filters]);
   return (
     <div className="search_page">
       <Navbar white={true} topOnly={true} noLoc={true}></Navbar>
@@ -206,75 +224,28 @@ function SearchPage() {
             );
           })}
 
-          <div className="search_tab add" onClick={createNewSearch}>
-            <AddIcon />
-          </div>
-        </div>
-      </div>
-      <div className="search_results_header">
-        <p>
-          Showing results for <span>{searches[current]?.query || "-"}</span>{" "}
-        </p>
-
-        <div>
-          {" "}
-          {user && (
-            <div
-              className={"save_search" + (saved ? " active" : "")}
-              onClick={(e) => {
-                saved
-                  ? dispatch(
-                      deleteSearch({ ...searches[current], results: [] })
-                    )
-                  : dispatch(saveSearch({ ...searches[current], results: [] }));
-              }}
-            >
-              {saved ? (
-                <>
-                  <BookmarkOutlinedIcon />
-                  Saved
-                </>
-              ) : (
-                <>
-                  <BookmarkBorderOutlinedIcon />
-                  Save Search
-                </>
-              )}
+          {searches.length < 9 && (
+            <div className="search_tab add" onClick={createNewSearch}>
+              <AddIcon /> Add Search
             </div>
           )}
+        </div>
+      </div>
+
+      <div className="search_content">
+        <div className="filters">
           <Dropdown
             subtext={"Sort By"}
             array={sortOptions}
             value={sort}
             setValue={(v) => setSort(v)}
           />
-          <div className="display_type">
-            <div
-              onClick={(e) => setViewMode("rows")}
-              className={"rows_btn" + (viewMode == "rows" ? " active" : "")}
-            >
-              <TableRowsSharpIcon />
-            </div>
-            <div
-              onClick={(e) => setViewMode("grid")}
-              className={"grid_btn" + (viewMode == "grid" ? " active" : "")}
-            >
-              <WindowSharpIcon />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="search_content">
-        <div className="filters">
-          <div className="heading">
-            <TuneIcon /> Filters
-          </div>
           <hr />
           <div className="filter">
             <div className="field">
-              <h2>Min. price:</h2>
-              <input
+              <h2>Min. Price</h2>
+              <Input
+                pretext="$"
                 type="number"
                 value={filters?.price?.$gte}
                 min={0}
@@ -306,12 +277,12 @@ function SearchPage() {
                 }
               />
             </div>
-          </div>
-          <hr />
-          <div className="filter">
+            <span></span>
             <div className="field">
-              <h2>Max. price:</h2>
-              <input
+              <h2>Max. Price</h2>
+
+              <Input
+                pretext="$"
                 type="number"
                 value={filters?.price?.$lte}
                 onChange={(e) =>
@@ -323,7 +294,7 @@ function SearchPage() {
                     },
                   })
                 }
-              />
+              ></Input>
             </div>
             <div className="slider">
               <input
@@ -343,112 +314,168 @@ function SearchPage() {
               />
             </div>
           </div>
-          <hr />
-          <div className="filter">
+
+          <div className="filter t">
             <div className="field">
-              <h2>Rent Term:</h2>
+              <h2>Listing Type</h2>
               <p></p>
             </div>
             <div className="terms">
-              <div
-                onClick={(e) =>
-                  setFilters({
-                    ...filters,
-                    term: filters.term == "Day" ? null : "Day",
-                  })
-                }
-                className={"term" + (filters?.term == "Day" ? " active" : "")}
-              >
-                Daily
-              </div>
-              <div
-                onClick={(e) =>
-                  setFilters({
-                    ...filters,
-                    term: filters.term == "Week" ? null : "Week",
-                  })
-                }
-                className={"term" + (filters?.term == "Week" ? " active" : "")}
-              >
-                Weekly
-              </div>
-              <div
-                onClick={(e) =>
-                  setFilters({
-                    ...filters,
-                    term: filters.term == "Month" ? null : "Month",
-                  })
-                }
-                className={"term" + (filters?.term == "Month" ? " active" : "")}
-              >
-                Monthly
-              </div>
-              <div
-                onClick={(e) =>
-                  setFilters({
-                    ...filters,
-                    term: filters.term == "Year" ? null : "Year",
-                  })
-                }
-                className={"term" + (filters?.term == "Year" ? " active" : "")}
-              >
-                Yearly
-              </div>
+              {AdTypes.map((option) => (
+                <div
+                  className={
+                    "term" +
+                    (searchFilters?.type &&
+                    searchFilters?.type?.$in?.includes(option)
+                      ? " active"
+                      : "")
+                  }
+                  onClick={async (e) =>
+                    setSearchFilters((f) => {
+                      let type = f?.type?.$in?.includes(option)
+                        ? {
+                            $in: [...f.type?.$in?.filter((o) => o != option)],
+                          }
+                        : { $in: [...(f?.type?.$in || []), option] };
+                      if (type.$in.length === 0) {
+                        delete f.type;
+                        console.log(f);
+                        return { ...f };
+                      } else return { ...f, type };
+                    })
+                  }
+                >
+                  &nbsp; {option} &nbsp;
+                </div>
+              ))}
+            </div>
+            <hr />
+          </div>
+          <div className="filter t">
+            <div className="field">
+              <h2>Payment Interval</h2>
+              <p></p>
+            </div>
+
+            <div className="terms">
+              {PriceOptions.map((option) => (
+                <div
+                  className={
+                    "term" +
+                    (searchFilters?.term &&
+                    searchFilters?.term?.$in?.includes(option)
+                      ? " active"
+                      : "")
+                  }
+                  onClick={async (e) =>
+                    setSearchFilters((f) => {
+                      let term = f?.term?.$in?.includes(option)
+                        ? {
+                            $in: [...f.term?.$in?.filter((o) => o != option)],
+                          }
+                        : { $in: [...(f?.term?.$in || []), option] };
+                      if (term.$in.length === 0) {
+                        delete f.term;
+                        console.log(f);
+                        return { ...f };
+                      } else return { ...f, term };
+                    })
+                  }
+                >
+                  {option == "Day" ? "Daily" : option + "ly"}
+                </div>
+              ))}
             </div>
           </div>
           {category && (
-            <div className="filter">
+            <div className="filter t">
               <div className="field">
                 <h2>Sub Category</h2>
                 <p></p>
               </div>
-              <Dropdown
-                value={filters["meta.subCategory"] || "Any"}
-                array={["Any", ...category?.subCategories.map((s) => s.name)]}
-                setValue={(v) =>
-                  setFilters({
-                    ...filters,
-                    ["meta.subCategory"]: v,
-                  })
-                }
-              />
+              <div className="terms">
+                {category?.subCategories.map((sc) => (
+                  <div
+                    className={
+                      "term" +
+                      (searchFilters["meta.subCategory"]?.$in?.includes(sc.name)
+                        ? " active"
+                        : "")
+                    }
+                    onClick={async (e) =>
+                      setSearchFilters((f) => {
+                        let subCategory = f["meta.subCategory"]?.$in?.includes(
+                          sc.name
+                        )
+                          ? {
+                              $in: [
+                                ...f["meta.subCategory"]?.$in?.filter(
+                                  (o) => o != sc.name
+                                ),
+                              ],
+                            }
+                          : {
+                              $in: [
+                                ...(f["meta.subCategory"]?.$in || []),
+                                sc.name,
+                              ],
+                            };
+                        if (subCategory.$in.length === 0) {
+                          delete f["meta.subCategory"];
+
+                          return { ...f };
+                        } else return { ...f, "meta.subCategory": subCategory };
+                      })
+                    }
+                  >
+                    {sc.name}
+                  </div>
+                ))}
+              </div>
             </div>
           )}
-          <div className="apply">
-            <button
-              className="reset"
-              onClick={(e) => {
-                setSearchFilters({
-                  price: {
-                    $lte: 9999999,
-                    $gte: 0,
-                  },
-                });
-
-                setFilters({
-                  price: {
-                    $lte: 9999999,
-                    $gte: 0,
-                  },
-                });
-              }}
-            >
-              Reset
-            </button>
-            <button
-              className="apply"
-              onClick={(e) => {
-                if (filters.term == null) delete filters.term;
-                if (filters["meta.subCategory"] == "Any")
-                  delete filters["meta.subCategory"];
-                setSearchFilters(filters);
-              }}
-            >
-              Apply
-            </button>
-          </div>
         </div>
         <div className="search_results">
+          <div className="search_results_header">
+            <p>
+              Showing results for <span>{searches[current]?.query || "-"}</span>{" "}
+            </p>
+
+            <div>
+              {" "}
+              {user && (
+                <div
+                  className={"save_search" + (saved ? " active" : "")}
+                  onClick={(e) => {
+                    saved
+                      ? dispatch(
+                          deleteSearch({ ...searches[current], results: [] })
+                        )
+                      : dispatch(
+                          saveSearch({ ...searches[current], results: [] })
+                        );
+                  }}
+                >
+                  <BookmarkFill></BookmarkFill>{" "}
+                  {saved ? "Saved" : "Save Search"}
+                </div>
+              )}
+              <div className="display_type">
+                <div
+                  onClick={(e) => setViewMode("rows")}
+                  className={"rows_btn" + (viewMode == "rows" ? " active" : "")}
+                >
+                  <TableRowsSharpIcon /> List View
+                </div>
+                <div
+                  onClick={(e) => setViewMode("grid")}
+                  className={"grid_btn" + (viewMode == "grid" ? " active" : "")}
+                >
+                  <WindowSharpIcon /> Grid View
+                </div>
+              </div>
+            </div>
+          </div>
           {viewMode == "grid" && (
             <Listings
               listings={searches[current]?.featured.concat(

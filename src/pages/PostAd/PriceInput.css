@@ -1,6 +1,8 @@
 .custom_price_input {
   width: 100%;
-  height: 62px !important;
+  height: 66px !important;
+  max-height: 66px !important;
+  min-height: 66px !important;
   justify-content: center;
   box-sizing: border-box;
   gap: 5px;
@@ -9,13 +11,16 @@
   flex: 1;
   outline: none !important;
   font-size: 20px;
-  filter: drop-shadow(1px 1px 4px #1114);
-  padding: 2px 10px;
+
+  padding: 0px 16px;
   display: flex;
   align-items: center;
   border-radius: 5px;
   background-color: white;
   border: 1px solid var(--blue);
+  filter: drop-shadow(0px 0px 4px #1115);
+
+  /* box-shadow: 0px 0px 12px #1114; */
 }
 .custom_price_input .symbol {
   font-weight: 500;
@@ -44,27 +49,80 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  column-gap: 6px;
+  filter: drop-shadow(0px 0px 4px #1114);
+  column-gap: 8px;
 }
 
 .custom_price_input .price_option {
   font-size: 14px;
   display: flex;
-  padding: 6px 12px;
+  padding: 6px 16px;
   justify-content: center;
   align-items: center;
   width: auto;
   border-radius: 5px;
   cursor: pointer;
   border: 1px solid #2196f3;
-  color: #333;
-  box-shadow: 0px 0px 4px #1114;
+  background: white;
   font-weight: 500;
+  font-family: var(--font1);
 }
-
+.price_controls .info {
+  position: absolute;
+  font-size: 14px;
+  font-family: var(--font1);
+  font-weight: 500;
+  top: 100%;
+  margin: 4px 0;
+  /* padding: 4px 8px; */
+  border-radius: 5px;
+  color: #555;
+  right: 0;
+}
 .custom_price_input .option_selected {
   background: var(--blue);
   color: var(--fg);
   border-color: var(--blue);
   opacity: 1;
+}
+.custom_price_input input {
+  color: var(--blue);
+}
+
+.price_controls {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* filter: drop-shadow(0px 0px 4px #1114); */
+}
+.price_controls .type_selection {
+  display: FLEX;
+  flex: 1;
+  justify-content: CENTER;
+  gap: 16px;
+  filter: drop-shadow(0px 0px 4px #1115);
+}
+
+.price_controls .type_selection .type {
+  padding: 8px 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  /* box-shadow: 0px 0px 12px #1114; */
+  background-color: white;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid var(--blue);
+  font-weight: 500;
+  font-family: var(--font1);
+  transition: all 0.3s var(--bc);
+}
+
+.price_controls .type_selection .type.selected,
+.price_controls .type_selection .type:hover {
+  background: var(--blue);
+  color: white;
 }

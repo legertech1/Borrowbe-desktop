@@ -241,8 +241,7 @@
   top: 0;
   left: 0;
 } */
-
-input[type="range"] {
+.web_location input[type="range"] {
   /* removing default appearance */
   -webkit-appearance: none;
   appearance: none;
@@ -253,20 +252,29 @@ input[type="range"] {
   /*  slider progress trick  */
   overflow: hidden;
   border-radius: 16px;
+  filter: drop-shadow(0px 0px 2px #1116);
 }
 
 /* Track: webkit browsers */
-.web_location [type="range"]::-webkit-slider-runnable-track {
-  height: 12px;
-  background: var(--bg) !important;
-  border-radius: 16px;
+.web_location input[type="range"]::-webkit-slider-runnable-track {
+  height: 14px;
+  /* background: #eee; */
+  border-radius: 14px;
+  box-sizing: border-box;
+  border: 1px solid var(--blue);
 }
 
 /* Track: Mozilla Firefox */
 .web_location input[type="range"]::-moz-range-track {
-  height: 12px;
-  background: #1113;
-  border-radius: 16px;
+  height: 14px;
+  /* background: #eee; */
+  border-radius: 14px;
+  box-sizing: border-box;
+
+  border: 1px solid var(--blue);
+  /* overflow: hidden; */
+  /* border-left-color: #fff;
+  border-right-color: #fff; */
 }
 
 /* Thumb: webkit */
@@ -277,17 +285,22 @@ input[type="range"] {
   /* creating a custom design */
   height: 12px;
   width: 12px;
-  background-color: #fff;
+  background-color: white;
   border-radius: 50%;
   border: 2px solid var(--blue);
+  box-sizing: border-box;
+  /* position: relative; */
+  top: -1px;
+
   /*  slider progress trick  */
+  /* filter: drop-shadow(0px 0px 4px #1114); */
   box-shadow: -407px 0 0 400px var(--blue);
 }
 
 /* Thumb: Firefox */
 .web_location input[type="range"]::-moz-range-thumb {
-  height: 8px;
-  width: 8px;
+  height: 12px;
+  width: 12px;
   background-color: #fff;
   border-radius: 50%;
   border: 1px solid var(--blue);
@@ -311,31 +324,30 @@ input[type="range"] {
   align-items: center;
 }
 .web_location .select_range {
-  flex-direction: column-reverse;
+  flex-direction: column;
   height: -moz-fit-content;
   height: fit-content;
   justify-content: center;
   align-items: center;
   transition: all 0.3s var(--bc);
   border-top: 1px solid #eee;
+  gap: 0;
 }
 .web_location .select_range > div {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   width: 100%;
-  gap: 16px;
+  gap: 12px;
   height: 30px;
+  transition: all 0.1s var(--bc);
 }
 .web_location .select_range .search_by_address {
   flex-direction: row-reverse;
   font-size: 18px;
   color: #333;
   font-weight: 500;
-}
-
-.web_location input[type="range"]:disabled {
-  filter: grayscale(1);
+  align-items: center;
 }
 
 .web_location .current_loc h4 {

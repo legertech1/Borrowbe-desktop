@@ -549,25 +549,39 @@ function ManageAds() {
                             {ad.location.name}
                           </h5>
                           <span className="price">
-                            {ad?.priceHidden ? (
-                              <p
-                                className="price_hidden"
-                                style={{
-                                  fontSize: "large",
-                                  fontWeight: "600",
-                                  color: "var(--blue)",
-                                }}
-                              >
-                                Please Contact
-                              </p>
-                            ) : (
-                              <>
-                                {" "}
-                                <span>${ad.price}</span>/
-                                {ad.term +
-                                  (ad.tax == "none" ? "" : " +" + ad.tax)}
-                              </>
-                            )}
+                            <>
+                              {" "}
+                              {ad?.priceHidden ? (
+                                <p
+                                  style={{
+                                    color: "var(--blue)",
+                                    fontWeight: "500",
+                                  }}
+                                >
+                                  Please Contact
+                                </p>
+                              ) : (
+                                <span>{ad.price ? ad.price : "Free"}</span>
+                              )}
+                              {!ad?.priceHidden && (
+                                <>
+                                  {ad.term && ad.price && <>/{ad.term}</>}
+                                  {ad.price && !ad.term && <p>total</p>}
+                                  {ad.installments && ad.price && (
+                                    <p
+                                      style={{
+                                        fontWeight: "600",
+                                        color: "var(--blue)",
+                                        fontSize: "larger",
+                                      }}
+                                    >
+                                      x{ad?.installments}
+                                    </p>
+                                  )}
+                                  {ad.tax != "none" && <p>+{ad.tax}</p>}
+                                </>
+                              )}
+                            </>
                           </span>
                         </div>
                       </div>

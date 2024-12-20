@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Navbar.css";
-import NotificationsIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import FavoriteIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import TuneIcon from "@mui/icons-material/Tune";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import {
   ArrowDownwardOutlined,
   ArrowRight,
@@ -49,6 +49,7 @@ import { parseTime } from "../utils/helpers";
 import Settings from "./Settings";
 import NotificationSettings from "./NotificationSettings";
 import EmailSettings from "./EmailSettings";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 const countries = {
   US: { image: US, name: "USA", currency: "USD" },
   CA: {
@@ -87,7 +88,7 @@ function Navbar({ white, topOnly, noLoc, noPostAd }) {
   );
 
   const notificationBox = useRef();
-
+  const pathname = useLocation().pathname;
   const showModal = () => {
     setShowLocationModal(true);
   };
@@ -266,7 +267,13 @@ function Navbar({ white, topOnly, noLoc, noPostAd }) {
               </div>
             </li>
             <li onClick={(e) => navigate("/wishlist")}>
-              <FavoriteIcon />
+              <FavoriteIcon
+                style={
+                  pathname == "/wishlist" || pathname == "/profile"
+                    ? { fill: "var(--blue) !important" }
+                    : {}
+                }
+              />
             </li>
             <li onClick={(e) => navigate("/messages")}>
               <div
@@ -276,7 +283,13 @@ function Navbar({ white, topOnly, noLoc, noPostAd }) {
               >
                 {chatUpdate > 9 ? "9+" : chatUpdate}
               </div>
-              <ChatBubbleOutlineOutlinedIcon />
+              <ChatBubbleIcon
+                style={
+                  pathname == "/messages"
+                    ? { fill: "var(--blue) !important" }
+                    : {}
+                }
+              />
             </li>
           </ul>
 

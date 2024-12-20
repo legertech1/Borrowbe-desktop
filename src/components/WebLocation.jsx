@@ -323,7 +323,10 @@ export default function WebLocation({ close }) {
             componentKeys.includes(
               "country" || "administrative_area_level_1" || "locality"
             ) && (
-              <div className="search_by_address">
+              <div
+                className="search_by_address"
+                // style={{ marginBottom: "12px" }}
+              >
                 <Checkbox
                   checked={!radius}
                   setChecked={(v) => {
@@ -342,12 +345,16 @@ export default function WebLocation({ close }) {
                 </p>
               </div>
             )}
-          {componentKeys.includes(
-            "country" || "administrative_area_level_1" || "locality"
-          ) && <div className="or">-or-</div>}
-          <div>
+
+          <div
+            style={
+              !radius
+                ? { height: "0px", opacity: "0" }
+                : { height: "30px", opacity: 1 }
+            }
+          >
             {" "}
-            <h4>Search Radius</h4>{" "}
+            <p>Search Radius</p>{" "}
             <input
               type="range"
               value={radius || 0}
@@ -357,7 +364,7 @@ export default function WebLocation({ close }) {
               name=""
               id=""
               disabled={!radius}
-            />
+            />{" "}
             <p>{radius || "--"} km</p>
           </div>
         </div>

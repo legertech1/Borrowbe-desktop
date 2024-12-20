@@ -37,37 +37,37 @@ function Search({ category, setCategory }) {
           setValue={setCategory}
         />
         <div className="search_inp">
+          <SearchIcon></SearchIcon>
           <input
-            placeholder="Search"
+            placeholder="Trying to find something?"
             ref={inpRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => e.key == "Enter" && search(query)}
           />
-          <button onClick={(E) => search(query)}>
-            {" "}
-            <SearchIcon></SearchIcon>
-          </button>
+          <button onClick={(E) => search(query)}> Search</button>
         </div>
       </div>
       <div className="recents">
-        <h2>Suggested:</h2>
-        <div className="recent" onClick={(e) => search("Home Decor")}>
+        <div className="recent" onClick={(e) => search("House for rent")}>
           <SearchIcon />
-          Truck
+          House for rent
         </div>
-        <div className="recent" onClick={(e) => search("Boat")}>
+        <div className="recent" onClick={(e) => search("Car for lease")}>
           <SearchIcon />
-          Boat
+          Car for lease
         </div>
-        <div className="recent" onClick={(e) => search("House")}>
+        <div className="recent" onClick={(e) => search("Vacation rental")}>
           <SearchIcon />
-          House
+          Vacation rental
         </div>
-        <div className="recent" onClick={(e) => search("Heavy Machines")}>
+        <div
+          className="recent"
+          onClick={(e) => search("Construction machinery")}
+        >
           <SearchIcon />
-          Heavy Machines
+          Construction machinery
         </div>
       </div>
     </div>
